@@ -1,0 +1,13 @@
+<div id="new-customer" class="new-customer-bordered">
+  <h2><%= t(:new_customer) %></h2>
+  <div><p><%= t(:new_customer_invitation) %></p></div>
+  <div data-hook="signup">
+
+    <%= form_for :user, :url => spree.user_registration_path(@user, :register_on_checkout => register_on_checkout) do |f| %>
+      <div data-hook="signup_inside_form">
+        <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
+        <p><%= f.submit t(:register_1), :class => 'button primary' %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

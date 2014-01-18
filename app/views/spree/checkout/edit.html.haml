@@ -1,0 +1,24 @@
+- content_for :head do
+  = javascript_include_tag states_url(:format => :js)
+  = javascript_include_tag countries_url(:format => :js)
+#checkout{"data-hook" => ""}
+  = render :partial => 'spree/shared/error_messages', :locals => { :target => @order }
+  .checkout-header.top-bordered{"data-hook" => "checkout_header"}
+    %h1.columns.twentyfour{"data-hook" => "checkout_title"}= t(:checkout)
+    .columns.eighteen.alpha{"data-hook" => "checkout_progress"}= checkout_progress
+  .row{"data-hook" => "checkout_content"}
+    .columns.eighteen.alpha.form-checkout{"data-hook" => "checkout_form_wrapper"}
+      - if @order.state == 'lens_prescription'
+        = render @order.state
+      - else
+        = form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" } do |form|
+          - unless @order.email?
+            %p.field{:style => "clear: both"}
+              = form.label :email
+              %br/
+              = form.text_field :email
+          = render @order.state, :form => form
+    - if @order.state != 'confirm'
+      .columns.omega.four
+        .columns.five.offset-by-one.omega#checkout-summary{"data-hook" => "checkout_summary_box"}
+          = render :partial => 'summary', :locals => { :order => @order }

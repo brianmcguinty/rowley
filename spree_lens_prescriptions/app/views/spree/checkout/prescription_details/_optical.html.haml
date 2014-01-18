@@ -1,0 +1,72 @@
+- lp = prescription
+- if lp.detailed?
+  %div
+    %table
+      %tr
+        %td="#{t("lens_prescription.vision_type.title")}:"
+        %td{:colspan=>'5'}= t("lens_prescription.vision_type.#{lp.vision_type}")
+      %tr
+        %td=t(:od_right)
+        %td
+          .param-name SPH:
+          =" #{lp.right_sph}"
+        %td
+          .param-name CYL:
+          =" #{lp.right_cyl}"
+        %td
+          .param-name AXIS:
+          =" #{lp.right_axis_display}"
+        - if lp.progressive?
+          %td
+            .param-name ADD:
+            =" #{lp.right_add}"
+        - if lp.two_pds?
+          %td
+            .param-name PD:
+            #{lp.right_pd}
+      %tr
+        %td= t(:os_left)
+        %td
+          .param-name SPH:
+          =" #{lp.left_sph}"
+        %td
+          .param-name CYL:
+          =" #{lp.left_cyl}"
+        %td
+          .param-name AXIS:
+          =" #{lp.left_axis_display}"
+        - if lp.progressive?
+          %td
+            .param-name ADD:
+            =" #{lp.left_add}"
+        - if lp.two_pds?
+          %td
+            .param-name PD:
+            #{lp.left_pd}
+      - unless lp.two_pds?
+        %tr
+          %td PD:
+          %td{:colspan=>'5'}= lp.pd
+      %tr
+        %td #{t(:lens_type_label)}:
+        %td{:colspan=>'5'}= t(lp.lens_type.to_s)
+      - if sunglasses
+        %tr
+          - if lp.standard_or_custom_tint_or_polarized == :polarized
+            %td #{t(:polarized)}:
+            %td{:colspan=>'5'}= t(lp.polarized_color.to_sym)
+          - else
+            %td #{t(:tint)}:
+            %td{:colspan=>'5'}= if lp.standard_or_custom_tint_or_polarized == :custom_tint then t(lp.tint.to_sym) elsif lp.standard_or_custom_tint_or_polarized == :standard  then  t(:standard) end
+      - else
+        %tr
+          %td #{t(:transition_lenses)}:
+          %td{:colspan=>'5'}= if lp.transition then t(:yes) else t(:no) end
+- else
+  = t('lens_prescription.details_required')
+  -# - elsif
+  -#   %table
+  -#     %tr
+  -#       %td="#{t("lens_prescription.vision_type.title")}:"
+  -#       %td{:colspan=>'4'}= t("lens_prescription.vision_type.#{lp.vision_type}")
+  -# 

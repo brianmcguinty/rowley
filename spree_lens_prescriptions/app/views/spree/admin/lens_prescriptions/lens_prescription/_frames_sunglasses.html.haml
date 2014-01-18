@@ -1,0 +1,20 @@
+.row
+  = f.radio_button :demo_or_sunglasses, :demo, :class =>'demo_or_sunglasses'
+  = f.label :demo_or_sunglasses, t("lens_prescription.frames_sunglasses.demo"), :value => :demo
+.row
+  = f.radio_button :demo_or_sunglasses, :sunglasses, :class =>'demo_or_sunglasses'
+  = f.label :demo_or_sunglasses, t("lens_prescription.frames_sunglasses.sunglasses.title"), :value => :sunglasses
+  .row.sunglasses-with{ :style =>  ( (@order.lens_meta_prescription.demo_or_sunglasses == :sunglasses) ? 'padding-left: 30px;' : 'padding-left: 30px;display:none;')  }
+    .row
+      = f.radio_button :standard_or_custom_tint_or_polarized, :standard
+      = f.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.standard"), :value => :standard
+    .row
+      = f.radio_button :standard_or_custom_tint_or_polarized, :custom_tint
+      = f.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.custom_tint"), :value => :custom_tint
+      = f.select :custom_tint, Spree::LensPrescription::TINT.map {|t| [t("lens_prescription.tint.#{t}"), t]}
+    .row
+      = f.radio_button :standard_or_custom_tint_or_polarized, :polarized
+      = f.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.polarized_lens"), :value => :polarized
+      = f.select :polarized_color, Spree::LensPrescription::POLARIZED.map {|t| [t("lens_prescription.polarized.#{t}"), t]}
+.row
+  = render 'spree/admin/lens_prescriptions/lens_prescription/purchase_subscription', :f => f

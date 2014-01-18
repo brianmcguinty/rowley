@@ -1,0 +1,24 @@
+= link_to '', '#halloween_popup', {:id => 'inline_popup'}
+#halloween_popup{:style => 'display:none'}
+  = image_tag 'store/halloween_popup.jpg', height: '600', width: '800'
+:javascript
+  var modalLoadFunction = function() {
+      jQuery("a#inline_popup").click();
+      clearInterval(globalInterval);
+  }
+
+  $(document).ready(function(){
+    $('#halloween_popup').hide();
+
+    $('a#inline_popup').fancybox({
+      'hideOnContentClick': true,
+      'padding': 2,
+      'margin': 2,
+      'widht': 800,
+      'height': 600,
+    });
+
+    /* Kickoff the modal window as soon as possible */
+    globalInterval = setInterval(modalLoadFunction, 500)
+  })
+

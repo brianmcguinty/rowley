@@ -1,0 +1,16 @@
+- lmp = prescription.meta
+%table
+  %tr
+    - if lmp.demo_or_sunglasses == :demo
+      %td{:colspan=>'5'}= t('frames_sunglasses.demo')
+    - else 
+      %td= t('frames_sunglasses.sunglasses')
+      %td{:colspan=>'4'}
+        - if lmp.standard_or_custom_tint_or_polarized == :custom_tint
+          = t(lmp.tint.to_s)
+          Tint
+        - elsif lmp.standard_or_custom_tint_or_polarized == :polarized
+          Polarized
+          = t(lmp.polarized.to_s)
+        - else
+          = t(:standard)

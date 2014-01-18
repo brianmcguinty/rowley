@@ -1,0 +1,3 @@
+= fields_for @order do |of|
+  = of.fields_for :lens_meta_prescription do |f|
+    = render "spree/admin/lens_prescriptions/lens_prescription/#{@order.lens_meta_prescription.glasses_type.to_s}", :f => f

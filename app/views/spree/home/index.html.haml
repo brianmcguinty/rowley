@@ -1,0 +1,52 @@
+/ %div{"data-hook" => "homepage_banners"}
+/ .row.home-heading
+/   %h2.center.homepage FEATURED EYEWEAR
+/ %div{"data-hook" => "homepage_products"}
+/   = render :partial => 'spree/shared/products', :locals => { :products => @products }
+/ .row.bordered-top.row-homelink
+/   .one-third.column.left
+/     %a.homelink-care.img-home-left{:href => "/rowley_care", "data-hook" => "rowley-care-link"}
+/   .one-third.column.center
+/     %a.homelink-try{:href => "/try-on", "data-hook" => "try-on-link"}
+/   .one-third.column.right
+/     %a.homelink-specials.img-home-right{:href => "#", "data-hook" => "specials_link"}
+
+
+%div{"data-hook" => "homepage_banners"}
+.row.row-links
+  .link-card.float-left
+    .homelink.homelinks-care
+    %a{:href => "/rowley-care", "data-hook" => "rowley-care-link"}
+      .homelink-hover.homelinks-care-active
+        %p.homelink-text=t('home_page.become_a_rowley_care').html_safe
+        .learnmore
+          =t('home_page.learn_more')
+          %span.icon-play-white
+  .link-card.rowley-homestory
+    .homelink.homelinks-story
+    %a{:href => "/story", "data-hook" => "story-link"}
+      .homelink-hover.homelinks-story-active
+        %p.homelink-text=t('home_page.rowley_philosophy')
+        .learnmore
+          =t('home_page.learn_more')
+          %span.icon-play-white
+  .link-card.float-right
+    .homelink.homelinks-try
+    %a{:href => "/try-on", "data-hook" => "tryon-link"}
+      .homelink-hover.homelinks-try-active
+        %p.homelink-text=t('home_page.we_make_it_easy').html_safe
+        .learnmore
+          =t('home_page.learn_more')
+          %span.icon-play-white
+  .clearfix
+.row.row-products
+  .columns.eight.center
+    .feature-heading
+      %span.fbig Featured
+      %br
+      %span.fsmall eyewear:
+  .columns.sixteen.center.alpha.omega.float-right
+    %div{"data-hook" => "mainpage_products"}
+      = render :partial => 'spree/shared/products', :locals => { :products => @products }
+= holiday_popup DateTime.new(2013,11,25,0,0,1), DateTime.new(2013,12,3,23,59,59),
+                image_url: 'store/holiday-popup.jpg', width: 800, height: 655

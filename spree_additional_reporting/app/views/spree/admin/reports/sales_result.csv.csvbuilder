@@ -1,0 +1,12 @@
+csv << [
+  'Period', 
+  'Units',
+  'Amount'
+]
+@rows.each do |row|
+  csv << [
+    display_period(@report.group_by_period, row['order_period'], row['order_date']),
+    row['total_qty'].round,
+    row['total_amount']
+  ]
+end

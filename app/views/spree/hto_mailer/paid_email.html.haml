@@ -1,0 +1,34 @@
+!!!
+%head
+  %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
+  %title Rowley
+  :css
+    body {margin: 0; padding: 0; color: #2d2827; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 18px;}
+    a {text-decoration: none;}
+    p {margin: 0 0 25px;}
+    #content td {padding: 55px 0; vertical-align: top;}
+    %body
+  %table{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+    %tr
+      %td{:align => "center"}
+        %table{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "900"}
+          %tr
+            %td{:align => "center"}
+              %table#header{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr{:align => "left"}
+                  %td{:style => "padding-top:48px;"}
+                    = image_tag 'http://www.rowleyeyewear.com/assets/store/letters/orders/main-logo.jpg'
+              / header table end
+              %table#content{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr{:align => "left"}
+                  %td
+                    %p
+                      %span{:style => "font-weight:bold;"} Hello #{@order.ship_address.full_name},
+                    %p
+                      You must have really liked your sample frames and decided to keep them!  
+                      No problem, we will charge your credit card for the glasses.
+                    %p
+                      Sincerly,
+                      %br/
+                      Rowley Eyewear
+              / content table end

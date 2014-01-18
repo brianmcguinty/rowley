@@ -1,0 +1,9 @@
+= form_for [:admin, @product, @head_turn_image], :html => { :multipart => true } do |f|
+  %fieldset{"data-hook" => "new_image"}
+    %legend{:align => "center"}= t(:new_image)
+    = render :partial => 'form', :locals => { :f => f }
+    .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+      = button t(:update), 'icon-refresh'
+      %span.or= t(:or)
+      = link_to_with_icon 'icon-remove', t(:cancel), admin_product_head_turn_images_url(@product), :id => 'cancel_link', :class => 'button'
+= javascript_include_tag 'admin/images/new.js'

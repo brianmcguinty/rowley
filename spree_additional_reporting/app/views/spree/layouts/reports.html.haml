@@ -1,0 +1,12 @@
+- if content_for?(:report_params) || content_for?(:report_result)
+  - content_for :page_title do
+    = t("additional_report.#{controller.action_name}")
+  - content_for :page_actions do
+    %li= link_to_with_icon 'icon-arrow-left', t(:back_to_reports_list), spree.admin_reports_url, :class => 'button'
+  - content_for :content do
+    - if content_for?(:report_params)
+      .sixteen.columns
+        = yield :report_params
+    .sixteen.columns#report-result
+      = yield :report_result
+= render :template => '/spree/layouts/admin'

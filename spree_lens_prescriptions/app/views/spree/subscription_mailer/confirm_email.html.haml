@@ -1,0 +1,161 @@
+!!!
+%head
+  %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
+  %title Rowley
+  :css
+    body, ul {margin: 0; padding: 0; color: #302e2f; font-family: Helvetica, Arial, sans-serif; font-size: 13px; line-height: 15px;}
+    a {text-decoration: none;}
+    ul {list-style-type: none;}
+    p {margin: 0 0 10px;}
+    ul li {display: inline-block;}
+    ul li a {color: #302e2f; text-transform: uppercase; font-family: 'Trebuchet MS', Helvetica, sans-serif;}
+    h1, h2, h3 {text-transform: uppercase; font-family: 'Trebuchet MS', Helvetica, sans-serif; margin: 0; font-weight: normal; line-height: 100%;}
+    h1 {margin: 3px 0 10px; font-size: 24px;}
+    h2 {font-size: 16px; margin-bottom: 18px;}
+    h3 {margin-bottom: 12px;}
+    #header ul {padding-bottom: 20px; border-bottom: 1px solid #c8c7c7; margin: 50px 0 0;}
+    #header ul li a {padding: 0 25px; font-size: 14px; text-align: center;}
+    #footer ul li a {font-size: 12px; padding: 0 20px 0 0;}
+    #content td {padding: 30px 0; border-bottom: 1px solid #c8c7c7; vertical-align: top;}
+    #params td {padding: 0 20px 0 0; border-bottom: 0;}
+    #addresses td {padding: 0; border-bottom: 0;}
+    #totals td {padding: 0; border-bottom: 0;}
+
+    %body
+  %table{:bgcolor => "343336", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+    %tr
+      %td{:align => "center"}
+        %table{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "900"}
+          %tr
+            %td{:align => "center"}
+              %table#header{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr
+                  %td{:align => "center", :style => "padding-top:48px;"}
+                    = image_tag 'http://www.rowleyeyewear.com/assets/store/letters/orders/main-logo.jpg'
+                %tr
+                  %td
+                    %ul
+                      %li= link_to 'Women', 'http://www.rowleyeyewear.com/products'
+                      %li= link_to 'Men', 'http://www.mrpowerseyewear.com/products'
+                      %li= link_to 'The story', 'http://www.rowleyeyewear.com/story'
+                      %li= link_to 'Rowley Care', 'http://www.rowleyeyewear.com/rowley-care'
+                      %li= link_to 'Showrooms', 'http://www.rowleyeyewear.com/showrooms'
+              / header table end
+              %table#content{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse; font-size:12px", :width => "640",  }
+                %tr{:align => "left"}
+                  %td{:colspan => "2"}
+                    %h1 YOUR ORDER CONFIRMATION
+                    %p{:style => "padding-right:100px; font-size: 13px; line-height: 18px;"}
+                      Thank you for your order.
+                      %br/
+                      We are so excited that you've joined our Rowley Care program.
+                    %div{:align => 'center', :style => 'margin-top: 25px'}
+                      = image_tag 'http://www.rowleyeyewear.com/assets/store/rowley-homecare.jpg'
+                %tr{:align => "left"}
+                  %td
+                    %div{:style => "line-height:19px; font-size:12px;"}
+                      Plan Purchesed:
+                      %br/
+                      Rowley Care
+                      - case @subscription.period
+                      - when 'year'
+                        $#{Spree::Config.lp_subscription_annual_price.round}/year
+                      - when 'month'
+                        $#{Spree::Config.lp_subscription_monthly_price.round}/month
+                  %td
+                    %table#totals{:style => "line-height:19px; font-size:12px;"}
+                      %tr
+                        %td{:width => "190"} Subtotal
+                        %td $#{Spree::Config.lp_subscription_annual_price.round}
+                      %tr
+                        %td Shipping & Handling
+                        %td 0.00
+                      %tr
+                        %td Discount
+                        %td 0.00
+                      %tr
+                        %td Gift Certificate
+                        %td 0.00
+                      %tr
+                        %td Grand Total
+                        %td $#{Spree::Config.lp_subscription_annual_price.round}
+
+                %tr{:align => "left"}
+                  %td{:colspan => "2"}
+                    %table#addresses{:style =>'font-size:12px'}
+                      %tr
+                        %td{:style => "padding-right: 50px;"}
+                          %p{:style => "font-weight: bold;"} Bill To:
+                          %p
+                            #{@subscription.user.bill_address.full_name}
+                            %br/
+                            #{@subscription.user.bill_address.address1}
+                            - if @subscription.user.bill_address.address2.present?
+                              %br/
+                              #{@subscription.user.bill_address.address2}
+                            %br/
+                            #{@subscription.user.bill_address.city}, #{@subscription.user.bill_address.state.abbr}, #{@subscription.user.bill_address.zipcode}
+                            %br/
+                            #{@subscription.user.bill_address.country.name}
+                            %br/
+                            T: #{@subscription.user.bill_address.phone}
+                        %td{:style => "padding-right: 45px;"}
+                          %p{:style => "font-weight: bold;"} Ship To:
+                          %p
+                            #{@subscription.user.ship_address.full_name}
+                            %br/
+                            #{@subscription.user.ship_address.address1}
+                            - if @subscription.user.ship_address.address2.present?
+                              %br/
+                              #{@subscription.user.ship_address.address2}
+                            %br/
+                            #{@subscription.user.ship_address.city}, #{@subscription.user.ship_address.state.abbr}, #{@subscription.user.ship_address.zipcode}
+                            %br/
+                            #{@subscription.user.ship_address.country.name}
+                            %br/
+                            T: #{@subscription.user.ship_address.phone}
+                        %td
+                          %p{:style => "font-weight: bold;"} Your Payment Info:
+                          %p
+                            Card Type:
+                            %br/
+                            #{@subscription.credit_card.cc_type.capitalize}
+                            %br/
+                            %br/
+                            Credit Card Number:
+                            %br/
+                            #{@subscription.credit_card.display_number}
+                %tr{:align => "left"}
+                  %td{:style => "padding-right:55px;"}
+                    %h2 RETURN POLICY
+                    %p{:style => "margin-bottom:35px;"}
+                      We will accept returns without question within 30 days.  Please contact Customer Service at 877.979.9200 or customerservice@rowleyeyewear.com and we will be happy to assist you with next steps.
+                    %h2 ANY QUESTIONS?
+                    %p
+                      We’ve got an excellent Customer Care FAQ section...
+                      = link_to 'Check it out here', 'http://www.rowleyeyewear.com/help_faq', :style => "text-decoration:underline;font-weight: bold; color:#302e2f;"
+                      \.
+                  %td
+                    %h2 CUSTOMER CARE
+                    %p
+                      877.979.9200
+                      %br/
+                      customerservice@rowleyeyewear.com
+                      %br/
+                      Hours: Mon – Fri, 8am – 5pm EST
+              / content table end
+              %table#footer{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr{:align => "left"}
+                  %td{:style => "padding-bottom: 100px;"}
+                    %ul{:style => "padding:25px 0;"}
+                      %li
+                        = link_to 'RETURNS', 'http://www.rowleyeyewear.com/help_faq'
+                      %li
+                        = link_to 'TERMS OF SERVICE', 'http://www.rowleyeyewear.com/terms-of-use'
+                      %li
+                        = link_to 'FAQ', 'http://www.rowleyeyewear.com/help_faq'
+                      %li
+                        = link_to 'PRIVACY POLICY', 'http://www.rowleyeyewear.com/privacy-policy'
+                    %p{:style => "color:#86888a; font-size:12px;"}
+                      This Order Confirmation email was sent to #{@subscription.user.email}. Please add contact@rowleyeyewear.com to your address book to ensure our emails reach your inbox. ©2013 rowleyeyewear.com
+              / footer img end

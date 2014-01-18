@@ -1,0 +1,34 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *
+
+ *= require admin/spree_core
+ *= require admin/spree_promo
+
+ *= require_self
+ *= require_tree .
+ *= require admin/spree_locked_orders 
+  *= require admin/spree_simple_sales
+*/
+.field_with_errors select, .field_with_errors input {
+  border-color: #e45353;
+}
+.field_with_errors label {
+  color: #e45353;
+}
+
+div.headturn-image-wrap {
+    width: 350px;
+    height: 163px;
+    position: relative;
+}
+.headturn-image-wrap img.headturn-image {
+    position: relative;
+}
+
+fieldset{
+    float: left;
+    width: 100%;
+}

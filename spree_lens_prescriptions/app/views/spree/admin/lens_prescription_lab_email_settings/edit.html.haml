@@ -1,0 +1,26 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+= render :partial => 'spree/admin/shared/lens_prescription_settings_sub_menu'
+= form_tag admin_lens_prescription_lab_email_settings_path, :method => :put do
+  %fieldset.no-border-top
+    %fieldset.no-border-bottom
+      %legend{:align => "center"}= t(:lab_email_settings)
+      .alpha.eight.columns
+        .field{"data-hook" => "lens_prescription_lab_num"}
+          = label_tag 'preferences[lp_lab_num]', t(:lp_lab_num)
+          = preference_field_tag 'preferences[lp_lab_num]', Spree::Config[:lp_lab_num], :type => :string
+      .alpha.eight.columns
+        .field{"data-hook" => "lens_prescription_lp_customer_num"}
+          = label_tag 'preferences[lp_customer_num]', t(:lp_customer_num)
+          = preference_field_tag 'preferences[lp_customer_num]', Spree::Config[:lp_customer_num], :type => :string
+      .alpha.eight.columns
+        .field{"data-hook" => "lens_prescription_lp_lab_email"}
+          = label_tag 'preferences[lp_lab_email]', t(:lp_lab_email)
+          = preference_field_tag 'preferences[lp_lab_email]', Spree::Config[:lp_lab_email], :type => :string
+      .alpha.eight.columns
+        .field{"data-hook" => "lens_prescription_lp_lab_email_from"}
+          = label_tag 'preferences[lp_lab_email_from]', t(:lp_lab_email_from)
+          = preference_field_tag 'preferences[lp_lab_email_from]', Spree::Config[:lp_lab_email_from], :type => :string
+
+
+    .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+      = button t(:update), 'icon-refresh'

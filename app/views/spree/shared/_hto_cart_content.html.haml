@@ -1,0 +1,18 @@
+- if !order.present? || order.item_count == 0
+  cart empty
+- else
+  %ul
+    - Spree::Config.hto_items.times do |i|
+      - if order.line_items[i].present? and  order.line_items[i].variant.present?
+        %li= render 'spree/shared/hto_cart_item', :order => order, :variant => order.line_items[i].variant, :line_item => order.line_items[i]
+      - else
+        %li= render 'spree/shared/hto_empty_item'
+  .cart-total{:datahook => "cart-total"}
+    .float-left.param-name
+      = t('item_total')
+      \:
+    .float-right= Spree::Money.new(0,{:currency => order.currency})
+    .clearfix
+  %p.center
+    - if order.hto_sufficient_items?
+      = link_to t(:checkout), hto_checkout_path , :class => 'button checkout primary', :id => 'checkout-link', :name => 'checkout'

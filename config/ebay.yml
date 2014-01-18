@@ -1,0 +1,31 @@
+defaults: &defaults
+  api_url: https://api.ebay.com/
+  auth_token: 'AgAAAA**AQAAAA**aAAAAA**1F9SUg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GhC5CAqQWdj6x9nY+seQ**Y14CAA**AAMAAA**63pjmV7adreJtKRQfEhOOfVpbyMS9bs1Kz6XnoY6SM85AOGdRvM1It1DFTzrFsC9kmxTiVogUdqL7Ds5swgl8CwU7xelr1MyU5zFSoe0Z7zz9H19+6qHfk99Yu4g3+L5NuWCTpWcSMEizPIKoSi+dFcZQe1tOzldSBUzJ9XV/widJje61/YgwFQhOIG/jJHjXKzIRd0/rz83Oh18LRCXLFGHzYCMYK7hBT5EaJgXbRDOK5kutn5Q3DS0pwqQOmtdOAuX38KJuNNJTe6FAT3mEYnbR3kanqwgnP+bmoLO5XiqtsviPW1s4dUA6hpqsx4u7slAvQyGJvCFeqoFeTEQUs3RvAVGqI/BmAvuNF2cRZuOmfWOIZEDG9D83+rbKg5pk3tTsg1i0sf/VyXgRyHhG1QcDddm8aqDzX7+mVRUXJmA6zdfiLJS0Ed/W+YGCpSDcMTcIgBr+eIoXguyuvjwaR6Q5OLO8Mqa0fhf2kvVTGmjaLdcihpeAwi1lwqO8z+LV4LclYeShgt1b4pgSt0daXRcvc6KEQM10KKrM0QopOYa+/Amzsmsc5KOHWKkRAcr8EMD45Is3HqFiNEk5Ce7GQA957r2riNK5KB/hKjHzcdsEln7q2aZwl/ax9OpauPcWiKKXKge4gIWK9t3ZQbH4PpNt3+9X0v3PBfYNfSrkZFnRjX/nnHVR3NaCegMZmXq5zm1d9dZ170fUzvOsaLKqzctxDCde1Rb+MBnspS5FrLdbgbqm1AouNhvVTjYl004'
+  category_id: 175805
+  compatibility_level: 841
+  dev_name: '53f6552c-3228-4da5-8295-bdb47f0e858d'
+  app_name: 'RailsDri-629b-4c84-b85e-afe718b7c24b'
+  cert_name: '549b431f-9916-4dda-afb9-8afcdfbc6d80'
+  site_id: 0
+  postal_code: 10014
+  images_host: 'http://www.rowleyeyewear.com'
+
+
+development:
+  <<: *defaults
+  api_url: 'https://api.sandbox.ebay.com/ws/api.dll'
+
+
+
+staging:
+  <<: *defaults
+  api_url: 'https://api.sandbox.ebay.com/ws/api.dll'
+  images_host: 'http://rowstaging.quartsoft.com'
+  auth_token: 'AgAAAA**AQAAAA**aAAAAA**lOZWUg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GhC5CGoAmdj6x9nY+seQ**Y14CAA**AAMAAA**6xxAykUxxqQKTXzhhGCpNl5ahZvw1unw7cQzQC9zXgGxurnbSVsyJaIZprZEZVTjMRiT/41r4B3nN1XeHPZ2WUlwiwlILCZNEXP9uwQ4lVLztX8YrkMpmxSdLX0Edl/frJ4uGhvcFTqffW7IlYrznqQKccjXMzbXc3CEg22hSiu605IXvYRxkBXo1Gg/IvfkPwG4zmpQMaepHmx2z9TswnnLO+isdI9Nx0Aaiz+Cj4k0odqqWVA6GqY6UAp3Ta6n8QU2dvFi2ljkejjoavvBsqiu7B3ZembmubWr9ZK0f9ryuYl8yAbRxHjsu4wAP++romjId7gB0IAa2zlmcmOLP99QwIuSCU7dk8aahnQgvRcgp9zy6B8R4fRj5u1MZDf+EL9rZtyigAgy2BUz4Hbb1EcvOmrK7z782MzSXEYmD8zyhwjvTixW9zci8q2rD2QuCAfIscov/m87W2Ob2OVXloYjtj4B2d+qmImrYQHrNDBzRipBn8zfCeEGiv7KCLpGc7MccaqQB9ffaUxqq6TJaUiRL5gNCImRSrw6a7fJYoL3c2NYFsnGMaYUYVMduWXslE0HGoMMyj/P0Lk6Rpx6RP5PHiwSE0fXP9PgVnqS5L0GogYycMClJ/Id76v5iGlNd0TAAg8Jii23KC4e0zVbP4oQYcz6/Rp8KbZzBcv5HhP5DHV21V4exx2v+jJrdeLY+yi0V/x4UWDYklgG7bf8SW6ty7wXXE+tTgNVoNfnRMbPIG4i1uHI7/6RqQuxSLyE'
+
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

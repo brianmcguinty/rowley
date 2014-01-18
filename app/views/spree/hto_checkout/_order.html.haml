@@ -1,0 +1,8 @@
+%fieldset#order_details{"data-hook" => ""}
+  .clear
+  = flash_messages
+  = render :partial => 'spree/hto_checkout/order/order_details', :locals => { :order => @order }
+.checkout-section
+  .form-buttons{"data-hook" => "buttons"}
+    = link_to t(:back), hto_checkout_state_path(:billing), :class => 'back button'
+%hr

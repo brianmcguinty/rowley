@@ -1,0 +1,24 @@
+%div
+  .shopping-cart-column
+    - if variant.images.length == 0
+      = link_to mini_image(variant.product), variant.product
+    - else
+      = link_to image_tag(variant.images.first.attachment.url(:mini)), variant.product
+    = link_to (product_path(variant.product)) do
+      .product-glasses-number
+        %span.no NO.
+        %span.glasses-no= variant.product.name
+  .shopping-cart-column.cart-product-description
+    %span{"data-hook" => "options_text"}
+      = variant.option_value('frames-color')
+      - if order.insufficient_stock_lines.include? line_item
+        %span.out-of-stock
+          = variant.in_stock? ? t(:insufficient_stock, :on_hand => variant.on_hand) : t(:out_of_stock)
+          \  
+          %br/
+    %span{"data-hook" => "cart_item_quantity"}
+      (#{line_item.quantity})
+    %div{"data-hook" => "cart_item_total"}
+      = Spree::Money.new(0,{:currency => order.currency})
+  .shopping-cart-column.cart-remove-item{"data-hook" => "remove_item"}
+    = link_to image_tag('/assets/store/icon-close.png') , main_app.remove_item_from_cart_path(:id => line_item.id, :hto => true ), :class => 'delete', :id => "delete_#{dom_id(line_item)}"

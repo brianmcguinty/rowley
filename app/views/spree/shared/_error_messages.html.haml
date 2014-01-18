@@ -1,0 +1,4 @@
+- if target && target.errors.any?
+  #errorExplanation.errorExplanation{"data-hook" => "error_messages"}
+    %p
+      = t(:there_were_problems_with_some_fields)

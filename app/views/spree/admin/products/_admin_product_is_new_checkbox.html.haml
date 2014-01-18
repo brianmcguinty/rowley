@@ -1,0 +1,4 @@
+%div.field.checkbox{"data-hook" => "is_new"}
+  %label
+    =f.check_box :is_new, {checked: @product.is_new? }
+    =t(:is_new)

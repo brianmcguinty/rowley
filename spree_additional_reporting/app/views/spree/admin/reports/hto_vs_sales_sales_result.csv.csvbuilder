@@ -1,0 +1,24 @@
+csv << [
+  'Name', 
+  'SKU',
+  'Frame Type',
+  'Color',
+  'UPC',
+  'Units Sold',
+  'Price',
+  'On Hand',
+  'Real Inventory',
+]
+@rows.each do |row|
+  csv << [
+    row['product_name'],
+    row['product_sku'],
+    row['frame_type'],
+    row['variant_color'],
+    row['variant_upc'],
+    row['units_sold'].to_i,
+    row['variant_price'],
+    row['count_on_hand'],
+    row['real_inventory'].to_i
+  ]
+end

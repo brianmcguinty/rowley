@@ -1,0 +1,22 @@
+%section.product-includes
+  %h5 Includes:
+  %ul.dash-list
+    %li Free Shipping
+    %li 30-day Returns
+    - if @product.is_optical?
+      %li
+        Option to select additional lens/prescription types
+        %br
+        (additional charges may apply)
+    -else
+      %li
+        Option to add your prescription during check-out
+        %br
+        (additional charges will apply)
+    %li
+      A/R coating is standard for all prescription lenses
+      =image_tag '/assets/store/whats-this.png',:class=>'action-link','data-trigger'=>"hover", 'data-placement'=>"bottom", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.a_r_coating')
+= render 'spree/products/try_them_on'
+%section.try-on
+  = render 'spree/products/virtual_tryon'
+= render 'spree/shared/like_tweet_pin'

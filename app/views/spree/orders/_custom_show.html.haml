@@ -1,0 +1,40 @@
+-if params.has_key? :checkout_complete
+  %h1= t(:thank_you_for_your_order)
+%h2.float-left
+  = t(:order) + " #: "
+  %span.order-number-value= @order.number
+.float-right
+  = link_to t(:back_to_store), spree.root_path, :class => "button"
+  - unless params.has_key? :checkout_complete
+    - if try_spree_current_user && respond_to?(:spree_account_path)
+      = link_to t(:my_account), spree_account_path, :class => "button"
+.clearfix
+%div
+  = render :partial =>'spree/users/order/base_info', :locals => {:order => @order}
+.order-items
+  .float-left
+    = render :partial =>'spree/users/order/items', :locals => {:order => @order}
+  .float-right
+    = render :partial => 'spree/shared/total_box', :locals => {:order => @order}
+  .clearfix
+%p.right{"data-hook" => "links"}
+  = link_to t(:back_to_store), spree.root_path, :class => "button"
+  - unless params.has_key? :checkout_complete
+    - if try_spree_current_user && respond_to?(:spree_account_path)
+      = link_to t(:my_account), spree_account_path, :class => "button"
+
+-if params.has_key? :checkout_complete
+  :javascript
+    var fb_param = {};
+    fb_param.pixel_id = '6011135182337';
+    fb_param.value = "#{@order.total}";
+    fb_param.currency = 'USD';
+    (function(){
+      var fpw = document.createElement('script');
+      fpw.async = true;
+      fpw.src = '//connect.facebook.net/en_US/fp.js';
+      var ref = document.getElementsByTagName('script')[0];
+      ref.parentNode.insertBefore(fpw, ref);
+    })();
+  %noscript
+    %img{:alt => "", :height => "1", :src => "https://www.facebook.com/offsite_event.php?id=6011135182337&value=0&currency=USD", :style => "display:none", :width => "1"}/

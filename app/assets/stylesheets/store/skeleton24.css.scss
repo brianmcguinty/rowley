@@ -1,0 +1,123 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+
+/* Table of Contents
+==================================================
+    #Base 960 Grid
+    #Tablet (Portrait)
+    #Mobile (Portrait)
+    #Mobile (Landscape)
+    #Clearing */
+
+
+
+/* #Base 960 Grid
+================================================== */
+
+    .container                                  { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+    .container .column,
+    .container .columns                         { float: left; display: inline; margin-left: 5px; margin-right: 5px; }
+    .row                                        { margin-bottom: 10px; }
+
+    /* Nested Column Classes */
+    .column.alpha, .columns.alpha               { margin-left: 0; }
+    .column.omega, .columns.omega               { margin-right: 0; }
+
+    /* Base Grid */
+    .container .one.column,
+    .container .one.columns                     { width: 30px;  }
+    .container .two.columns                     { width: 70px; }
+    .container .three.columns                   { width: 110px; }
+    .container .four.columns                    { width: 150px; }
+    .container .five.columns                    { width: 190px; }
+    .container .six.columns                     { width: 230px; }
+    .container .seven.columns                   { width: 270px; }
+    .container .eight.columns                   { width: 310px; }
+    .container .nine.columns                    { width: 350px; }
+    .container .ten.columns                     { width: 390px; }
+    .container .eleven.columns                  { width: 430px; }
+    .container .twelve.columns                  { width: 470px; }
+    .container .thirteen.columns                { width: 510px; }
+    .container .fourteen.columns                { width: 550px; }
+    .container .fifteen.columns                 { width: 590px; }
+    .container .sixteen.columns                 { width: 630px; }
+    .container .seventeen.columns               { width: 670px; }
+    .container .eighteen.columns                { width: 710px; }
+    .container .nineteen.columns                { width: 750px; }
+    .container .twenty.columns                  { width: 790px; }
+    .container .twentyone.columns               { width: 830px; }
+    .container .twentytwo.columns               { width: 870px; }
+    .container .twentythree.columns             { width: 910px; }
+    .container .twentyfour.columns              { width: 950px; }
+
+    .container .one-third.column                { width: 310px; }
+    .container .two-thirds.column               { width: 620px; }
+
+    /* Offsets */
+    .container .offset-by-one                   { padding-left: 40px;  }
+    .container .offset-by-two                   { padding-left: 80px;  }
+    .container .offset-by-three                 { padding-left: 120px; }
+    .container .offset-by-four                  { padding-left: 160px; }
+    .container .offset-by-five                  { padding-left: 200px; }
+    .container .offset-by-six                   { padding-left: 240px; }
+    .container .offset-by-seven                 { padding-left: 280px; }
+    .container .offset-by-eight                 { padding-left: 320px; }
+    .container .offset-by-nine                  { padding-left: 360px; }
+    .container .offset-by-ten                   { padding-left: 400px; }
+    .container .offset-by-eleven                { padding-left: 440px; }
+    .container .offset-by-twelve                { padding-left: 480px; }
+    .container .offset-by-thirteen              { padding-left: 520px; }
+    .container .offset-by-fourteen              { padding-left: 560px; }
+    .container .offset-by-fifteen               { padding-left: 600px; }
+    .container .offset-by-sixteen               { padding-left: 640px; }
+    .container .offset-by-seventeen             { padding-left: 680px; }
+    .container .offset-by-eighteen              { padding-left: 720px; }
+    .container .offset-by-nineteen              { padding-left: 760px; }
+    .container .offset-by-twenty                { padding-left: 800px; }
+    .container .offset-by-twentyone             { padding-left: 840px; }
+    .container .offset-by-twentytwo             { padding-left: 880px; }
+    .container .offset-by-twentythree           { padding-left: 920px; }
+
+
+
+/* #Clearing
+================================================== */
+
+    /* Self Clearing Goodness */
+    .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+    /* Use clearfix class on parent to clear nested columns,
+    or wrap each row of columns in a <div class="row"> */
+    .clearfix:before,
+    .clearfix:after,
+    .row:before,
+    .row:after {
+      content: '\0020';
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0; }
+    .row:after,
+    .clearfix:after {
+      clear: both; }
+    .row,
+    .clearfix {
+      zoom: 1; }
+
+    /* You can also use a <br class="clear" /> to clear columns */
+    .clear {
+      clear: both;
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }

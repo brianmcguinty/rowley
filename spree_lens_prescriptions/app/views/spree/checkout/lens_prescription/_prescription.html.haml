@@ -1,0 +1,12 @@
+.checkout-section
+  - input_methods = if signed_in? then Spree::LensMetaPrescription::PRESCRIPTION_INPUT_METHOD - [unless current_user.lens_prescriptions.detailed.any? then :retrieve_my_prescription end].compact else Spree::LensMetaPrescription::ANON_PRESCRIPTION_INPUT_METHOD end
+  %h5
+    = t("lens_prescription.input_method.title")
+  - input_methods.each do |im|
+    .input_method
+      .row
+        = f.radio_button :prescription_input_method, im, :class => 'input_method_selector', 'data-form' => "#{render "spree/checkout/lens_prescription/#{im}", :f => f, :sunglasses => sunglasses}", :id => "prescription_input_method_#{sunglasses ? 'sunglasses' : 'optical'}_#{im}"
+        = label_tag "prescription_input_method_#{sunglasses ? 'sunglasses' : 'optical'}_#{im}", t("lens_prescription.input_method.#{im}"), :value => im
+      .input_method_container{:style => 'padding-left: 30px'}
+        - if f.object.prescription_input_method.to_s == im.to_s
+          = render "spree/checkout/lens_prescription/#{im}", :f => f, :sunglasses => sunglasses

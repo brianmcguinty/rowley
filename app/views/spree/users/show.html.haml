@@ -1,0 +1,121 @@
+.row.top-bordered
+  %h1.offset-left= accurate_title
+.row.account-edit
+  .columns.twelve.alpha
+    .account-left-column.account_editable_section#account_access_section
+      %h2.offset-left
+        .float-left= t(:account_access)
+        .float-right
+          .input-edit.account_edit_section
+            %span.icon-edit
+            = button_to 'Edit', 'javascript:void(0)'
+        .clearfix
+      #account_access_container.account_section_container
+        = render 'spree/users/access_details/content'
+  
+  .columns.twelve.omega
+    .account-right-column.account_editable_section
+      %h2.offset-left
+        .float-left= t(:rowley_care)
+        .clearfix
+      #account_rowley_care_container.account_section_container
+        = render 'spree/users/rowley_care/content'
+
+.row.account-edit
+  .columns.twelve.alpha
+    .account-left-column.account_editable_section#account_ship_address_section
+      %h2.offset-left
+        .float-left= t(:shipping_address)
+        .float-right
+          .input-edit.account_edit_section
+            %span.icon-edit
+            = button_to 'Edit', 'javascript:void(0)'
+        .clearfix
+      #account_ship_container.account_section_container
+        = render 'spree/users/address/content', :address => @ship_address, :address_type => 'ship'
+  .columns.twelve.omega
+    .account-right-column.account_editable_section#account_bill_address_section
+      %h2.offset-left
+        .float-left= t(:billing_address)
+        .float-right
+          .input-edit.account_edit_section
+            %span.icon-edit
+            = button_to 'Edit', 'javascript:void(0)'
+        .clearfix
+      #account_bill_container.account_section_container
+        = render 'spree/users/address/content', :address => @bill_address, :address_type => 'bill'
+
+-if @user.has_store_credit?
+  .row.account-edit
+    .columns.twelve.omega
+      .account-left-column.account_editable_section
+        %h2.offset-left
+          .float-left= t(:store_credits)
+          .clearfix
+        #account_rowley_care_container.account_section_container
+          .row.show-container
+            .columns.five.alpha
+              = t('current_store_credit')
+              \:
+              %strong= number_to_currency @user.store_credits_total
+
+.row.row-account
+  .columns.twentyfour.alpha.omega
+    .account-my-orders{"data-hook" => "account_my_orders"}
+      %h2.offset-left= t(:order_history)
+      - if @orders.present?
+        %table.order-summary
+          %thead
+            %tr
+              %th= t(:order_number)
+              %th= t(:order_date)
+              %th= t(:payment_state)
+              %th= t(:shipment_state)
+              -if @user.has_store_credit?
+                %th= t(:store_credits)
+              %th.order-details= t(:order_details)
+          %tbody
+            - @orders.each do |order|
+              %tr{:class => cycle('even', 'odd')}
+                %td= order.number
+                %td= order.completed_at.to_date
+                %td= t("payment_states.#{order.payment_state}") if order.payment_state
+                %td= t("shipment_states.#{order.shipment_state}") if order.shipment_state
+                -if @user.has_store_credit?
+                  %td= number_to_currency order.store_credit_amount
+                %td.order-details
+                  = link_to 'View', '#', :class => 'view-button open' 
+              %tr.box{ :style => 'display:none' }
+                -if @user.has_store_credit?
+                  %td.order-data{:colspan => "6"}
+                    = render :partial => 'order_info', :locals => {:order => order}
+                -else
+                  %td.order-data{:colspan => "5"}
+                    = render :partial => 'order_info', :locals => {:order => order}
+      - else
+        %p= t(:you_have_no_orders_yet)
+.row.account-footer
+  .columns.nine
+    %h2 Return Policy
+    %p
+      We will accept returns without question within 30 days.
+      %br
+      Please contact Customer Service at 877.979.9200 or
+      %br
+      %a{:href => "mailto:customerservice@rowleyeyewear.com", :class => "italic"} customerservice@rowleyeyewear.com
+      and they will be happy to assist you with next steps.
+
+  .columns.six.offset-by-one
+    %h2 Customer Care
+    %p
+      877.979.9200
+      %a{:href => "mailto:customerservice@rowleyeyewear.com", :class => "italic"} customerservice@rowleyeyewear.com
+      %br
+      Hours: Mon - Fri, 8am - 5pm EST
+
+  .columns.six.offset-by-two
+    %h2 Any Questions?
+    %p
+      We've got an excellent Customer Care FAQ section...
+      %br
+      =link_to 'Check it out here.', '/help_faq', :class => "italic"

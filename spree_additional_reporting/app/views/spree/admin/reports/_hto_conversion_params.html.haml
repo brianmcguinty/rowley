@@ -1,0 +1,8 @@
+.row
+  = form_for @report, :url => url_for(:controller => :reports, :action => controller.action_name), :remote => true, :html => { :style => 'display: inline-block' } do |f|
+    = f.label :date_from, 'From'
+    = f.text_field :date_from, :class => 'datepicker datepicker-from rep_param_input', :id => 'date_from_input'
+    = f.label :date_to, 'To'
+    = f.text_field :date_to, :class => 'datepicker datepicker-to rep_param_input', :id => 'date_to_input'
+    = f.submit :generate
+

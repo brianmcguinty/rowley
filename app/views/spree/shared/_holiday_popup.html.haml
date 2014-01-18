@@ -1,0 +1,24 @@
+= link_to '', '#holiday_popup', {:id => 'inline_popup'}
+#holiday_popup{:style => 'display:none'}
+  = image_tag image_url, height: height, width: width
+:javascript
+  var modalLoadFunction = function() {
+      jQuery("a#inline_popup").click();
+      clearInterval(globalInterval);
+  }
+
+  $(document).ready(function(){
+    $('#holiday_popup').hide();
+
+    $('a#inline_popup').fancybox({
+      'hideOnContentClick': true,
+      'padding': 2,
+      'margin': 2,
+      'widht': #{width},
+      'height': #{height},
+    });
+
+    /* Kickoff the modal window as soon as possible */
+    globalInterval = setInterval(modalLoadFunction, 500)
+  })
+

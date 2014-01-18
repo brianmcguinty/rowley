@@ -1,0 +1,18 @@
+- content_for :report_result do
+  .row= link_to 'Generate CSV', inventory_admin_reports_path(:format => :csv), :class => 'button'
+  %table.admin-report
+    %thead
+      %tr
+        %th Product
+        %th SKU
+        %th Color
+        %th UPC
+        %th On Hand
+    %tbody
+      - @rows.each do |v|
+        %tr
+          %td= link_to v.product.name, admin_product_url(:id => v.product.permalink)
+          %td= v.product.master.sku
+          %td= v.option_value('frames-color')
+          %td= v.sku_upc
+          %td{:style => 'text-align: right'}= v.count_on_hand

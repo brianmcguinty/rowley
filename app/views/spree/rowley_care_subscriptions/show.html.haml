@@ -1,0 +1,5 @@
+- if current_user.active_subscription
+  = t(:cancel_rowley_care)
+  = link_to t(:cancel_rowley_care_link), main_app.cancel_rowley_care_subscription_path, :confirm => 'Are you sure?', :class => 'btn-submit'
+- else
+  You are not subscribed

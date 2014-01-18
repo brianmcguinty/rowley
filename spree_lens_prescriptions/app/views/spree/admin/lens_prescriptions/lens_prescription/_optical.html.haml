@@ -1,0 +1,73 @@
+= f.fields_for :lens_prescription do |pf|
+  .row
+    = pf.label :vision_type, t('lens_prescription.vision_type.title')
+    = pf.select :vision_type, Spree::LensPrescription::VISION_TYPE.map {|t| [t("lens_prescription.vision_type.#{t}"), t]}, {}, :class => 'order_lens_prescription_attributes_vision_type'
+  .row
+    = pf.label :two_pds, t('lens_prescription.two_pds')
+    = pf.check_box :two_pds, :class => "order_lens_prescription_attributes_two_pds"
+  .row
+    %table
+      %tr
+        %th
+        %th SPH
+        %th CYL
+        %th AXIS
+        %th.optical_add_container{ :style => "#{unless pf.object.progressive? then 'display:none' end}" } ADD
+        %th.two_pds{:style => unless pf.object.two_pds? then 'display:none' end} PD
+      %tr
+        %td OD (right)
+        %td= pf.select :right_sph, Spree::LensPrescription::SPH
+        %td= pf.select :right_cyl, Spree::LensPrescription::CYL
+        %td= pf.select :right_axis, Spree::LensPrescription::AXIS.map {|p| ['%03d' % p, p]}
+        %td.optical_add_container{ :style => "#{unless pf.object.progressive? then 'display:none' end}" }= pf.select :right_add, Spree::LensPrescription::ADD
+        %td.two_pds{:style => unless pf.object.two_pds? then 'display:none' end}= pf.select :right_pd, Spree::LensPrescription::MONO_PD
+      %tr
+        %td OS (left)
+        %td= pf.select :left_sph, Spree::LensPrescription::SPH
+        %td= pf.select :left_cyl, Spree::LensPrescription::CYL
+        %td= pf.select :left_axis, Spree::LensPrescription::AXIS.map {|p| ['%03d' % p, p]}
+        %td.optical_add_container{ :style => "#{unless pf.object.progressive? then 'display:none' end}" }= pf.select :left_add, Spree::LensPrescription::ADD
+        %td.two_pds{:style => unless pf.object.two_pds? then 'display:none' end}= pf.select :left_pd, Spree::LensPrescription::MONO_PD
+  .row.one_pd{:style => if pf.object.two_pds? then 'display:none' end}
+    = pf.label :pd, 'PD'
+    %td= pf.select :pd, Spree::LensPrescription::PD
+  .row
+    = pf.label :lens_type, t('lens_prescription.lens_type.title')
+    = pf.select :lens_type, Spree::LensPrescription::LENS_TYPE.map {|t| [t("lens_prescription.lens_type.#{t}"), t]}
+  -# .row#wear{:style => unless pf.object.vision_type.to_sym == :progressive then 'display:none' end}
+  -#   = t('lens_prescription.wear.title')
+  -#   - Spree::LensPrescription::WEAR.each do |wear|
+  -#     .row
+  -#       = pf.radio_button :wear, wear
+  -#       = pf.label :wear, t("lens_prescription.wear.#{wear}"), :value => wear
+  - if sunglasses
+    .row{ :style => 'padding-left: 30px' }
+      .row
+        = pf.radio_button :standard_or_custom_tint_or_polarized, :standard
+        = pf.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.standard"), :value => :standard
+      .row
+        = pf.radio_button :standard_or_custom_tint_or_polarized, :custom_tint
+        = pf.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.custom_tint"), :value => :custom
+        = pf.select :custom_tint, Spree::LensPrescription::TINT.map {|t| [t("lens_prescription.tint.#{t}"), t]}
+      .row
+        = pf.radio_button :standard_or_custom_tint_or_polarized, :polarized
+        = pf.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.polarized_lens"), :value => :custom
+        = pf.select :polarized_color, Spree::LensPrescription::POLARIZED.map {|t| [t("lens_prescription.polarized.#{t}"), t]}
+    -# .row
+    -#   = pf.label :custom_tint, t('lens_prescription.tint')
+    -#   = pf.select :custom_tint, Spree::LensPrescription::TINT
+  - else
+    .row
+      = pf.label :transition, t('lens_prescription.transition_question')
+      = pf.select :transition, [[t(:no), false], [t(:yes), true]]
+  .row
+    = render 'spree/admin/lens_prescriptions/lens_prescription/purchase_subscription', :f => f
+  .row
+    = pf.label :state_id, t('lens_prescription.verification.state')
+    = pf.select :state_id, options_for_select(Spree::State.order(:abbr).map { |s| [s.abbr, s.id, if s.doctor_verification? then { 'data-doctor-verification' => '1' } else {} end] }, pf.object.state_id), { :prompt => '----' }, :class => 'order_lens_meta_prescription_attributes_lens_prescription_attributes_state_id'
+  .row
+    = pf.label :verification_method, t('lens_prescription.verification.method')
+    = pf.select :verification_method, Spree::LensPrescription::VERIFICATION_METHOD.map {|t| [t("lens_prescription.verification.#{t}"), t]}, :include_blank => '----'
+    -# = if pf.object.verification_method.present? then t("lens_prescription.verification.#{pf.object.verification_method}") else 'Not specified' end
+
+    

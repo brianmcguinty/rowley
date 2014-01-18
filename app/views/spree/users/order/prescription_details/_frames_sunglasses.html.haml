@@ -1,0 +1,6 @@
+- if prescription.meta.demo_or_sunglasses == :demo
+  %div= t('frames_sunglasses.demo')
+- else if prescription.standard_or_custom_tint_or_polarized == :custom_tint then t(prescription.tint.to_sym) else t(:standard) end
+  %div
+    #{t('sunglasses.title')}: 
+    = if prescription.standard_or_custom_tint_or_polarized == :custom_tint then t(prescription.tint.to_sym) else t(:standard) end

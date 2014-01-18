@@ -1,0 +1,189 @@
+
+/* #Variables
+================================================== */
+	$colorMain: #59595c;
+	$colorHeadline: #3d3d40;
+	$border: 1px solid #9e9e9f;
+	$colorsRowley: #9fc9d4;
+
+/***************************************************************************************************************************************/
+
+/* #header
+================================================== */
+	
+	nav#top-nav-bar ul li a:hover {
+		color: $colorsRowley;
+	}
+	
+	input#keywords {
+		border: 1px solid #a2a2a3;
+		color: $colorHeadline;
+	}
+
+    #welcomeback{
+      padding: 5px;
+    }
+
+/* #Main menu
+================================================== */
+	
+	/************ Sub Menu ***************/ 	 
+	
+	 	ul#main-nav-bar	ul.sub-nav li a{
+	 		color: #939598;
+	 	}
+		
+		.bottom-right{
+			border-top-color: #fff;
+			border-left-color: #fff;
+		}
+
+/* #header
+================================================== */
+	#logo {
+		margin-bottom: 43px;
+	}
+
+/* #home glasses
+================================================== */
+	
+	.glasses-no {
+		font-family: "elephnt";
+		font-size: 36px;
+		line-height: 110%;
+	}
+
+	
+/*  #Footer
+=================================================== */
+	footer h5 {
+		color: $colorsRowley;
+	}
+
+
+/* # Carousel
+============================================ */
+			
+	.slidesjs-navigation {
+		background-image: url("carousel-controls.png");
+		width: 34px;
+		height: 37px;
+		top: 50%;
+		margin-top: -18px;
+	}
+	.slidesjs-previous.slidesjs-navigation {
+		background-position: -0px -0px;
+		left: -34px;
+	}
+	.slidesjs-next.slidesjs-navigation {
+		background-position: -44px -0px;
+		right: -34px;
+	}
+
+	ul.slidesjs-pagination {
+		bottom: 0;
+		margin-bottom: 0;
+		right: -15px;
+		z-index: 3000;
+		list-style-type: none;
+	}
+
+	.slidesjs-pagination li a {
+		display: block;
+		width: 8px;
+		height: 8px;
+		font-size: 0;
+		line-height: 0;
+		margin-top: 5px;
+		background-color: #fff;
+		border-radius: 10px;
+		border: 1px solid #000;
+	}
+
+	.slidesjs-pagination li a.active, .slidesjs-pagination li a:hover.active,
+	.slidesjs-pagination li a:hover {
+		background-color: #000;
+	}
+
+/* #Care
+=============================================== */
+	.care-quote {
+		color: #9ec7d2;
+	}
+	.how-it-works h1 {
+		color: #9ec7d2;
+	}
+
+	.bottom-line {
+		background-color: #9ec7d2;
+	}
+
+	.bottom-line:before {
+		border-left: 15px solid transparent;
+	    border-right: 15px solid transparent;
+	    border-bottom: 15px solid #9ec7d2;
+
+	}
+	
+	.bottom-line h1 {
+		color: #639cae;
+	}
+	.bottom-line p {
+		color: #ffffff;
+	}
+
+/* #Shopping cart
+======================================================== */
+	.shopping-cart .product-glasses-number .glasses-no {
+		font-size: 24px;
+	}
+	
+/* #Home Page New 
+========================================================= */
+	.homelinks-care {
+		background-image: url("rowley-homecare.jpg");
+	}
+	.homelinks-care-active {
+		background-image: url("rowley-homecare-active.jpg");
+	}
+
+	.homelinks-story {
+		background-image: url("rowley-homestory.jpg");
+	}
+	.homelinks-story-active {
+		background-image: url("rowley-homestory-active.jpg");
+	}
+
+	.homelinks-try {
+		background-image: url("rowley-hometry.jpg");
+	}
+	.homelinks-try-active {
+		background-image: url("rowley-hometry-active.jpg");
+	}
+
+	.feature-heading {
+		border-top: 1px solid #969694;
+		border-bottom: 1px solid #969694;
+		padding: 28px 15px;
+		font-family: "elephnt";
+		color: #2e2e2a;
+		margin: 30px 30px 0 10px;
+	}
+	.fbig {
+		font-size: 52px;
+		line-height: 52px;
+	}
+	.fsmall {
+		font-size: 32px;
+	}
+	
+/*# Try them on 
+*************************************************** */
+	.tryon-bottom-link .icon-play {
+		width: 14px;
+		height: 13px;
+		margin: 3px 0 0 5px;
+		vertical-align: text-top;
+		background-image: url("tryon-sets.png");
+		background-position: 0px -265px;
+	}

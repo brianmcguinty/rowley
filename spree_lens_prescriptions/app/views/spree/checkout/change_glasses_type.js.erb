@@ -1,0 +1,2 @@
+$(".prescription_form").html("");
+$("#prescription_form_<%= @order.lens_meta_prescription.glasses_type.to_s %>").html("<%= escape_javascript(render("spree/checkout/lens_prescription/glasses_type_wrapper")) %>")

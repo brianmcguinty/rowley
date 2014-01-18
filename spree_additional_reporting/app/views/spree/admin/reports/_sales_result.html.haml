@@ -1,0 +1,19 @@
+- if @rows.present?
+  %table.admin-report
+    %thead
+      %tr
+        %th Period
+        %th Units
+        %th Amount
+    %tbody
+      - rows = @rows.last
+      - grand_totals = @rows.second
+      - rows.each do |row|
+        %tr
+          %td= display_period(@report.group_by_period, row['order_period'], row['order_date'])
+          %td{:style => 'text-align: right'}= row['total_qty'].round
+          %td{:style => 'text-align: right'}= Spree::Money.new(row['total_amount'])
+      %tr{:style => 'font-weight: bold'}
+        %td{:colspan => 1, :style => 'text-align:right'} Total
+        %td{:style => 'text-align: right'}= grand_totals['total_qty']
+        %td{:style => 'text-align: right'}= Spree::Money.new(grand_totals['total_amount'])

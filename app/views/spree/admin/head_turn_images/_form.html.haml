@@ -1,0 +1,15 @@
+%div{"data-hook" => "admin_image_form_fields"}
+  .four.columns.alpha
+    .field{"data-hook" => "file"}
+      = f.label t(:filename)
+      %br/
+      = f.file_field :attachment
+    .field{"data-hook" => "variant"}
+      = f.label Spree::Variant.model_name.human
+      %br/
+      = f.select :viewable_id, @variants, {}, {:class => 'select2 fullwidth'}
+  .field.omega.five.columns{"data-hook" => "alt_text"}
+    = f.label t(:alt_text)
+    %br/
+    = f.text_area :alt, :rows => 4, :class => 'fullwidth'
+.clear

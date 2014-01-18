@@ -1,0 +1,18 @@
+<% if flash[:alert] %>
+  <div class="flash errors"><%= flash[:alert] %></div>
+<% end %>
+
+<% @body_id = 'login' %>
+<div id="registration" class="row" >
+  <div id="existing-customer" class="columns six">
+    <h2><%= t(:login_as_existing) %></h2>
+    <div><p><%= t(:already_registered) %></p></div>
+    <div data-hook="login">
+      <%= render :partial => 'spree/shared/login' %>
+    </div>
+  </div>
+  <div id="new_account" class="columns nine offset-by-one">
+    <%= render :partial => 'spree/shared/sign_up', :locals => {:register_on_checkout => false} %>
+  </div>
+  <div data-hook="login_extras"></div>
+</div>

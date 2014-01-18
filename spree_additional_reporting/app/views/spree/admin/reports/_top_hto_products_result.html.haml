@@ -1,0 +1,17 @@
+- if @rows.present?
+  %table.admin-report
+    %thead
+      %tr
+        %th Product
+        %th SKU
+        %th Color
+        %th UPC
+        %th Qty
+    %tbody
+      - @rows.each do |row|
+        %tr
+          %td= link_to row['product_name'], admin_product_url(:id => row['product_permalink'])
+          %td= row['product_sku']
+          %td= row['variant_color']
+          %td= row['variant_upc']
+          %td{:style => 'text-align: right'}= row['qty']

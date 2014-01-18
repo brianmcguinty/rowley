@@ -1,0 +1,4 @@
+$("#account_<%= address_type %>_container").html("<%= escape_javascript(render('spree/users/address/content', :show_editor => @address.errors.any?, :address => @address, :address_type => address_type )) %>");
+<% if @address.errors.empty? %>
+  collapse_account_section_editor("#account_<%= address_type %>_address_section");
+<% end %>

@@ -1,0 +1,78 @@
+- if order.state == 'order'
+  %table#summary-total-box{"data-hook" => "order_summary"}
+    %tbody#summary-order-charges{"data-hook" => ""}
+      - order.adjustments.eligible.each do |adjustment|
+        - next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0)
+        %tr
+          %td
+            = adjustment.label
+            \:
+          %td= adjustment.display_amount
+      %tr
+        %td
+          = t(:hto_total)
+          \:
+        %td
+          = @order.display_hto_total
+    - if order.price_adjustment_totals.present?
+      %tbody#price-adjustments{"data-hook" => "order_details_price_adjustments"}
+        - @order.price_adjustment_totals.each do |label, total|
+          %tr.total
+            %td
+              = label
+            %td
+              %span= total
+  .form-buttons{"data-hook" => "buttons"}
+    = submit_tag t(:place_order), :class => 'continue button primary', :id => 'continue_checkout_place_order'
+
+
+-else
+  %h3= t(:order_summary)
+  %table{"data-hook" => "order_summary"}
+    %tbody#summary-line-items{"data-hook" => "order_details"}
+      - @order.line_items.each do |item|
+        %tr{"data-hook" => "order_details_line_item_row"}
+          %td{"data-hook" => "order_item_image"}
+            - if item.variant.images.length == 0
+              = link_to mini_image(item.variant.product), item.variant.product
+            - else
+              = link_to image_tag(item.variant.images.first.attachment.url(:mini)), item.variant.product
+            .product-glasses-number
+              %span.no NO.
+              %span.glasses-no= item.variant.product.name
+          %td{"data-hook" => "order_item_color"}
+            .param-value
+              = item.variant.option_value('frames-color') unless item.variant.option_values.empty?
+            .param-value
+              %span QTY:
+              = item.quantity
+            .param-value
+              %strong= Spree::Money.new(0,{:currency => order.currency})
+    %tbody#summary-order-charges{"data-hook" => ""}
+      %tr{"data-hook" => "ship_total"}
+        %td
+          = t(:shipping)
+          \:
+        %td
+          = @order.display_shipping_total
+      %tr{"data-hook" => "try_them_on_total"}
+        %td
+          = t(:hto_total)
+          \:
+        %td
+          = @order.display_hto_total
+    - if order.price_adjustment_totals.present?
+      %tbody#price-adjustments{"data-hook" => "order_details_price_adjustments"}
+        - @order.price_adjustment_totals.each do |label, total|
+          %tr.total
+            %td
+              = label
+            %td
+              %span= total
+  %hr
+    #summary_popover_container{:style => "#{unless (la = @order.lens_adjustment) && la.amount > 0 then 'display: none;' end}"}
+      .popover.fade.bottom.in{:style => "margin-top: 10px; display: block; position: relative;"}
+        .arrow
+        %h3.popover-title
+        .popover-content Additional charge has been applied to your order.
+

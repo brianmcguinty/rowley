@@ -1,0 +1,13 @@
+= form_for @user, :url => main_app.user_change_email_path, :remote => true do |f|
+  .row
+    = f.label :current_password, t(:current_password) + '*'
+    = f.password_field :current_password
+  .row
+    = f.label :new_email, t(:new_email) + '*'
+    = f.email_field :new_email
+  .row
+    = f.label :new_email_confirmation, t(:confirm_new_email) + '*'
+    = f.email_field :new_email_confirmation
+  .row
+    = f.submit t(:update_email)
+    = hidden_field_tag :mode, :change_email

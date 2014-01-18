@@ -1,0 +1,16 @@
+csv << [
+  'Product',
+  'SKU',
+  'Color',
+  'UPC',
+  'Qty'
+]
+@rows.each do |row|
+  csv << [
+    row['product_name'],
+    row['product_sku'],
+    row['variant_color'],
+    row['variant_upc'],
+    row['qty']
+  ]
+end

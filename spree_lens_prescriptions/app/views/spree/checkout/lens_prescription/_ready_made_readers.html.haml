@@ -1,0 +1,10 @@
+.checkout-section
+  .row.row-prescription
+    = f.label :strength, t('lens_prescription.strength')
+    = f.select :strength, Spree::LensMetaPrescription::STRENGTH
+  - if signed_in? && current_user.active_subscription.blank?
+    .row
+      = render 'spree/checkout/lens_prescription/purchase_subscription', :f => f, :place => :ready_made
+  .checkout-section
+    .form-buttons{'data-hook' => 'buttons'}
+      = submit_tag t(:continue), :class => 'continue button primary'

@@ -1,0 +1,33 @@
+.row
+  Orders with incomplete prescriptions:
+%br
+%br
+- @orders.each do |o|
+  - case o.lens_meta_prescription.prescription_input_method.to_s
+  - when 'upload_my_prescription'
+    .row
+      Order:
+      = link_to o.number, admin_order_lens_prescription_url(o)
+      \- Method File:
+      = link_to o.lens_meta_prescription.lens_prescription.uploaded_copy.original_filename, o.lens_meta_prescription.lens_prescription.uploaded_copy.url
+  - when 'email_or_fax_prescription'
+    .row
+      Order:
+      = o.number
+      \- Method Email/Fax:
+      = mail_to o.ship_address.email
+      , Phone:
+      = o.ship_address.phone
+  - when 'call_my_doctor'
+    .row
+      Order:
+      = o.number
+      \- Method Doctor:
+      Doctor Name:
+      = o.lens_meta_prescription.lens_prescription.doctor_name
+      , Doctor Phone:
+      = o.lens_meta_prescription.lens_prescription.doctor_phone
+      , Customer Name:
+      = o.lens_meta_prescription.lens_prescription.patient_name
+      , Customer Birth Date:
+      = o.lens_meta_prescription.lens_prescription.patient_birth_date.strftime('%m/%d/%Y')

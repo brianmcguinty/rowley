@@ -1,0 +1,38 @@
+= fields_for @cc do |ccf|
+  .row
+    .field{"data-hook" => "card_number"}
+      = ccf.label :number, t(:card_number)
+      - options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {}
+      = ccf.text_field :number, options_hash.merge(:id => 'card_number', :class => 'required input-xlarge', :size => 19, :maxlength => 19, :autocomplete => "off")
+    .field{"data-hook" => "card_code"}
+      .float-left
+        = ccf.label :verification_value, t(:card_code_rowley)
+      .float-right
+        -#= link_to "(#{t(:whats_this)})", spree.content_path('cvv'), :target => '_blank', :onclick => "window.open(this.href,'cvv_info','left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1');return false", "data-hook" => "cvv_link", :class => 'action-link'
+        -#=image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-style'=>"cvv", 'data-placement'=>"right", 'data-toggle'=>"popover", 'data-content'=>"#{render(:file=>'/spree/content/cvv').html_safe}"
+        = image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"left", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.cvv').html_safe
+      .clear
+      = ccf.text_field :verification_value, options_hash.merge(:id => 'card_code', :class => 'required input-small', :size => 5)
+  .row
+    .field{"data-hook" => "name_on_credit"}
+      = ccf.label :first_name, t(:first_name_on_credit)
+      = ccf.text_field :first_name, :placeholder => 'First Name', :class => 'medium'
+    .field
+      = ccf.label :last_name, t(:last_name_on_credit)
+      = ccf.text_field :last_name, :placeholder => 'Last Name', :class => 'medium'
+  .row  
+    %span#card_type{:style => "display:none;"}
+      (
+      %span#looks_like
+        = t(:card_type_is)
+        %span#type
+      %span#unrecognized= t(:unrecognized_card_type)
+      )
+  .row
+    .field.card-expiration{"data-hook" => "card_expiration"}
+      = ccf.label :month, t(:expiration_date)
+      -# = ccf.select , :class => 'required')
+      = ccf.select :month, (1..12).to_a, {}, :class => 'required'
+      %span /
+      = ccf.select :year, (Date.today.year..Date.today.year + 15).to_a, :class => 'required'
+

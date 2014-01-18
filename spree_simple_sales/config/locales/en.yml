@@ -1,0 +1,8 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  simple_sales_settings: "Sales Settings"
+  sales_prices_cleared: "sales prices have been cleared"
+  clear_sales_prices: "clear sales prices"
+  clear_sales_prices_confirm: "Are you really want to discard sale prices?"

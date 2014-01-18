@@ -1,0 +1,25 @@
+- if @rows.present?
+  %table.admin-report
+    %thead
+      %tr
+        %th Product
+        %th SKU
+        %th Color
+        %th UPC
+        %th Units
+        %th Amount
+    %tbody
+      - rows = @rows.last
+      - grand_totals = @rows.second
+      - rows.each do |row|
+        %tr
+          %td= link_to row['product_name'], admin_product_url(:id => row['product_permalink'])
+          %td= row['product_sku']
+          %td= row['variant_color']
+          %td= row['variant_upc']
+          %td{:style => 'text-align: right'}= row['total_qty'].round
+          %td{:style => 'text-align: right'}= Spree::Money.new(row['total_amount'])
+      %tr{:style => 'font-weight: bold'}
+        %td{:colspan => 4, :style => 'text-align:right'} Total
+        %td{:style => 'text-align: right'}= grand_totals['total_qty']
+        %td{:style => 'text-align: right'}= Spree::Money.new(grand_totals['total_amount'])

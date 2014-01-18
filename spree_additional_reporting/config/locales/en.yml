@@ -1,0 +1,13 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  additional_report:
+    sales: Sales
+    top_hto_products: Top HTO Products
+    inventory: Inventory
+    revenue_by_product: Sales by product
+    revenue_by_product_customers: Sales by product (customers)
+    hto_vs_sales: HTO vs. Sales
+    hto_conversion: HTO Conversion
+

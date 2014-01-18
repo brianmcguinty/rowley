@@ -1,0 +1,13 @@
+- if @rows.present?
+  - result = @rows.first
+  %table.admin-report
+    %thead
+      %tr
+        %th Total HTO customers
+        %th Total Conversions
+        %th Conversion Rate
+    %tbody
+      %tr
+        %td{:style => 'text-align: right'}= result['hto_customers_qty']
+        %td{:style => 'text-align: right'}= result['customers_qty']
+        %td{:style => 'text-align: right'}= result['conversion']

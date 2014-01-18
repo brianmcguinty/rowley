@@ -1,0 +1,502 @@
+file_version:1.0
+<%
+i=1
+@order.line_items.each do |item|
+  item.quantity.times do
+    v = item.variant
+%>
+start_order
+order_id:<%= "#{@order.number}-#{i}" %>
+agent_name:
+agent_version:0.0
+lab_num:<%= Spree::Config[:lp_lab_num] %>
+cust_num:<%= Spree::Config[:lp_customer_num] %>
+cust_seq_num:1
+customer_po_num:<%= @order.number%>
+customer_tray_num:
+date_ordered:<%= @order.created_at %>
+date_promised:0000-00-00-00-00-00
+x_deposit:
+x_dispensing_account:
+x_dispensing_address1:
+x_dispensing_address2:
+x_dispensing_city:
+x_dispensing_country:
+x_dispensing_county:
+x_dispensing_email:
+x_dispensing_medicaid:
+x_dispensing_name:
+x_dispensing_npi:
+x_dispensing_phone:
+x_dispensing_state:
+x_dispensing_zip:
+x_engraver_str:
+x_pa:
+x_pa_reason:
+x_patient_date_of_birth:
+x_patient_date_of_last_service:
+x_patient_diagnostic_code:
+x_patient_first_name:
+x_patient_last_name:
+x_patient_medicaid:
+x_patient_medical_record_number:
+x_prescriber_medicaid:
+x_prescriber_name:
+x_prescriber_npi:
+x_prescription_date:
+x_ship_to_state:
+x_spcfit_cllife_desc:
+x_spcfit_cllife_type:
+x_spcfit_viewp_a2_l:
+x_spcfit_viewp_a2_r:
+x_spcfit_viewp_a3_l:
+x_spcfit_viewp_a3_r:
+x_spcfit_viewp_a3x_l:
+x_spcfit_viewp_a3x_r:
+x_spcfit_viewp_a4_l:
+x_spcfit_viewp_a4_r:
+x_wrap_faf_l:
+x_wrap_faf_r:
+x_wrap_pnt_l:
+x_wrap_pnt_r:
+x_wrap_vxn_l:
+x_wrap_vxn_r:
+x_wrap_vxo_l:
+x_wrap_vxo_r:
+frame_a:<%= v.height %>
+frame_b:
+frame_bridge:<%= v.width %>
+frame_circ:
+frame_color:
+frame_dbl:<%= v.width %>
+frame_dress:
+frame_ed:
+frame_edge:
+frame_eye:
+frame_long_rad:
+frame_model:
+frame_mounting:<%= v.product.property('lab_material')%>
+frame_rad_angle:
+frame_shape:
+frame_source:
+frame_status:SUPPLIED
+frame_temple:
+frame_tracing:
+frame_upc:<%= v.sku_upc %>
+frame_vendor:
+instructions:All fields completed
+x_rx_seg_height_qual=2
+invoice_num:
+<% 
+  lmp = @order.lens_meta_prescription 
+  lp = lmp.lens_prescription
+%>
+lens_od_color_code:<%= case lmp.glasses_type
+                         when 'prescription_optical' then
+                           case lp.vision_type
+                             when 'single_vision' then
+                               if lp.transition
+                                 case lp.lens_type
+                                   when 'standard'  then '147'
+                                   when 'thin'      then '428'
+                                 end
+                               else
+                                 '89'
+                               end
+                             when 'progressive' then
+                               if lp.transition
+                                 '419'
+                               else
+                                 '1'
+                               end
+                           end
+                         when 'prescription_sunglasses' then
+                           case lp.standard_or_custom_tint_or_polarized
+                             when :polarized then
+                               case [lp.vision_type, lp.lens_type, lp.polarized_color]
+                                 when ['single_vision', 'standard', 'gray']  then '37'
+                                 when ['single_vision', 'standard', 'brown'] then '23'
+                                 when ['single_vision', 'thin', 'gray']      then '83'
+                                 when ['single_vision', 'thin', 'brown']     then '84'
+                                 when ['progressive', 'standard', 'gray']    then '501'
+                                 when ['progressive', 'standard', 'brown']   then '500'
+                                 when ['progressive', 'thin', 'gray']        then '501'
+                                 when ['progressive', 'thin', 'brown']       then '500'
+                               end
+                             when :standard, :custom_tint
+                               case [lp.lens_type, lp.vision_type]
+                                 when ['standard', 'single_vision'] then '0'
+                                 when ['thin', 'single_vision'] then '1'
+                                 when ['standard', 'progressive'] then '1'
+                                 when ['thin', 'progressive'] then '1'
+                               end
+                           end
+                         when 'frames_sunglasses' then
+                           case lmp.standard_or_custom_tint_or_polarized
+                             when :polarized then
+                               case lmp.polarized_color
+                                 when 'grey' then '37'
+                                 when 'brown' then '23'
+                               end
+                             else
+                               '0'
+                           end
+                         when 'ready_made_readers' then '89'
+                       end %>
+lens_od_color_desc:
+lens_od_material_code:<%= case lmp.glasses_type
+                            when 'prescription_optical' then
+                              case lp.lens_type
+                                when 'standard' then
+                                  if lp.transition
+                                    case lp.vision_type
+                                      when 'single_vision'  then '25'
+                                      when 'progressive'    then '21'
+                                    end
+                                  else
+                                    '0'
+                                  end
+                                when 'thin' then '10'
+                              end
+                            when 'prescription_sunglasses' then
+                              case lp.lens_type
+                                when 'standard' then '0'
+                                when 'thin'     then '10'
+                              end
+                            when 'ready_made_readers' then '0'
+                            when 'frames_sunglasses' then '0'
+                          end  %>
+lens_od_material_desc:
+lens_od_stock_or_sf:
+lens_od_style_code:<%=case lmp.glasses_type
+                        when 'prescription_optical' then
+                          case lp.vision_type
+                            when 'single_vision' then
+                              case lp.lens_type
+                                when 'standard' then
+                                  '1'
+                                when 'thin' then
+                                  '36'
+                              end
+                            when 'progressive' then
+                              '1041'
+                          end
+                        when 'prescription_sunglasses'  then
+                          if lp.standard_or_custom_tint_or_polarized == :polarized
+                            case [lp.vision_type, lp.lens_type]
+                              when ['single_vision', 'standard']  then '226'
+                              when ['single_vision', 'thin']      then '226'
+                              when ['progressive', 'standard']    then '1041'
+                              when ['progressive', 'thin']        then '1041'
+                            end
+                          else
+                            case [lp.vision_type, lp.lens_type]
+                              when ['single_vision', 'standard']  then '1'
+                              when ['single_vision', 'thin']      then '36'
+                              when ['progressive', 'standard']    then '1041'
+                              when ['progressive', 'thin']        then '1041'
+                            end
+                          end
+                        when 'frames_sunglasses' then
+                          if lmp.standard_or_custom_tint_or_polarized == :polarized
+                            '226'
+                          else
+                            '1'
+                          end
+                        when 'ready_made_readers' then 1
+                      end %>
+lens_od_style_desc:
+lens_od_vendor_code:
+lens_od_vendor_desc:
+lens_os_color_code:<%=  case lmp.glasses_type
+                          when 'prescription_optical' then
+                            case lp.vision_type
+                              when 'single_vision' then
+                                if lp.transition
+                                  case lp.lens_type
+                                    when 'standard' then '147'
+                                    when 'thin'     then '428'
+                                  end
+                                else
+                                  '89'
+                                end
+                              when 'progressive' then
+                                if lp.transition
+                                  '419'
+                                else
+                                  '1'
+                                end
+                            end
+                          when 'prescription_sunglasses' then
+                            case lp.standard_or_custom_tint_or_polarized
+                              when :polarized then
+                                case [lp.vision_type, lp.lens_type, lp.polarized_color]
+                                  when ['single_vision', 'standard', 'gray']  then '37'
+                                  when ['single_vision', 'standard', 'brown'] then '23'
+                                  when ['single_vision', 'thin', 'gray']      then '83'
+                                  when ['single_vision', 'thin', 'brown']     then '84'
+                                  when ['progressive', 'standard', 'gray']    then '501'
+                                  when ['progressive', 'standard', 'brown']   then '500'
+                                  when ['progressive', 'thin', 'gray']        then '501'
+                                  when ['progressive', 'thin', 'brown']       then '500'
+                                end
+                              when :standard, :custom_tint
+                                case [lp.lens_type, lp.vision_type]
+                                  when ['standard', 'single_vision'] then '0'
+                                  when ['thin', 'single_vision'] then '1'
+                                  when ['standard', 'progressive'] then '1'
+                                  when ['thin', 'progressive'] then '1'
+                                end
+                            end
+                          when 'frames_sunglasses' then
+                            case lmp.standard_or_custom_tint_or_polarized
+                              when :polarized then
+                                case lmp.polarized_color
+                                  when 'grey' then '37'
+                                  when 'brown' then '23'
+                                end
+                              else
+                               '0'
+                            end
+                          when 'ready_made_readers' then '89'
+                        end %>
+lens_os_color_desc:
+lens_os_material_code:<%= case lmp.glasses_type
+                            when 'prescription_optical' then
+                              case lp.lens_type
+                                when 'standard' then
+                                  if lp.transition
+                                    case lp.vision_type
+                                      when 'single_vision'  then '25'
+                                      when 'progressive'    then '21'
+                                    end
+                                  else
+                                    '0'
+                                  end
+                                when 'thin' then '10'
+                              end
+                            when 'prescription_sunglasses' then
+                              case lp.lens_type
+                                when 'standard' then '0'
+                                when 'thin'     then '10'
+                              end
+                            when 'ready_made_readers' then '0'
+                            when 'frames_sunglasses' then '0'
+                          end %>
+lens_os_material_desc:
+lens_os_stock_or_sf:
+lens_os_style_code:<%= case lmp.glasses_type
+                        when 'prescription_optical' then
+                          case lp.vision_type
+                            when 'single_vision' then
+                              case lp.lens_type
+                                when 'standard' then
+                                  '1'
+                                when 'thin' then
+                                  '36'
+                              end
+                            when 'progressive' then
+                              '1041'
+                          end
+                        when 'prescription_sunglasses'  then
+                          if lp.standard_or_custom_tint_or_polarized == :polarized
+                            case [lp.vision_type, lp.lens_type]
+                              when ['single_vision', 'standard']  then '226'
+                              when ['single_vision', 'thin']      then '226'
+                              when ['progressive', 'standard']    then '1041'
+                              when ['progressive', 'thin']        then '1041'
+                            end
+                          else
+                            case [lp.vision_type, lp.lens_type]
+                              when ['single_vision', 'standard']  then '1'
+                              when ['single_vision', 'thin']      then '36'
+                              when ['progressive', 'standard']    then '1041'
+                              when ['progressive', 'thin']        then '1041'
+                            end
+                          end
+                        when 'frames_sunglasses' then
+                          if lmp.standard_or_custom_tint_or_polarized == :polarized
+                            '226'
+                          else
+                            '1'
+                          end
+                        when 'ready_made_readers' then 1
+                      end %>
+lens_os_style_desc:
+lens_os_vendor_code:
+lens_os_vendor_desc:
+order_price_list:
+patient_addr1:<%= @order.shipping_address.address1 %>
+patient_addr2:<%= @order.shipping_address.address2 %>
+patient_city:<%= @order.shipping_address.email %>
+patient_group:
+patient_home_phone:<%= @order.shipping_address.phone %>
+patient_name:<%= @order.shipping_address.full_name %>
+patient_plan:
+patient_ssn:
+patient_state:<%= @order.shipping_address.state %>
+patient_work_phone:
+patient_zip:<%= @order.shipping_address.zipcode %>
+rx_eye:<%= if lmp.glasses_type == 'frames_sunglasses'  then '5' else '3' end %>
+rx_key:
+rx_od_add:<%= if lp.progressive? then '%.2f' % lp.right_add end if lmp.prescription_based? %>
+rx_od_axis:<%= lp.right_axis_display if lmp.prescription_based? %>
+rx_od_cylinder:<%= lp.right_cyl if lmp.prescription_based? %>
+rx_od_far:<%= if lmp.prescription_based?
+                (lp.two_pds?) ? lp.right_pd : lp.pd/2
+              elsif lmp.glasses_type.in? 'ready_made_readers','frames_sunglasses'
+                30
+              end%>
+rx_od_mono:<%= if lmp.prescription_based?
+                (lp.two_pds?) ? lp.right_pd : lp.pd/2
+               elsif lmp.glasses_type.in? 'ready_made_readers','frames_sunglasses'
+                30
+              end%>
+rx_od_near:
+rx_od_oc_height:
+rx_od_prism:
+rx_od_prism2:
+rx_od_prism2_dir:
+rx_od_prism_angle:
+rx_od_prism_dir:
+rx_od_sbc:
+rx_od_seg_height:<%= (0.66*item.variant.product.property('B').to_f).round(3)-3 if lp.progressive? %>
+rx_od_so_base:
+rx_od_so_diopters:
+rx_od_sphere:<%= if lmp.prescription_based?
+                   lp.right_sph
+                 elsif lmp.glasses_type == 'ready_made_readers'
+                   lmp.strength
+                 end%>
+rx_od_thickness:
+rx_od_thickness_reference:
+rx_os_add:<%= if lp.progressive? then '%.2f' % lp.left_add end if lmp.prescription_based? %>
+rx_os_axis:<%= lp.left_axis_display if lmp.prescription_based? %>
+rx_os_cylinder:<%= lp.left_cyl if lmp.prescription_based? %>
+rx_os_far:<%= if lmp.prescription_based?
+                (lp.two_pds?) ? lp.left_pd : lp.pd/2
+              elsif lmp.glasses_type.in? 'ready_made_readers','frames_sunglasses'
+                30
+              end%>
+rx_os_mono:<%= if lmp.prescription_based?
+                (lp.two_pds?) ? lp.left_pd : lp.pd/2
+               elsif lmp.glasses_type.in? 'ready_made_readers','frames_sunglasses'
+                30
+              end %>
+rx_os_near:
+rx_os_oc_height:
+rx_os_prism:
+rx_os_prism2:
+rx_os_prism2_angle:
+rx_os_prism2_dir:
+rx_os_prism_angle:
+rx_os_prism_dir:
+rx_os_sbc:
+rx_os_seg_height:<%= (0.66*item.variant.product.property('B').to_f).round(3)-3 if lp.progressive? %>
+rx_os_so_base:
+rx_os_so_diopters:
+rx_os_sphere:<%= if lmp.prescription_based?
+                   lp.left_sph
+                 elsif lmp.glasses_type == 'ready_made_readers'
+                   lmp.strength
+                 end%>
+rx_os_thickness:
+rx_os_thickness_reference:
+ship_addr1:
+ship_addr2:
+ship_city:
+ship_country:
+ship_name:
+ship_state:
+ship_via:
+ship_zip:
+status:
+trace_size:
+<% if lmp.prescription_based? && lp.vision_type == 'progressive' %>
+item_start
+item_quantity:1
+item_source:COAT
+sku:CRE
+item_description:AR COAT
+item_part_rx:Y
+item_end
+<% else %>
+  <% if lmp.sunglasses? %>
+    <% if lmp.prescription_based? %>
+      <% if lp.standard_or_custom_tint_or_polarized != :polarized %>
+item_start
+item_quantity:1
+item_source:TINT
+sku:7101
+item_value:<%= if lp.standard_or_custom_tint_or_polarized == :custom_tint then t("lens_prescription.tint.#{lp.tint}").upcase end %>
+item_description:SOLID TINT
+item_part_rx:Y
+item_end
+item_start
+item_quantity:1
+item_source:COAT
+sku:7203
+item_description:UV COAT
+item_part_rx:Y
+item_end
+      <% else %>
+item_start
+item_quantity:1
+item_source:COAT
+sku:9002
+item_description:AR COAT
+item_part_rx:Y
+item_end
+      <% end %>
+    <% else %>
+      <% if lmp.standard_or_custom_tint_or_polarized == :custom_tint %>
+item_start
+item_quantity:1
+item_source:TINT
+sku:7101
+item_value:<%= t("lens_prescription.tint.#{lmp.custom_tint}").upcase %>
+item_description:SOLID TINT
+item_part_rx:Y
+item_end
+item_start
+item_quantity:1
+item_source:COAT
+sku:7203
+item_description:UV COAT
+item_part_rx:Y
+item_end
+      <% elsif lmp.standard_or_custom_tint_or_polarized == :polarized %>
+item_start
+item_quantity:1
+item_source:COAT
+sku:9002
+item_description:AR COAT
+item_part_rx:Y
+item_end
+      <% elsif lmp.standard_or_custom_tint_or_polarized == :standard %>
+item_start
+item_quantity:1
+item_source:FRAME
+sku:<%= v.sku_upc %>
+item_description:
+item_side:NONE
+item_part_rx:N
+item_end
+item_start
+item_quantity:1
+item_source:FRAME
+sku:
+item_description:
+item_part_rx:N
+item_end      
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+end_order
+<%
+   i +=1
+   end
+end
+
+%>

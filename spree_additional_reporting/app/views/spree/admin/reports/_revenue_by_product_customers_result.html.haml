@@ -1,0 +1,35 @@
+- if @rows.present?
+  %table.admin-report
+    %thead
+      %tr
+        %th Product
+        %th SKU
+        %th Color
+        %th UPC
+        %th Units
+        %th Amount
+        %th
+    %tbody
+      - grouped_rows = @rows.first
+      - grand_totals = @rows.second
+      - grouped_rows.each do |variant_id, sales|
+        %tr{:style => 'font-weight: bold'}
+          %td= link_to sales[:_totals][:_last_row]['product_name'], admin_product_url(:id => sales[:_totals][:_last_row]['product_permalink'])
+          %td= sales[:_totals][:_last_row]['product_sku']
+          %td= sales[:_totals][:_last_row]['variant_color']
+          %td= sales[:_totals][:_last_row]['variant_upc']
+          %td{:style => 'text-align: right'}= sales[:_totals]['total_qty'].to_i
+          %td{:style => 'text-align: right'}= Spree::Money.new(sales[:_totals]['total_amount'])
+          %td= link_to 'Show/Hide Customers', '#', :onclick => "$('.report-group-details-#{variant_id}').toggle()"
+          - sales.each do |key, row|
+            - next if key == :_totals
+            %tr.report-group-details{:style => 'display:none', :class => "report-group-details-#{variant_id}"}
+              %td{:colspan => 4, :style => 'padding-left: 30px'}= row['customer_name']
+              %td{:style => 'text-align: right'}= row['total_qty'].to_i
+              %td{:style => 'text-align: right'}= Spree::Money.new(row['total_amount'])
+              %td= row['on_date']
+      %tr{:style => 'font-weight: bold'}
+        %td{:colspan => 4, :style => 'text-align:right'} Total
+        %td{:style => 'text-align: right'}= grand_totals['total_qty']
+        %td{:style => 'text-align: right'}= Spree::Money.new(grand_totals['total_amount'])
+        %td 

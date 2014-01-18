@@ -1,0 +1,29 @@
+.product-detail{"data-hook" => "product_show", :itemscope => "", :itemtype => "http://schema.org/Product"}
+  - @body_id = 'product-details'
+  .eighteen.columns.alpha.product-left-column{"data-hook" => "product_left_part"}
+    .row{"data-hook"=>"back_to_category"}
+      = link_to t(:back_to_catalog), seo_url(@product.taxons.first) if @product.taxons.first.present?
+    .row{"data-hook" => "product_left_part_wrap"}
+      #product-images{"data-hook" => "product_images"}
+        #main-image{"data-hook" => ""}
+          = render :partial => 'image'
+          %p.enlarge= link_to 'Click to enlarge', '#'
+        %section.thumbnails-section
+          #thumbnails{"data-hook" => ""}
+            %h5.inline.more-angles More Angles:
+            = render :partial => 'thumbnails'
+      %section.available-colors.clearfix= render :partial => 'spree/products/available_colors'
+      %div{"data-hook" => "product_properties"}
+        = render :partial => 'custom_properties'
+  .six.columns.omega.float-right{"data-hook" => "product_right_part"}
+    .row{"data-hook" => "product_right_part_wrap"}
+      #product-description{"data-hook" => "product_description"}
+        .product-glasses-number
+          .no NO.
+          .glasses-no= accurate_title
+        .description{"data-hook" => "description", :itemprop => "description"}
+          = product_description(@product) rescue t(:product_has_no_description)
+        #cart-form{"data-hook" => "cart_form"}
+          = render :partial => 'cart_form'
+        = render :partial=>'/spree/products/product_includes'
+      = render :partial => 'taxons'

@@ -1,0 +1,13 @@
+.checkout-section.form-sample
+  .row
+    = label_tag "prescription_doctor_name_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.doctor.doctor_name')
+    = f.text_field :doctor_name, :id => "prescription_doctor_name_#{sunglasses ? 'sunglasses' : 'optical'}"
+  .row
+    = label_tag "prescription_doctor_phone_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.doctor.doctor_phone')
+    = f.text_field :doctor_phone, :id => "prescription_doctor_phone_#{sunglasses ? 'sunglasses' : 'optical'}"
+  .row
+    = label_tag "prescription_patient_name_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.doctor.patient_name')
+    = f.text_field :patient_name, :id => "prescription_patient_name_#{sunglasses ? 'sunglasses' : 'optical'}"
+  .row
+    = label_tag "prescription_patient_birth_date_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.doctor.patient_birth_date')
+    = f.text_field :formatted_patient_birth_date, :class => 'birthpicker', :id =>  "prescription_patient_birth_date_#{sunglasses ? 'sunglasses' : 'optical'}"

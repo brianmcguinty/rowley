@@ -1,0 +1,8 @@
+#shopping_cart_modal{:style => "display:none;"}
+  .shopping-cart
+    = render 'spree/shared/error_messages', :target => @order
+    %h5
+      = t('shopping_cart')
+      (#{current_order.item_count rescue 0})
+    %div{"data-hook" => "shopping-cart-content"}
+      = render 'spree/shared/cart_content', :order => current_order

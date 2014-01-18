@@ -1,0 +1,5 @@
+.row
+  = f.label :strength, t('lens_prescription.strength')
+  = f.select :strength, Spree::LensMetaPrescription::STRENGTH
+.row
+  = render 'spree/admin/lens_prescriptions/lens_prescription/purchase_subscription', :f => f

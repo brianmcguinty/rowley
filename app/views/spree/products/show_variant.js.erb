@@ -1,0 +1,4 @@
+<% @variant = Spree::Variant.find(params[:id]) %>
+<% unless @variant.nil? then %>
+  $("#product_<%=@variant.product.id%> >.catalog-images > .product-image > a").html("<%= escape_javascript(render('link_to_variant_image', :locals => {:variant => @variant})) %>");
+<% end %>

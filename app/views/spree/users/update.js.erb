@@ -1,0 +1,4 @@
+$("#account_access_container").html("<%= escape_javascript(render('spree/users/access_details/content', :show_editor => !@success)) %>");
+<% if @success %>
+collapse_account_section_editor("#account_access_section");
+<% end %>

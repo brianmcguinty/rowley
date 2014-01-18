@@ -1,0 +1,62 @@
+<table class="index columns alpha omega eighteen table-checkout-order complete" data-hook="order_details">  
+  <tbody id="line-items" data-hook>
+    <% @order.line_items.each do |item| %>
+      <tr data-hook="order_details_line_item_row">
+        <td data-hook="order_item_image">
+          <% if item.variant.images.length == 0 %>
+            <%= link_to small_image(item.variant.product), item.variant.product %>
+          <% else %>
+            <%= link_to image_tag(item.variant.images.first.attachment.url(:mini)), item.variant.product %>
+          <% end %>
+        </td>
+        <td data-hook="order_item_description">
+          <div class="param-name">Item:</div>
+          <div class="param-value">No. <%= item.variant.product.name %></div>
+        </td>
+        <td >
+          <div class="param-name"><%=t(:color) + ':' %></div>
+          <div class="param-value"><%= item.variant.option_value('frames-color') unless item.variant.option_values.empty?%></div>
+        </td>
+        <td data-hook="order_item_qty">
+          <div class="param-name"><%=t(:quantity)+':'%></div>
+          <div class="param-value"><%= item.quantity %></div>
+        </td>
+        <td data-hook="order_item_total" >
+          <div class="param-name"> <%=t(:amount) + ':'%></div>
+          <div class="param-value"><%= item.display_amount %></div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot id="order-total" data-hook="order_details_total">
+    <tr class="total">
+      <td colspan="4"><%= t(:order_total) %>:</td>
+      <td class="total"><span id="order_total"><%= @order.display_total %></span></td>
+    </tr>
+  </tfoot>
+  <% if order.price_adjustment_totals.present? %>
+    <tfoot id="price-adjustments" data-hook="order_details_price_adjustments">
+      <% @order.price_adjustment_totals.each do |key, total| %>
+        <tr class="total">
+          <td colspan="4"><%= key %></td>
+          <td class="total"><span><%= total %></span></td>
+        </tr>
+      <% end %>
+    </tfoot>
+  <% end %>
+  <tfoot id="subtotal" data-hook="order_details_subtotal">
+    <tr class="total" id="subtotal-row">
+      <td colspan="4"><%= t(:subtotal) %>:</td>
+      <td class="total"><span><%= @order.display_item_total %></span></td>
+    </tr>
+  </tfoot>
+  <tfoot id="order-charges" data-hook="order_details_adjustments">
+    <% @order.adjustments.eligible.each do |adjustment| %>
+    <% next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+      <tr class="total">
+        <td colspan="4"><%= adjustment.label %></td>
+        <td class="total"><span><%= adjustment.display_amount %></span></td>
+      </tr>
+    <% end %>
+  </tfoot>
+</table>

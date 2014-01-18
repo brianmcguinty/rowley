@@ -1,0 +1,13 @@
+.checkout-section
+  .row.row-prescription
+    = label_tag "purchase_subscription_yes_no_#{place}", t('lens_prescription.purchase_subscription')
+    = f.select :purchase_subscription_yes_no, [[t(:no), :no], [t(:yes), :yes]], {}, :class => 'order_lens_meta_prescription_attributes_purchase_subscription_yes_no', :id =>  "purchase_subscription_yes_no_#{place}"
+    = image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"top", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.rowley_care')
+  .subscription_fields{:style => if f.object.purchase_subscription_yes_no.to_s == 'no' then 'display:none' end}
+    %p
+      = f.radio_button :purchase_subscription_period, :month, :id => "purchase_subscription_period_#{place}_month"
+      = label_tag "purchase_subscription_period_#{place}_month", "$#{Spree::Config.lp_subscription_monthly_price.round}/month"
+    %p
+      = f.radio_button :purchase_subscription_period, :year, :id => "purchase_subscription_period_#{place}_year"
+      = label_tag "purchase_subscription_period_#{place}_year", "$#{Spree::Config.lp_subscription_annual_price.round}/year"
+

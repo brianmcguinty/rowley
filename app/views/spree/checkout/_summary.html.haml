@@ -1,0 +1,103 @@
+- if order.state == 'order'
+  %table#summary-total-box{"data-hook" => "order_summary"}
+    %tbody#summary_item_total
+      %tr{"data-hook" => "item_total"}
+        %td
+          = t(:item_total)
+          \:
+        %td
+          = order.display_item_total
+    %tbody#summary-order-charges{"data-hook" => ""}
+      - order.adjustments.eligible.each do |adjustment|
+        - next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0)
+        %tr
+          %td
+            = adjustment.label
+            \:
+          %td= adjustment.display_amount
+      %tr
+        %td
+        %td
+      %tr{"data-hook" => "order_total"}
+        %td
+          = t(:order_total)
+          \:
+        %td
+          = @order.display_total
+    - if order.price_adjustment_totals.present?
+      %tbody#price-adjustments{"data-hook" => "order_details_price_adjustments"}
+        - @order.price_adjustment_totals.each do |label, total|
+          %tr.total
+            %td
+              = label
+            %td
+              %span= total
+  .form-buttons{"data-hook" => "buttons"}
+    = submit_tag t(:place_order), :class => 'continue button primary', :id => 'continue_checkout_place_order'
+
+
+-else
+  %h3= t(:order_summary)
+  %table{"data-hook" => "order_summary"}
+    %tbody#summary-line-items{"data-hook" => "order_details"}
+      - @order.line_items.each do |item|
+        %tr{"data-hook" => "order_details_line_item_row"}
+          %td{"data-hook" => "order_item_image"}
+            - if item.variant.images.length == 0
+              = link_to mini_image(item.variant.product), item.variant.product
+            - else
+              = link_to image_tag(item.variant.images.first.attachment.url(:mini)), item.variant.product
+            .product-glasses-number
+              %span.no NO.
+              %span.glasses-no= item.variant.product.name
+          %td{"data-hook" => "order_item_color"}
+            .param-value
+              = item.variant.option_value('frames-color') unless item.variant.option_values.empty?
+            .param-value
+              %span QTY:
+              = item.quantity
+            .param-value
+              %strong= item.display_amount
+            =link_to t(:edit), cart_path, :class => 'action-link'
+    %tbody#summary_item_total
+      %tr{"data-hook" => "item_total"}
+        %td
+          = t(:item_total)
+          \:
+        %td
+          = order.display_item_total
+    %tbody#summary-order-charges{"data-hook" => ""}
+      - order.adjustments.eligible.each do |adjustment|
+        - next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0)
+        %tr
+          %td
+            = adjustment.label
+            \:
+          %td= adjustment.display_amount
+      %tr{"data-hook" => "order_total"}
+        %td
+          = t(:order_total)
+          \:
+        %td
+          = @order.display_total
+    - if order.price_adjustment_totals.present?
+      %tbody#price-adjustments{"data-hook" => "order_details_price_adjustments"}
+        - @order.price_adjustment_totals.each do |label, total|
+          %tr.total
+            %td
+              = label
+            %td
+              %span= total
+  %hr
+    - la = @order.lens_adjustment
+    - lmp = @order.lens_meta_prescription
+    #summary_popover_container{:style => "#{unless (la && la.amount > 0) || (lmp && lmp.may_have_additional_charges?) then 'display: none;' end}"}
+      .popover.fade.bottom.in{:style => "margin-top: 10px; display: block; position: relative;"}
+        .arrow
+        %h3.popover-title
+        .popover-content
+          - if lmp && lmp.may_have_additional_charges?
+            Additional charges may apply based on our lens requirements.
+          - elsif la && la.amount > 0
+            Additional charge has been applied to your order.
+

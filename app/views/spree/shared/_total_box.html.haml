@@ -1,0 +1,16 @@
+%table.total-products
+  %tr
+    %td #{t(:item_total)}:
+    %td= order.display_item_total
+  - order.adjustments.eligible.each do |adjustment|
+    - next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0)
+    %tr
+      %td #{adjustment.label}:
+      %td= adjustment.display_amount
+  %tr
+    %td #{t(:order_total)}:
+    %td= order.display_total
+  - if order.hto?
+    %tr
+      %td #{t(:hto_total)}:
+      %td= order.display_hto_total

@@ -1,0 +1,207 @@
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Rowley</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton24.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/rowley24.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	
+</head>
+<body>
+	<div class="container">
+
+		<header class="">
+			<nav id="top-nav-bar">
+				<ul class="inline">
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Help/FAQ</a></li>
+					<li><a href="#">Login</a></li>
+					<li><a href="#">Live Chat</a></li>
+					<li><a href="#">Cart</a></li>
+				</ul>
+				<div id="search-bar">
+						<form action="/products.html" method="get">
+							<input id="keywords" name="keywords" placeholder="Enter your search" type="search">
+							<span class="icon-find"></span>
+						</form>
+				</div>
+			</nav>
+			<div class="logo">
+				<figure>
+					<a href="#"><img src="images/spree-logo.png"></a>
+				</figure>
+			</div>
+			<nav class="">
+				<ul id="main-nav-bar" class="inline">
+					<li class="current dropdown"><a href="#">Women</a>
+						<ul class="sub-nav">
+							<li><a href="#">Eyewear</a></li>
+							<li><a href="#"><u></u>Sunglasses</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Mr.Powers</a></li>
+					<li><a href="#">Extras</a></li>
+					<li><a href="#">The Story</a></li>
+					<li><a href="#">Rowley Care</a></li>
+					<li><a href="#">News</a></li>
+					<li><a href="#">Showroom</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<hr>
+		<div class="row">
+			<h1>Checkout</h1>
+			<p class="checkout-method">Checkout method:</p>
+		</div>
+		<div class="row checkout">
+			<div class="seven columns omega">
+				<h2>CHECKOUT AS GUEST</h2>
+				<div class="info-block">
+					<p>By clicking the “Continue” button below, you can check out without creating a customer account.</p>
+					<p>Please know that when choosing this option, each time you make a purchase you have to enter all customer data again.</p>
+					<input type="submit" class="submit-btn black btn-long" value="Continue">
+				</div>
+
+			</div>
+			<div class="eight columns offset-by-one alpha omega column-bordered">
+				<h2>CREATE AN ACCOUNT</h2>
+				<p>Register with us for future convenience:</p>
+				<form action="/create_account" method="post">
+					<label>First Name</label>
+					<input type="text" name="first_name" id="first_name" class="large">
+
+					<label>Last Name</label>
+					<input type="text" name="last_name" id="last_name" class="large">
+
+					<label>Email Address</label>
+					<input type="text" name="email" id="email" class="large">
+
+					<label>Password</label>
+					<input type="password" name="input_password" id="input_password" class="large">
+
+					<label>Confirm Password</label>
+					<input type="password" name="confirm_password" id="confirm_password" class="large">
+
+					<p>
+					<label class="radio">
+						<input type="radio" name="optionRadios" id="optionRadios" value="option1" >
+						Sign up for our newsletter and be the first to know about new styles and exclusive offers
+					</label>
+				</p>
+
+					<input type="submit" name="Submit" value="Register" class="submit-btn black btn-long">
+				</form>
+			</div>
+			<div class="seven columns offset-by-one alpha">
+				<h2>Login</h2>
+				<p>Already registered? Please log in below:</p>
+				<form action="/create_account" method="post">
+					<label>Email</label>
+					<input type="text" name="email" id="email" class="large">
+
+					<label>Password</label>
+					<input type="text" name="password" id="password" class="large">
+
+					<p><a href="#">Forgot your password?</a></p>
+
+					<input type="submit" name="Submit" value="Sign In" class="submit-btn black btn-long">
+				</form>
+			</div>
+			
+		</div>
+	</div>
+
+	<footer>
+			<div class="container">
+				<div class="six columns">
+					<div class="footer-column first">
+						<h5 class="footer-title">EYEWEAR AND FRAMES</h5>
+						<ul class="footer-text">
+							<li><a href="#">Rowley Eyewear Optical Collection</a></li>
+							<li><a href="#">Rowley Eyewear Sunglass Collection</a></li>
+							<li><a href="#">Mr. Powers Optical Collection</a></li>
+							<li><a href="#">Mr. Powers Sunglass Collection</a></li>
+							<li><a href="#">Extras</a></li>
+							<li><a href="#">Home Try-On</a></li>
+							<li><a href="#">Get a Gift Card</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="five columns">
+					<div class="footer-column">
+						<h5 class="footer-title">HOW CAN WE HELP?</h5>
+						<ul class="footer-text">
+								<li><a href="#">Shipping Rates</a></li>
+								<li><a href="#">Returns and Exchanges</a></li>
+								<li><a href="#">Frequently Asked Questions</a></li>
+								<li><a href="#">Contact Us</a></li>
+								<li><a href="#">Customer Service</a></li>
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="thirteen columns">
+					<div class="row">
+						<div class="five columns">
+							<div class="footer-column">
+								<h5 class="footer-title">GET TO KNOW US</h5>
+								<ul class="footer-text">
+										<li><a href="#">The Story</a></li>
+										<li><a href="#">Showroom</a></li>
+										<li><a href="#">Cynthia Rowley Blog</a></li>
+										<li><a href="#">News</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="eight columns">
+							<div class="footer-column last">
+								<h5 class="footer-title">SIGN UP FOR EMAILS</h5>
+								<form action="/products" method="post">
+									<input type="text" name="signup_email" id="signup_email" size="30" maxlength="50" value="" class="signup_email">
+									<input type="submit" name="Submit" value="Submit" id="signupsubmit" class="submit-btn black">
+								</form>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="row">
+						<img src="images/footer-logos.png" class="footer-logos">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="footer-text copyright"><p>&copy;2013 Cynthia Rowley</p></div>
+				</div>
+
+			</div>
+	</footer>
+</body>
+</html>

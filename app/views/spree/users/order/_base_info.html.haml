@@ -1,0 +1,35 @@
+.row.steps-data
+  .columns.order-number
+    %p
+      %strong= t(:shipping_address)
+    %p= render :partial => 'spree/shared/address', :locals => {:address => order.ship_address}
+  .columns.order-date
+    %p
+      %strong= t(:billing_address)
+    %p= render :partial => 'spree/shared/address', :locals => {:address => order.bill_address}
+  - if order.shipping_method.present?
+    .columns.order-payment-state
+      %p
+        %strong= t(:shipping_method)
+      %p.delivery
+        = order.shipping_method.name
+      .tracking-info
+        -if order.shipment.present? && order.shipment.state == 'shipped'
+          %p
+            %strong= t(:tracking_number)
+          %p.tracking-number= order.shipment.tracking
+  .columns.order-details.float-right
+    %p
+      %strong= t(:payment_information)
+    %p.payment-info
+      - if order.credit_cards.empty?
+        = content_tag(:span, order.payment.payment_method.name) if order.payment
+      - else
+        %span.cc-type
+          = t(:ending_in)
+          = order.credit_cards.first.last_digits
+        %br/
+        %span.full-name
+          = order.credit_cards.first.first_name
+          = order.credit_cards.first.last_name
+  

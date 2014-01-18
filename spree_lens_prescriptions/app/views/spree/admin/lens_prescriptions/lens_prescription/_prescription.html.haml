@@ -1,0 +1,32 @@
+= f.fields_for :lens_prescription do |pf|
+  %h5 Input Method
+  - if f.object.prescription_input_method.present?
+    = t("lens_prescription.input_method.#{f.object.prescription_input_method}")
+  - else
+    = t("lens_prescription.input_method.enter_new_prescription")
+    = hidden_field_tag 'order[lens_meta_prescription_attributes][prescription_input_method]', :enter_new_prescription
+  %h5 Uploaded Copy
+  - if pf.object.uploaded_copy.present?
+    .row= link_to pf.object.uploaded_copy.original_filename, pf.object.uploaded_copy.url, :target => '_blank'
+  .row
+    = pf.file_field :uploaded_copy
+  %h5 Details
+  = pf.hidden_field :detailed
+  = hidden_field_tag 'order[lens_meta_prescription_attributes][do_not_replace_with_stored]', '0'
+  - unless pf.object.detailed?
+    = link_to_function 'Enter Details', 'enter_prescription_details(this)', :class => 'button'
+  #prescription_details_container{:style => unless pf.object.detailed? then "display: none" end}
+    = render "spree/admin/lens_prescriptions/lens_prescription/enter_new_prescription", :f => f, :sunglasses => sunglasses
+  %h5 Doctor
+  .row
+    = pf.label :doctor_name, t('lens_prescription.doctor.doctor_name')
+    = pf.text_field :doctor_name
+  .row
+    = pf.label :doctor_phone, t('lens_prescription.doctor.doctor_phone')
+    = pf.text_field :doctor_phone
+  .row
+    = pf.label :patient_name, t('lens_prescription.doctor.patient_name')
+    = pf.text_field :patient_name
+  .row
+    = pf.label :patient_birth_date, t('lens_prescription.doctor.patient_birth_date')
+    = pf.text_field :patient_birth_date

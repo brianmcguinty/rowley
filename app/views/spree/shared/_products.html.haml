@@ -1,0 +1,31 @@
+- paginated_products = @searcher.retrieve_products if params.key?(:keywords)
+- paginated_products ||= products
+- if products.empty?
+  = t(:no_products_found)
+- elsif params.key?(:keywords)
+  %h6.search-results-title= t(:search_results, :keywords => h(params[:keywords]))
+
+- if products.any?
+  - sale_products = products.has_sale_price
+  -if sale_products.any?
+    %div.row.sale-products
+      .row-bow
+        .bow-big
+      %h1.taxon-title.sale-title SALE
+      %ul#products.inline.product-listing{"data-hook" => ""}
+        - sale_products.each do |product|
+          - if product.on_display?
+            %li{class: "twelve columns", "data-hook" => "products_list_item", id: "product_#{product.id}", itemscope: "", itemtype: "http://schema.org/Product"}
+              = render 'spree/shared/product_list_item', product: product
+
+  - rest_products = products.has_not_sale_price
+  - if rest_products.any?
+    %div.row
+      %ul#products.inline.product-listing{"data-hook" => ""}
+        - rest_products.each do |product|
+          - if product.on_display?
+            %li{class: "twelve columns", "data-hook" => "products_list_item", id: "product_#{product.id}", itemscope: "", itemtype: "http://schema.org/Product"}
+              = render 'spree/shared/product_list_item', product: product
+
+- if paginated_products.respond_to?(:num_pages)
+  = paginate paginated_products

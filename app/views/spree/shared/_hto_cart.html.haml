@@ -1,0 +1,8 @@
+#hto_cart_modal{:style => "display:none;"}
+  .shopping-cart
+    = render :partial => 'spree/shared/error_messages', :locals => { :target => @order }
+    %h5
+      = t('try_them_on')
+      (#{current_hto_order.item_count rescue 0})
+    %div{"data-hook" => "hto-cart-content"}
+      = render 'spree/shared/hto_cart_content', :order => current_hto_order

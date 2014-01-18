@@ -1,0 +1,42 @@
+file_version:1.0
+start_order
+order_id:<%= @order.number %>
+agent_name:CLASSIC
+agent_version:1.0
+lab_num:<%= Spree::Config[:lp_lab_num] %>
+cust_num:<%= Spree::Config[:lp_customer_num] %>
+cust_seq_num:1
+customer_po_num:<%= @order.number%>
+date_ordered:<%= @order.created_at.strftime("%Y-%m-%d-%H-%M-%S") %>
+instructions:
+patient_name:<%= @order.shipping_address.full_name %>
+rx_eye:5
+ship_name:<%= @order.shipping_address.full_name %>
+ship_addr1:
+ship_addr2:
+ship_city:
+ship_country:
+ship_state:
+ship_zip:
+<% @order.line_items.each do |item|
+     v = item.variant
+ %>
+item_start
+item_quantity:<%= item.quantity %>
+item_source:FRAME
+sku:<%= v.sku_upc %>
+item_description:
+item_side:NONE
+item_part_rx:N
+item_end
+<% end %>
+<% if @order.hto?  %>
+item_start
+item_quantity:1
+item_source:
+sku:TRY ON
+item_description:
+item_part_rx:N
+item_end
+<% end %>
+end_order

@@ -1,0 +1,11 @@
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @order }
+%table#cart-detail{"data-hook" => ""}
+  %thead
+  %tbody#line_items{"data-hook" => ""}
+    = order_form.fields_for :line_items do |item_form|
+      = render :partial => 'line_item_custom', :locals => { :variant => item_form.object.variant, :line_item => item_form.object, :item_form => item_form }
+    %tr
+      %td{:colspan => "6"}
+        = button_tag :class => 'primary btn-submit black float-right', :id => 'update-button' do
+          = t(:update)
+  = render "spree/orders/adjustments" unless @order.adjustments.eligible.blank?

@@ -1,0 +1,7 @@
+.checkout-section
+  - if f.object.uploaded_copy.present?
+    .row= f.object.uploaded_copy.original_filename
+  .row
+    = f.file_field :uploaded_copy
+  .row 
+    Please upload a jpeg or pdf of your prescription so that we may use it to verify your order.

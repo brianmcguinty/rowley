@@ -1,0 +1,12 @@
+.fb-like{"data-font" => "lucida grande", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "250"}
+
+/ Begin Tweet Button
+.tweet
+  %a{:href=>"https://twitter.com/share", :class=>"twitter-share-button", 'data-count'=>"none"}Tweet
+  :javascript
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+/ End Tweet Button
+
+.pinterest
+  %a{"data-pin-do" => "buttonBookmark", :href => "//pinterest.com/pin/create/button/"}
+    %img{:src => "//assets.pinterest.com/images/pidgets/pin_it_button.png"}/

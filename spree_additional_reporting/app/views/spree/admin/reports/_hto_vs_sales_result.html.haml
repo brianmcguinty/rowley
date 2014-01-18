@@ -1,0 +1,29 @@
+- if @rows.present?
+  %table.admin-report
+    %thead
+      %tr
+        %th Product
+        %th SKU
+        %th Frame Type
+        %th Color
+        %th UPC
+        %th HTO Units Sent
+        %th Units Sold
+        %th Price
+        %th On Hand
+        %th Real Inventory
+        %th Outstanding at end of period
+    %tbody
+      - @rows.each do |row|
+        %tr
+          %td= row['product_name']
+          %td= row['product_sku']
+          %td= row['frame_type']
+          %td= row['variant_color']
+          %td= row['variant_upc']
+          %td{:style => 'text-align: right'}= row['hto_units_sent'].to_i
+          %td{:style => 'text-align: right'}= row['units_sold'].to_i
+          %td{:style => 'text-align: right'}= Spree::Money.new(row['variant_price'])
+          %td{:style => 'text-align: right'}= row['count_on_hand']
+          %td{:style => 'text-align: right'}= row['real_inventory'].to_i
+          %td{:style => 'text-align: right'}= row['hto_outstanding_qty']

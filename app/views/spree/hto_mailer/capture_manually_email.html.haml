@@ -1,0 +1,4 @@
+- @orders.each do |o|
+  .row
+    Order:
+    = link_to o.number, admin_order_payments_url(o)

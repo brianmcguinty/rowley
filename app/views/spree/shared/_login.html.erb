@@ -1,0 +1,17 @@
+<%= form_for :user, :url => spree.user_session_path do |f| %>
+  <div id="password-credentials">
+    <p>
+      <%= f.label :email, t(:email) %><br />
+      <%= f.email_field :email, :class => 'title', :tabindex => 1 %>
+    </p>
+    <p>
+      <%= f.label :password, t(:password) %><br />
+      <%= f.password_field :password, :class => 'title', :tabindex => 2 %>
+    </p>
+  </div>
+  <p>
+    <%= link_to t(:forgot_password), spree.new_user_password_path %>
+  </p>
+
+  <p><%= f.submit t(:sign_in), :class => 'button primary', :tabindex => 3 %></p>
+<% end %>

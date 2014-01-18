@@ -1,0 +1,13 @@
+/ replace content of data-hook="admin_products_index_rows"
+%td.align-center= product.sku rescue ''
+%td.align-center= mini_image(product)
+%td= link_to product.try(:name), edit_admin_product_path(product)
+%td.align-center= if product.featured? then t(:yes)  end rescue 'n/a'
+%td.align-center= if product.is_new? then t(:yes)  end rescue 'n/a'
+%td.align-center= product.display_price rescue ''
+%td.actions{"data-hook" => "admin_products_index_row_actions"}
+  = link_to_edit product, :no_text => true, :class => 'edit' unless product.deleted?
+  &nbsp;
+  = link_to_clone product, :no_text => true, :class => 'clone'
+  &nbsp;
+  = link_to_delete product, :no_text => true unless product.deleted?

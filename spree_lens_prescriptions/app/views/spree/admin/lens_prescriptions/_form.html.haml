@@ -1,0 +1,30 @@
+- if @order.try(:errors).present?
+  = render :partial => 'spree/shared/error_messages', :locals => { :target => @order }
+
+= form_for @order, :url => admin_order_lens_prescription_url(@order) do |form|
+  %fieldset.no-border-top{"data-hook" => "admin_customer_detail_form_fields"}
+    %fieldset.index.no-border-bottom{"data-hook" => "customer_guest"}
+      %legend{:align => "center"}= t('lens_prescription.title')
+      = form.fields_for :lens_meta_prescription do |mpf|
+        = hidden_field_tag :recalculate_adjustments
+        = mpf.hidden_field :glasses_type
+        - Spree::LensMetaPrescription::GLASSES_TYPE.each do |gt|
+          .glasses_type
+            - if mpf.object.glasses_type.to_s == gt.to_s
+              .prescription-heading.open
+                = link_to_function t("lens_prescription.glasses_type.#{gt}"), "show_form_by_glasses_type(this)", 'data-form' => "#{render "spree/admin/lens_prescriptions/lens_prescription/#{gt}", :f => mpf}", "data-gt" => gt
+                -# = mpf.radio_button :glasses_type, gt, :class => 'glasses_type_selector', 'data-form' => "#{render "spree/checkout/lens_prescription/#{gt}", :f => mpf}"
+                -# = mpf.label :glasses_type, t("lens_prescription.glasses_type.#{gt}"), :value => gt
+            - else
+              .prescription-heading
+                = link_to_function t("lens_prescription.glasses_type.#{gt}"), "show_form_by_glasses_type(this)", 'data-form' => "#{render "spree/admin/lens_prescriptions/lens_prescription/#{gt}", :f => mpf}", "data-gt" => gt
+                -# = mpf.radio_button :glasses_type, gt, :class => 'glasses_type_selector', 'data-form' => "#{render "spree/checkout/lens_prescription/#{gt}", :f => mpf}"
+                -# = mpf.label :glasses_type, t("lens_prescription.glasses_type.#{gt}"), :value => gt
+            .prescription_form{:style => 'padding-left: 30px'}
+              - if mpf.object.glasses_type.to_s == gt.to_s
+                = render "spree/admin/lens_prescriptions/lens_prescription/#{mpf.object.glasses_type}", :f => mpf
+
+  .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+    = button @order.cart? ? t(:continue) : t(:update), @order.state == 'lens_prescription' ? 'icon-arrow-right' : 'icon-refresh', 'submit', :onclick => '$("#recalculate_adjustments").val("0")'
+    - if @order.completed?
+      = button t(:update_and_recalculate_adjustments), 'icon-refresh', 'submit', :confirm => 'Are you sure?', :onclick => '$("#recalculate_adjustments").val("1")'

@@ -1,0 +1,12 @@
+.row.account-showemail
+  .columns.six
+    %strong #{t(:email)}:
+    %span.account-value= spree_current_user.email
+  .columns.five.omega
+    %strong #{t(:password)}:
+    %span.account-value ************* 
+.row.account_section_edit_container{:style => unless defined?(show_editor) && show_editor then 'display: none' end}
+  .columns.six
+    = render 'spree/users/access_details/change_email_form'
+  .columns.five.omega
+    = render 'spree/users/access_details/change_password_form'

@@ -1,0 +1,10 @@
+.row
+  Orders with verification pending prescriptions:
+%br
+%br
+- @orders.each do |o|
+  .row
+    Order:
+    = link_to o.number, edit_admin_order_lens_prescription_url(o)
+    \- State:
+    = t("lens_prescription.state.#{o.lens_meta_prescription.state}")

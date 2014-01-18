@@ -1,0 +1,21 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+= render :partial => 'spree/admin/shared/lens_prescription_settings_sub_menu'
+= form_tag admin_lens_prescription_uploads_settings_path, :method => :put do
+  %fieldset.no-border-top
+    %fieldset.no-border-bottom
+      %legend{:align => "center"}= t(:general_settings)
+      .field{"data-hook" => "lens_prescription_uploads_path"}
+        = label_tag 'preferences[attachment_path]', t(:lens_prescription_uploads_path)
+        = preference_field_tag 'preferences[uploaded_copy_path]', Spree::Config[:uploaded_copy_path], :type => :string
+      .alpha.eight.columns
+        .field{"data-hook" => "lens_prescription_uploads_default_url"}
+          = label_tag 'preferences[attachment_default_url]', t(:lens_prescription_uploads_default_url)
+          = preference_field_tag 'preferences[uploaded_copy_default_url]', Spree::Config[:uploaded_copy_default_url], :type => :string
+      .alpha.eight.columns
+        .field{"data-hook" => "lens_prescription_uploads_url"}
+          = label_tag 'preferences[attachment_url]', t(:lens_prescription_uploads_url)
+          = preference_field_tag 'preferences[uploaded_copy_url]', Spree::Config[:uploaded_copy_url], :type => :string
+
+
+    .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+      = button t(:update), 'icon-refresh'

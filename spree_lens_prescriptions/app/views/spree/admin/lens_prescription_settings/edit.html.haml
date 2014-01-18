@@ -1,0 +1,183 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+
+= render :partial => 'spree/admin/shared/lens_prescription_settings_sub_menu'
+
+- content_for :page_title do
+  = t(:lens_prescription_settings)
+= form_tag admin_lens_prescription_settings_path, :method => :put do
+  %table 
+    %tr
+      %th Glasses Type
+      %th{:colspan => 3} Option
+      %th Amount
+    %tr
+      %td= t('lens_prescription.glasses_type.prescription_optical')
+      %td{:colspan => 3}
+      %td
+    %tr
+      %td
+      %td{:colspan => 3}= t('lens_prescription.single_vision')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_single_vision]', Spree::Config[:lp_prescription_optical_single_vision], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.standard')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_single_vision_standard]', Spree::Config[:lp_prescription_optical_single_vision_standard], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.transition')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_single_vision_standard_transition]', Spree::Config[:lp_prescription_optical_single_vision_standard_transition], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.thin')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_single_vision_1_67]', Spree::Config[:lp_prescription_optical_single_vision_1_67], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.transition')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_single_vision_1_67_transition]', Spree::Config[:lp_prescription_optical_single_vision_1_67_transition], :type => :decimal
+    %tr
+      %td
+      %td{:colspan => 3}= t('lens_prescription.progressive')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_progressive]', Spree::Config[:lp_prescription_optical_progressive], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.standard')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_progressive_standard]', Spree::Config[:lp_prescription_optical_progressive_standard], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.transition')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_progressive_standard_transition]', Spree::Config[:lp_prescription_optical_progressive_standard_transition], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.thin')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_progressive_1_67]', Spree::Config[:lp_prescription_optical_progressive_1_67], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.transition')
+      %td= preference_field_tag 'preferences[lp_prescription_optical_progressive_1_67_transition]', Spree::Config[:lp_prescription_optical_progressive_1_67_transition], :type => :decimal
+    %tr
+      %td= t('lens_prescription.glasses_type.prescription_sunglasses')
+      %td{:colspan => 3}
+      %td
+    %tr
+      %td
+      %td{:colspan => 3}= t('lens_prescription.single_vision')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision]', Spree::Config[:lp_prescription_sunglasses_single_vision], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.standard')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision_standard]', Spree::Config[:lp_prescription_sunglasses_single_vision_standard], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.custom_tint')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision_standard_custom_tint]', Spree::Config[:lp_prescription_sunglasses_single_vision_standard_custom_tint], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.polarized.title')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision_standard_polarized]', Spree::Config[:lp_prescription_sunglasses_single_vision_standard_polarized], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.thin')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision_1_67]', Spree::Config[:lp_prescription_sunglasses_single_vision_1_67], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.custom_tint')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision_1_67_custom_tint]', Spree::Config[:lp_prescription_sunglasses_single_vision_1_67_custom_tint], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.polarized.title')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_single_vision_1_67_polarized]', Spree::Config[:lp_prescription_sunglasses_single_vision_1_67_polarized], :type => :decimal
+    %tr
+      %td
+      %td{:colspan => 3}= t('lens_prescription.progressive')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive]', Spree::Config[:lp_prescription_sunglasses_progressive], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.standard')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_standard]', Spree::Config[:lp_prescription_sunglasses_progressive_standard], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.custom_tint')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_standard_custom_tint]', Spree::Config[:lp_prescription_sunglasses_progressive_standard_custom_tint], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.polarized.title')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_standard_polarized]', Spree::Config[:lp_prescription_sunglasses_progressive_standard_polarized], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.lens_type.thin')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_1_67]', Spree::Config[:lp_prescription_sunglasses_progressive_1_67], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.custom_tint')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_1_67_custom_tint]', Spree::Config[:lp_prescription_sunglasses_progressive_1_67_custom_tint], :type => :decimal
+    %tr
+      %td
+      %td
+      %td
+      %td= t('lens_prescription.polarized.title')
+      %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_1_67_polarized]', Spree::Config[:lp_prescription_sunglasses_progressive_1_67_polarized], :type => :decimal
+    %tr
+      %td= t('lens_prescription.glasses_type.ready_made_readers')
+      %td{:colspan => 3}
+      %td=preference_field_tag 'preferences[lp_ready_made_readers]', Spree::Config[:lp_ready_made_readers], :type => :decimal
+    %tr
+      %td= t('lens_prescription.glasses_type.frames_sunglasses')
+      %td{:colspan => 3}
+      %td
+    %tr
+      %td
+      %td{:colspan => 3}= t('lens_prescription.frames_sunglasses.demo')
+      %td= preference_field_tag 'preferences[lp_frames_sunglasses_demo]', Spree::Config[:lp_frames_sunglasses_demo], :type => :decimal
+    %tr
+      %td
+      %td{:colspan => 3}
+        = t('lens_prescription.frames_sunglasses.sunglasses.title')
+        = t('lens_prescription.frames_sunglasses.sunglasses.standard')
+      %td= preference_field_tag 'preferences[lp_frames_sunglasses_sunglasses]', Spree::Config[:lp_frames_sunglasses_sunglasses], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.frames_sunglasses.sunglasses.custom')
+      %td= preference_field_tag 'preferences[lp_frames_sunglasses_sunglasses_custom_tint]', Spree::Config[:lp_frames_sunglasses_sunglasses_custom_tint], :type => :decimal
+    %tr
+      %td
+      %td
+      %td{:colspan => 2}= t('lens_prescription.frames_sunglasses.sunglasses.polarized')
+      %td= preference_field_tag 'preferences[lp_frames_sunglasses_sunglasses_polarized]', Spree::Config[:lp_frames_sunglasses_sunglasses_polarized], :type => :decimal
+    -# %tr
+    -#   %td
+    -#   %td
+    -#   %td{:colspan => 2}= t('lens_prescription.lens_type.thin')
+    -#   %td= preference_field_tag 'preferences[lp_prescription_sunglasses_progressive_1_67]', Spree::Config[:lp_prescription_sunglasses_progressive_1_67], :type => :decimal
+  .form-buttons.filter-actions.actions
+    = button t(:update), 'icon-refresh'

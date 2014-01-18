@@ -1,0 +1,9 @@
+.checkout-section
+  .param-name #{t('lens_prescription.retrieve_my_prescription.title')}
+  - current_user.lens_prescriptions.detailed.last(3).each do |p|
+    .row
+      = f.radio_button :user_lens_prescription_id, p.id, :class => 'refresh_totals', :id => "prescription_user_lens_prescription_id_#{sunglasses ? 'sunglasses' : 'optical'}_#{p.id}"
+      = label_tag "prescription_user_lens_prescription_id_#{sunglasses ? 'sunglasses' : 'optical'}_#{p.id}", p.name, 'data-content' => "#{render("spree/checkout/prescription_details/#{if sunglasses then 'prescription_sunglasses' else 'prescription_optical' end}", :prescription => p)}", :class => 'stored_prescription_popover'
+.checkout-section
+  .form-buttons{'data-hook' => 'buttons'}
+    = submit_tag t(:continue), :class => 'continue button primary'

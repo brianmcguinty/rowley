@@ -1,0 +1,68 @@
+<% unless @order.completed? %>
+  <% if can?(:manage, Spree::Order) %>
+    <li<%== ' class="active"' if current == 'Order Details' %>>
+      <%= link_to_with_icon 'icon-edit', t(:order_details), edit_admin_order_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Order) %>
+    <li<%== ' class="active"' if current == 'Customer Details' %>>
+      <%= link_to_with_icon 'icon-user', t(:customer_details), admin_order_customer_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::LensPrescription) %>
+    <li<%== ' class="active"' if current == 'Lens Prescription' %>>
+      <%= link_to 'Lens Prescription', @order.line_items.empty? ? 'javascript:$("form").submit();' : admin_order_lens_prescription_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Shipment) %>
+    <li<%== ' class="active"' if current == 'Shipments' %>>
+      <%=link_to_with_icon 'icon-road', t(:shipments), @order.line_items.empty? || @order.lens_meta_prescription.blank? || !@order.completed? ? 'javascript:$("form").submit();' : edit_admin_order_shipment_url(@order, @order.shipment) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Adjustment) %>
+    <li<%== ' class="active"' if current == 'Adjustments' %>>
+       <%= link_to_with_icon 'icon-cogs', t(:adjustments), @order.line_items.empty? || @order.lens_meta_prescription.blank? || !@order.completed? ? 'javascript:$("form").submit();' : admin_order_adjustments_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Payment) %>
+    <li<%== ' class="active"' if current == 'Payments' %>>
+       <%= link_to_with_icon 'icon-credit-card', t(:payments), @order.line_items.empty? || @order.lens_meta_prescription.blank? || !@order.completed? ? 'javascript:$("form").submit();' : new_admin_order_payment_url(@order) %>
+    </li>
+  <% end %>
+<% else %>
+  <% if can?(:manage, Spree::Order) %>
+    <li<%== ' class="active"' if current == 'Order Details' %>>
+      <%= link_to_with_icon 'icon-edit', t(:order_details), edit_admin_order_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Order) %>
+    <li<%== ' class="active"' if current == 'Customer Details' %>>
+      <%= link_to_with_icon 'icon-user', t(:customer_details), admin_order_customer_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::LensPrescription) %>
+    <li<%== ' class="active"' if current == 'Lens Prescription' %>>
+      <%= link_to 'Lens Prescription', admin_order_lens_prescription_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Adjustment) %>
+    <li<%== ' class="active"' if current == 'Adjustments' %>>
+      <%= link_to_with_icon 'icon-cogs', t(:adjustments), admin_order_adjustments_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Payment) %>
+    <li<%== ' class="active"' if current == 'Payments' %>>
+      <%= link_to_with_icon 'icon-credit-card', t(:payments), admin_order_payments_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::Shipment) %>
+    <li<%== ' class="active"' if current == 'Shipments' %>>          
+      <%= link_to_with_icon 'icon-road', t(:shipments), admin_order_shipments_url(@order) %>
+    </li>
+  <% end %>
+  <% if can?(:manage, Spree::ReturnAuthorization) %>
+    <li<%== ' class="active"' if current == 'Return Authorizations' %>>          
+      <%= link_to_with_icon 'icon-share-alt', t(:return_authorizations), admin_order_return_authorizations_url(@order) %>
+    </li>
+  <% end %>
+<% end %>

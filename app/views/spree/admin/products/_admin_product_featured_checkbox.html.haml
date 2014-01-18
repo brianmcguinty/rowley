@@ -1,0 +1,4 @@
+%div.field.checkbox{"data-hook" => "featured"}
+  %label
+    =f.check_box :featured, {checked: @product.featured? }
+    =t(:featured)

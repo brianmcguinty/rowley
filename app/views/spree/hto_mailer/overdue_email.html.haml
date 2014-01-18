@@ -1,0 +1,52 @@
+!!!
+%head
+  %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
+  %title Rowley
+  :css
+    body {margin: 0; padding: 0; color: #2d2827; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 18px;}
+    a {text-decoration: none;}
+    p {margin: 0 0 25px;}
+    #content td {padding: 55px 0; vertical-align: top;}
+    %body
+  %table{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+    %tr
+      %td{:align => "center"}
+        %table{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "900"}
+          %tr
+            %td{:align => "center"}
+              %table#header{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr{:align => "left"}
+                  %td{:style => "padding-top:48px;"}
+                    = image_tag 'http://www.rowleyeyewear.com/assets/store/letters/orders/main-logo.jpg'
+              / header table end
+              %table#content{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr{:align => "left"}
+                  %td
+                    %p
+                      %span{:style => "font-weight:bold;"} Hello #{@order.ship_address.full_name},
+                    %p
+                      We have not yet received the sample frames that were issued 
+                      to you to try on from #{@order.hto_start_at.strftime('%m/%d/%Y')} to #{@order.hto_finish_at.strftime('%m/%d/%Y')}.
+                    %p
+                      So that your credit card does not get charged for the full price 
+                      of the glasses, please return your glasses in the mail by #{@order.hto_auto_capture_at.strftime('%m/%d/%Y')}.
+                    %p
+                      Even if you like the frames that you ordered for Try Them On, please 
+                      send them back as they are only samples. Once you’ve made your 
+                      selection, please place an order on our website and we will send you 
+                      a brand new pair with your selected prescription information (if any), 
+                      packaging, etc. And remember, shipping is always free!
+                    %p
+                      For more information about our Try Them On program, 
+                      visit our 
+                      = succeed '.' do
+                        = link_to 'FAQ Page', 'http://www.rowleyeyewear.com/help_faq#faq_try'
+                    %p 
+                      Please contact our Customer Service department at 877.979.9200 or 
+                      = mail_to 'customerservice@rowleyeyewear.com' 
+                      for any additional information.
+                    %p
+                      Sincerly,
+                      %br/
+                      Rowley Eyewear
+              / content table end

@@ -1,0 +1,80 @@
+<% address_id = address_type.chars.first %>
+<div class="inner checkout-form offset-left" data-hook=<%="#{address_type}_inner" %>>
+  <div class="row">
+    <div class="field" id=<%="#{address_id}firstname" %>>
+      <%= form.label :firstname, t(:first_name) %>
+      <%= form.text_field :firstname, :class => 'required medium' %>
+    </div>
+    <div class="field" id=<%="#{address_id}lastname" %>>
+      <%= form.label :lastname, t(:last_name) %>
+      <%= form.text_field :lastname, :class => 'required medium' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field" id=<%= "#{address_id}email" %>>
+      <%= form.label :email, t(:email)  %>
+      <%= form.text_field :email, :class => 'medium' %>
+    </div>
+
+    <div class="field" id=<%="#{address_id}company" %>>
+      <%= form.label :company, "#{t(:company)} (#{t(:optional)})" %>
+      <%= form.text_field :company, :class => 'medium' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field" id=<%="#{address_id}address1" %>>
+      <%= form.label :address1, t(:address) %>
+      <%= form.text_field :address1, :class => 'required medium' %>
+    </div>
+    <div class="field" id=<%="#{address_id}address2" %>>
+      <%= form.label :address2, t(:street_address_2_rowley) %>
+      <%= form.text_field :address2, :class => 'medium' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field" id=<%="#{address_id}city" %>>
+      <%= form.label :city, t(:city) %>
+      <%= form.text_field :city, :class => 'required input-city' %>
+    </div>
+    <% if Spree::Config[:address_requires_state] %>
+      <div class="field" id=<%="#{address_id}state" %> >
+        <% have_states = !address.country.states.empty? %>
+        <%= form.label :state, t(:state_rowley) %>
+
+        <% state_elements = [
+           form.collection_select(:state_id, address.country.states,
+                              :id, :name,
+                              {:include_blank => true},
+                              {:class => have_states ? 'required input-small' : 'hidden',
+                              :disabled => !have_states}) +
+           form.hidden_field(:state_name,
+                              :class => !have_states ? 'required' : 'hidden',
+                              :disabled => have_states)
+           ].join.gsub('"', "'").gsub("\n", "")
+        %>
+        <%= javascript_tag do -%>
+          $('#<%="#{address_id}state" %>').append("<%== state_elements %>");
+        <% end %>
+      </div>
+    <% end %>
+    <div class="field" id=<%="#{address_id}zipcode" %>>
+      <%= form.label :zipcode, t(:zip_rowley) %>
+      <%= form.text_field :zipcode, :class => 'required input-zip' %>
+    </div>
+  </div>
+
+  <div class="row">  
+    <div class="field" id=<%="#{address_id}phone" %>>
+      <%= form.label :phone, t(:telephone) %>
+      <%= form.phone_field :phone, :class => 'required medium' %>
+    </div>
+    <div class="field" id=<%="#{address_id}country" %>>
+      <%= form.label :country_id, t(:country) %>
+      <span id=<%="#{address_id}country-selection" %>>
+        <%= form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required select-medium'} %>
+      </span>
+    </div>
+  </div>
+
+</div>

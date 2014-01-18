@@ -1,0 +1,16 @@
+.row
+  - if active_subscription = @user.active_subscription
+    %p
+      =image_tag '/assets/store/account-rowleybag.png', :class => 'account-rowleybag'
+      - case active_subscription.period 
+      - when 'year'
+        %strong $#{Spree::Config.lp_subscription_annual_price.round}/year
+      - when 'month'
+        %strong $#{Spree::Config.lp_subscription_monthly_price.round}/month
+  - else
+    %p
+      - if @user.orders.complete.any?
+        You have not yet purchased Rowley Care. After buying your first pair of full price frames, receive 50% off your subsequent eyewear purchases when you sign up for Rowley Care. Choose from these two options below:
+        = render 'spree/users/rowley_care/purchase_form'
+      - else
+        You have not yet purchased Rowley Care.

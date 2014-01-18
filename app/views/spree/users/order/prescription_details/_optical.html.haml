@@ -1,0 +1,52 @@
+- lp = prescription
+- if lp.detailed?
+  %div
+    #{t("lens_prescription.vision_type.title")}:
+    = t("lens_prescription.vision_type.#{lp.vision_type}")
+  %div<
+    RIGHT: (SPH: 
+    = lp.right_sph
+    , CYL: 
+    = lp.right_cyl
+    , AXIS: 
+    = lp.right_axis_display
+    - if lp.progressive?
+      , ADD: 
+      = lp.right_add
+    - if lp.two_pds?
+      , PD: 
+      = lp.right_pd
+    )
+  %div<
+    LEFT: (SPH: 
+    = lp.left_sph
+    , CYL: 
+    = lp.left_cyl
+    , AXIS: 
+    = lp.left_axis_display
+    - if lp.progressive?
+      , ADD: 
+      = lp.left_add
+    - if lp.two_pds?
+      , PD: 
+      = lp.left_pd
+    )
+  - unless lp.two_pds?
+    %div
+      Pupillary Distance (PD): 
+      %span="(#{lp.pd})"
+  %div
+    #{t(:lens_type_label)}:
+    = t(lp.lens_type.to_sym)
+  - if sunglasses
+    - if lp.standard_or_custom_tint_or_polarized == :polarized
+      #{t(:polarized)}:
+      = t(lp.polarized_color.to_sym)
+    - else
+      #{t(:tint)}:
+      = if lp.standard_or_custom_tint_or_polarized == :custom_tint then t(lp.tint.to_sym) elsif lp.standard_or_custom_tint_or_polarized == :standard  then  t(:standard) end
+  - else
+    #{t(:transition_lenses)}:
+    = if lp.transition then t(:yes) else t(:no) end
+- else
+  = t('lens_prescription.details_required')

@@ -1,0 +1,36 @@
+= render :partial => 'spree/admin/shared/product_sub_menu'
+= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Head Turn Images'}
+- content_for :page_actions do
+  %li= link_to_with_icon('icon-plus', t(:new_image), new_admin_product_head_turn_image_url(@product), :id => 'new_image_link', :class => 'button')
+#images{"data-hook" => ""}
+- unless @product.head_turn_images.any? || @product.variant_head_turn_images.any?
+  .no-objects-found
+    = t(:no_images_found)
+    \.
+- else
+  %table.index.sortable{"data-hook" => "images_table", "data-sortable-link" => update_positions_admin_product_head_turn_images_url(@product)}
+    %colgroup
+      %col{:style => "width: 5%"}/
+      %col{:style => "width: 10%"}/
+      %col{:style => "width: 25%"}/
+      %col{:style => "width: 45%"}/
+      %col{:style => "width: 15%"}/
+    %thead
+      %tr{"data-hook" => "images_header"}
+        %th{:colspan => "2"}= t(:thumbnail)
+        - if @product.has_variants?
+          %th= Spree::Variant.model_name.human
+        %th= t(:alt_text)
+        %th.actions
+    %tbody
+      - (@product.head_turn_images + @product.variant_head_turn_images).uniq.each do |image|
+        %tr{:class => [cycle('odd', 'even')], "data-hook" => "images_row", :id => [spree_dom_id(image)]}
+          %td.no-border
+            %span.handle
+          %td
+            = link_to image_tag(image.attachment.url(:mini)), image.attachment.url(:product)
+          %td= options_text_for(image)
+          %td= image.alt
+          %td.actions
+            = link_to_with_icon 'icon-edit', t(:edit), edit_admin_product_head_turn_image_url(@product, image), :no_text => true, :data => {:action => 'edit'}
+            = link_to_delete image, { :url => admin_product_head_turn_image_url(@product, image), :no_text => true }

@@ -1,0 +1,52 @@
+%footer
+  .container.row
+    .columns
+      .footer-column.first
+        %h5.footer-title EYEWEAR AND FRAMES
+        %ul.footer-text
+          %li= link_to 'Rowley Eyewear Optical Collection', if signed_in? && current_store.code != 'rowley' then cross_login_path(:site => :rowley, :url => '/t/optical') else 'http://www.rowleyeyewear.com/t/optical' end
+          %li= link_to 'Rowley Eyewear Sunglass Collection', if signed_in? && current_store.code != 'rowley' then cross_login_path(:site => :rowley, :url => '/t/sunglasses') else 'http://www.rowleyeyewear.com/t/sunglasses' end
+          %li= link_to 'Mr. Powers Optical Collection', if signed_in? && current_store.code != 'mr_powers' then cross_login_path(:site => :mrpowers, :url => '/t/optical') else 'http://www.mrpowerseyewear.com/t/optical' end
+          %li= link_to 'Mr. Powers Sunglass Collection', if signed_in? && current_store.code != 'mr_powers' then cross_login_path(:site => :mrpowers, :url => '/t/sunglasses') else 'http://www.mrpowerseyewear.com/t/sunglasses' end
+          %li= link_to 'Try Them On', '/try-on', 'data-hook' => 'try-on-link'
+        .footer-text.copyright
+          %p &copy; 2013 Cynthia Rowley
+    .seven.columns
+      .footer-column.can-help
+        %h5.footer-title HOW CAN WE HELP?
+        %ul.footer-text
+          %li= link_to 'Shipping Rates', '/help_faq#faq_shipping', :class => 'faq-footer-link'
+          %li= link_to 'Returns and Exchanges', '/help_faq#faq_return', :class => 'faq-footer-link'
+          %li= link_to 'Frequently Asked Questions', '/help_faq'
+          %li= link_to 'Contact Us', '/customer-service'
+          %li= link_to 'Customer Service', '/customer-service'
+          %li= link_to 'Terms of Use', '/terms-of-use'
+          %li= link_to 'Privacy Policy', '/privacy-policy'
+    .twelve.columns
+      .row
+        .five.columns
+          .footer-column.get-know
+            %h5.footer-title GET TO KNOW US
+            %ul.footer-text
+              %li= link_to 'The Story', '/story', 'data-hook'=>'story-link'
+              %li= link_to 'Showrooms','/showrooms'
+              %li= link_to 'Cynthia Rowley Blog','http://www.cynthiarowley.com/brand/blog/', :target => '_blank'
+        .seven.columns.float-right
+          .footer-column.last
+            %h5.footer-title SIGN UP FOR EMAILS
+            #mailchimp_subscribe_wrap
+              = form_for :user, :url => :subscriptions do |f|
+                = text_field_tag :email, '', :class => 'signup_email', :id => 'subscribe_email', :size => '30', :maxlength => '50'
+                = submit_tag 'Submit', :id => 'signupsubmit', :class => 'btn-submit black'
+            #subscription-modal-notice{:style => "display:none"} modal text
+          .socials
+            = link_to 'Facebook', 'https://www.facebook.com/RowleyEyewear', :class => 'facebook', :title => 'Facebook', :target => '_blank'
+            = link_to 'Twitter', 'http://twitter.com/Cynthia_Rowley', :class => 'twitter', :title => 'Twitter', :target => '_blank'
+            = link_to 'Instagram', 'http://instagram.com/rowleyeyewear', :class => 'instagram', :title => 'Instagram', :target => '_blank'
+        .clear
+      .row.footer-logos
+        %ul
+          %li= link_to image_tag('store/cynthiarowley.png'), 'http://www.cynthiarowley.com/', :target => '_blank'
+          %li= link_to image_tag('store/exhibitiona.png'), 'http://www.exhibitiona.com/pages/home.aspx', :target => '_blank'
+          %li= link_to image_tag('store/halfgallery.png'), 'http://halfgallery.com/', :target => '_blank'
+          %li= link_to image_tag('store/curious.png'), 'http://www.curiouscandy.com/', :target => '_blank'

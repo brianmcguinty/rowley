@@ -1,0 +1,28 @@
+- @body_id = 'cart'
+%h1= t(:hto_cart)
+- if @order.line_items.empty?
+  %div{"data-hook" => "empty_cart"}
+    %p= t(:your_cart_is_empty)
+    %p= link_to t(:continue_shopping), products_path, :class => 'button continue'
+- else
+  %div{"data-hook" => "outside_cart_form"}
+    = form_for @order, :url => update_cart_path(:hto => true), :html => {:id => 'update-hto-cart'} do |order_form|
+      %div{"data-hook" => "inside_cart_form"}
+        %div{"data-hook" => "cart_items"}
+          = render :partial => 'spree/hto_orders/form', :locals => { :order_form => order_form }
+        -##subtotal{"data-hook" => ""}
+        -#  %table
+        -#    %tr
+        -#      %td= t(:subtotal)
+        -#      %td
+        -#        %span= Spree::Money.new(0,{:currency => @order.currency})
+        .row.checkout-section
+          .float-left
+            #empty-cart-custom{"data-hook" => ""}
+              = form_tag empty_cart_path, :method => :put do
+                = link_to t(:continue_shopping), products_path, :class => 'continue button gray'
+          .float-right
+            .links-custom
+              - if @order.hto_sufficient_items?
+                = button_tag :class => 'button btn-submit black', :id => 'checkout-link', :name => 'checkout' do
+                  = t(:checkout)

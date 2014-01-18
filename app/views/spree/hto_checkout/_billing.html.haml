@@ -1,0 +1,27 @@
+%div{"data-hook" => "billing_fieldset_wrapper"}
+  %fieldset#shipping{"data-hook" => "billing_address_form"}
+    = form.fields_for :bill_address do |bill_form|
+      %h5.offset-left= t(:billing_information)
+      = render :partial => 'spree/address/form2', :locals => {:form => bill_form, :address_type => 'billing', :address => @order.bill_address}
+%hr
+
+%fieldset#payment{"data-hook" => ""}
+  %h5.offset-left= t(:payment_information)
+  .offset-left{"data-hook" => "checkout_payment_step"}
+    - method = @order.available_payment_methods.first
+    = hidden_field_tag 'order[payments_attributes][][payment_method_id]', method.id
+    %ul.checkout-form#payment-methods{"data-hook" => ""}
+      - @order.available_payment_methods.each do |method|
+        %li{:class =>  [if method == @order.available_payment_methods.last then 'last' end], 'data-hook' => '', :id => ["payment_method", method.id]}
+          %fieldset
+            = render :partial => "spree/checkout/billing/#{method.method_type}", :locals => { :payment_method => method }
+    %div{"data-hook" => ""}
+%hr
+
+.checkout-section
+  .float-left.form-buttons.offset-left{"data-hook" => "buttons"}
+    = link_to t(:back), hto_checkout_state_path(:shipping), :class => 'back button'
+  .float-right.form-buttons{"data-hook" => "buttons"}
+    = submit_tag t(:continue), :class => 'continue button primary'
+  .clear
+%hr

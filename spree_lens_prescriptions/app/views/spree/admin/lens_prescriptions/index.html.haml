@@ -1,0 +1,17 @@
+%h1 Listing spree_admin_lens_prescriptions
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @spree_admin_lens_prescriptions.each do |spree_admin_lens_prescription|
+    %tr
+      %td= link_to 'Show', spree_admin_lens_prescription
+      %td= link_to 'Edit', edit_spree_admin_lens_prescription_path(spree_admin_lens_prescription)
+      %td= link_to 'Destroy', spree_admin_lens_prescription, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Lens prescription', new_spree_admin_lens_prescription_path

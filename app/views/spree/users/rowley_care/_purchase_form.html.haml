@@ -1,0 +1,20 @@
+= form_tag main_app.user_purchase_rc_path, :remote => true do
+  %p
+    %p
+      %span.radio-group
+        = radio_button_tag :period, :year, @period.to_s == 'year'
+        %span{ :class => "#{if @invalid && @period.blank? then 'field_with_errors2' end}" }= label :period, "$#{Spree::Config.lp_subscription_annual_price.round}/year", :value => :year
+        -# %input#order_lens_meta_prescription_attributes_purchase_subscription_period_month{:name => "order[lens_meta_prescription_attributes][purchase_subscription_period]", :type => "radio", :value => "month"}/
+        -# %label{:for => "order_lens_meta_prescription_attributes_purchase_subscription_period_month"} $50/year
+      %span.radio-group
+        = radio_button_tag :period, :month, @period.to_s == 'month'
+        %span{ :class => "#{if @invalid && @period.blank? then 'field_with_errors2' end}" }= label :period, "$#{Spree::Config.lp_subscription_monthly_price.round}/month", :value => :month
+        -# %input#order_lens_meta_prescription_attributes_purchase_subscription_period_month{:name => "order[lens_meta_prescription_attributes][purchase_subscription_period]", :type => "radio", :value => "month"}/
+        -# %label{:for => "order_lens_meta_prescription_attributes_purchase_subscription_period_month"} $5/month
+    -# = radio_button_tag :period, :month, @period.to_s == 'month'
+    -# = label :period, "$#{Spree::Config.lp_subscription_monthly_price.round}/month", :value => :month
+    -# = radio_button_tag :period, :year, @period.to_s == 'year'
+    -# = label :period, "$#{Spree::Config.lp_subscription_annual_price.round}/year", :value => :year
+  .account_section_edit_container
+    = render 'spree/users/rowley_care/gateway'
+    = submit_tag 'Purchase', :onclick => '$(this).hide()'

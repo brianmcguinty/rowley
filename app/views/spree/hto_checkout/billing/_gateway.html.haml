@@ -1,0 +1,47 @@
+- last_valid_card = nil
+- if @order.user.present? && (last_valid_card = @order.user.last_valid_card)
+  .row
+    = radio_button_tag :use_cc, :use_stored, true, :class => 'credit_card_selector'
+    = label_tag :use_cc_use_stored, "#{t(:credit_card)}: #{last_valid_card.display_number}"
+  .row
+    = radio_button_tag :use_cc, :enter_new, false, :class => 'credit_card_selector'
+    = label_tag :use_cc_enter_new, t('enter_new_credit_card')
+- param_prefix = "payment_source[#{payment_method.id}]"
+#new_credit_card_container{ :style => if last_valid_card.present? then "display:none" end }
+  .row
+    .field{"data-hook" => "card_number"}
+      = label_tag nil, t(:card_number)
+      - options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {}
+      = text_field_tag "#{param_prefix}[number]", '', options_hash.merge(:id => 'card_number', :class => 'required input-xlarge', :size => 19, :maxlength => 19, :autocomplete => "off")
+    .field{"data-hook" => "card_code"}
+      .float-left
+        = label_tag nil, t(:card_code_rowley)
+      .float-right
+        -#= link_to "(#{t(:whats_this)})", spree.content_path('cvv'), :target => '_blank', :onclick => "window.open(this.href,'cvv_info','left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1');return false", "data-hook" => "cvv_link", :class => 'action-link'
+        -#=image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-style'=>"cvv", 'data-placement'=>"right", 'data-toggle'=>"popover", 'data-content'=>"#{render(:file=>'/spree/content/cvv').html_safe}"
+        =image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"right", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.cvv').html_safe
+      .clear
+      = text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(:id => 'card_code', :class => 'required input-small', :size => 5)
+  .row
+    .field{"data-hook" => "name_on_credit"}
+      = label_tag nil, t(:first_name_on_credit)
+      = text_field param_prefix, 'first_name', :value => @order.billing_firstname, :placeholder => 'First Name', :class => 'medium'
+    .field
+      = label_tag nil, t(:last_name_on_credit)
+      = text_field param_prefix, 'last_name', :value => @order.billing_lastname,  :placeholder => 'Last Name', :class => 'medium'
+  .row  
+    %span#card_type{:style => "display:none;"}
+      (
+      %span#looks_like
+        = t(:card_type_is)
+        %span#type
+      %span#unrecognized= t(:unrecognized_card_type)
+      )
+  .row
+    .field.card-expiration{"data-hook" => "card_expiration"}
+      = label_tag nil, t(:expiration_date)
+      = select_month(Date.today, { :prefix => param_prefix, :field_name => 'month', :use_month_numbers => true }, :class => 'required')
+      %span /
+      = select_year(Date.today, { :prefix => param_prefix, :field_name => 'year', :start_year => Date.today.year, :end_year => Date.today.year + 15 }, :class => 'required')
+
+

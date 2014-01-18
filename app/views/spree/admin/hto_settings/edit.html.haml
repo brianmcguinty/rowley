@@ -1,0 +1,23 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+- content_for :page_title do
+  = t(:hto_settings)
+= form_tag admin_hto_settings_path, :method => :put do
+  %fieldset.no-border-top
+    %fieldset.no-border-bottom
+      .field
+        = label_tag 'preferences[hto_capture_manually_email]', t('hto_capture_manually_email')
+        = preference_field_tag 'preferences[hto_capture_manually_email]', Spree::Config[:hto_capture_manually_email], :type => :string
+      .field
+        = label_tag 'preferences[hto_delivered_days]', t('hto_delivered_days')
+        = preference_field_tag 'preferences[hto_delivered_days]', Spree::Config[:hto_delivered_days], :type => :integer
+      .field
+        = label_tag 'preferences[hto_warning_days]', t('hto_warning_days')
+        = preference_field_tag 'preferences[hto_warning_days]', Spree::Config[:hto_warning_days], :type => :integer
+      .field
+        = label_tag 'preferences[hto_overdue_days]', t('hto_overdue_days')
+        = preference_field_tag 'preferences[hto_overdue_days]', Spree::Config[:hto_overdue_days], :type => :integer
+      .field
+        = label_tag 'preferences[hto_auto_capture_days]', t('hto_auto_capture_days')
+        = preference_field_tag 'preferences[hto_auto_capture_days]', Spree::Config[:hto_auto_capture_days], :type => :integer
+    .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+      = button t(:update), 'icon-refresh'

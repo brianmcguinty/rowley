@@ -1,0 +1,72 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
+  <head data-hook="inside_head">
+    <%= render :partial => 'spree/shared/head' %>
+  </head>
+  <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
+    
+      <div class="container">
+
+        <%= render :partial => 'spree/shared/header' %>
+      </div>
+      <div class="container">
+        <div id="wrapper" class="row" data-hook>
+
+          <%= breadcrumbs(@taxon) %>
+
+          
+
+          <div id="content" class="columns <%= !content_for?(:sidebar) ? "twentyfour" : "twentyfour" %>" data-hook>
+            <%= flash_messages %>
+            <%= yield %>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="bottom-line">
+        <div class="container">
+          <div class="row">
+            <div class="columns twentyfour">
+              <h1>The bottom line:</h1>
+            </div>
+          </div>
+          <div class="row white-bordered">
+            <div class="columns fifteen">
+              <p class="bottom-line-text">
+                Receive 50% off your subsequent eyewear purchases. Be fashionable, take risks,<br>
+                and change your eyewear wardrobe as<br>
+                often as you’d like. Enjoy!
+              </p>
+            </div>
+            <div class="columns seven offset-by-two">
+              <img src="/assets/store/care-bag.png" class="care-bag-img"> 
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns five">
+              <h1>The fine print</h1>
+            </div>
+            <div class="columns nine">
+              <p>
+                Rowley Care is available at a price of $50 for one year or $5/month for at least a 12 month period.  Your annual coverage begins the day you sign up and will be active for 365 days after signup. 
+              </p>
+            </div>
+            <div class="columns nine offset-by-one">
+              <p>If you choose the pay-per-month option, your card will be charged on the first of each month. Rowley Care will auto renew at the end of the one-year cycle unless you choose to opt out.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%= render :partial => 'spree/shared/footer' %>
+    
+
+    <%= render :partial => 'spree/shared/google_analytics' %>
+
+  </body>
+</html>

@@ -1,0 +1,25 @@
+.row
+  = form_for @report, :url => hto_vs_sales_admin_reports_path, :remote => true do |f|
+    = f.label :date_from, 'From'
+    = f.text_field :date_from, :class => 'datepicker datepicker-from rep_param_input', :id => 'date_from_input'
+    = f.label :date_to, 'To'
+    = f.text_field :date_to, :class => 'datepicker datepicker-to rep_param_input', :id => 'date_to_input'
+    = hidden_field_tag 'additional_reports_hto_vs_sales_report[mode]', :hto_vs_sales
+    = f.submit 'HTO vs. Sales'
+.row
+  = form_for @report, :url => hto_vs_sales_admin_reports_path(:format => :csv), :html => { :style => 'display: inline-block' } do |f|
+    = f.hidden_field :date_from, :id => 'date_from_input_csv1'
+    = f.hidden_field :date_to, :id => 'date_to_input_csv1'
+    = hidden_field_tag 'additional_reports_hto_vs_sales_report[mode]', :hto_vs_sales
+    = f.submit 'HTO vs. Sales (CSV)', :onclick => '$(".rep_param_input").each(function(){$("#"+$(this).attr("id")+"_csv1").val($(this).val())})'
+  = form_for @report, :url => hto_vs_sales_admin_reports_path(:format => :csv), :html => { :style => 'display: inline-block' } do |f|
+    = f.hidden_field :date_from, :id => 'date_from_input_csv2'
+    = f.hidden_field :date_to, :id => 'date_to_input_csv2'
+    = hidden_field_tag 'additional_reports_hto_vs_sales_report[mode]', :hto
+    = f.submit 'HTO (CSV)', :onclick => '$(".rep_param_input").each(function(){$("#"+$(this).attr("id")+"_csv2").val($(this).val())})'
+  = form_for @report, :url => hto_vs_sales_admin_reports_path(:format => :csv), :html => { :style => 'display: inline-block' } do |f|
+    = f.hidden_field :date_from, :id => 'date_from_input_csv3'
+    = f.hidden_field :date_to, :id => 'date_to_input_csv3'
+    = hidden_field_tag 'additional_reports_hto_vs_sales_report[mode]', :sales
+    = f.submit 'Sales (CSV)', :onclick => '$(".rep_param_input").each(function(){$("#"+$(this).attr("id")+"_csv3").val($(this).val())})'
+

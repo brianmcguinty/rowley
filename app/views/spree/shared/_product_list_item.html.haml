@@ -1,0 +1,21 @@
+.catalog-images{:id => ['product', product.id]}
+  -if product.is_new? then
+    .new-product
+      %i.new
+  .product-image.catalog-image
+    = link_to small_image(product, :itemprop => "image"), product, :itemprop => 'url'
+  = link_to product, :class => 'info', :itemprop => "name" do
+    .home-glasses-number
+      .no NO.
+      .glasses-no
+        #{truncate(product.name, :length => 50)}
+  .catalog-image-rollover
+    = link_to product, :itemprop => "name" do
+      = try_on_photo(product)
+    .home-glasses-number
+      .no NO.
+      .glasses-no
+        #{truncate(product.name, :length => 50)}
+%ul.colors-paging
+  - product.variants.only_in_stock.each do |item|
+    %li= link_to '', main_app.show_variant_image_path(:id => item.id), :remote => true

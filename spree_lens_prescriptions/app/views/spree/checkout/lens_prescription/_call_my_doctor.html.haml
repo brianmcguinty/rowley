@@ -1,0 +1,19 @@
+= f.fields_for :lens_prescription do |pf|
+  .checkout-section.form-sample
+    .row
+      = pf.label :doctor_name, t('lens_prescription.doctor.doctor_name')
+      = pf.text_field :doctor_name
+    .row
+      = pf.label :doctor_phone, t('lens_prescription.doctor.doctor_phone')
+      = pf.text_field :doctor_phone
+    .row
+      = pf.label :patient_name, t('lens_prescription.doctor.patient_name')
+      = pf.text_field :patient_name
+    .row
+      = pf.label :formatted_patient_birth_date, t('lens_prescription.doctor.patient_birth_date')
+      .small-notice
+        =t('lens_prescription.doctor.patient_birth_date_notice')
+      = pf.text_field :formatted_patient_birth_date, :class => 'birthpicker'
+  .checkout-section
+    .form-buttons{'data-hook' => 'buttons'}
+      = submit_tag t(:continue), :class => 'continue button primary'

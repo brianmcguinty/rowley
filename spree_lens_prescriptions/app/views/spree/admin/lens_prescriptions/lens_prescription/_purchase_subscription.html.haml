@@ -1,0 +1,15 @@
+- if @order.user.present?
+  %h5 Subscription
+  .row
+  - if @order.user.subscriptions.active.any?
+    Applied
+  - else
+    .row.row-prescription
+      = f.label :purchase_subscription, t('lens_prescription.purchase_subscription')
+      = f.select :purchase_subscription, [[t(:month), :month], [t(:year), :year]], {:include_blank => 'No'}, :class => 'order_lens_meta_prescription_attributes_purchase_subscription_yes_no'
+
+-# .row
+-#   UserId:
+-#   = @order.user.id if @order.user.present?
+-# .row
+-#   = if t(f.object.purchase_subscription.present?) then f.object.purchase_subscription else 'No' end

@@ -1,0 +1,15 @@
+- if @product.has_variants?
+  #product-variants
+    %h5.inline Available Colors:
+    %ul{'data-hook'=>'available-colors'}
+      - has_checked = false
+      - @product.variants.active(current_currency).each_with_index do |v,index|
+      - next if v.option_values.empty? || (!v.in_stock && !Spree::Config[:show_zero_stock_products])
+      - checked = !has_checked && (v.in_stock || Spree::Config[:allow_backorders])
+      - has_checked = true if checked
+        %li
+          = radio_button_tag "products[#{@product.id}]", v.id, checked, :hidden => "hidden", :disabled => !v.in_stock && !Spree::Config[:allow_backorders], 'data-price' => v.price_in(current_currency).display_price, 'data-hto-in-stock' => v.in_stock
+          %label{:for => ['products', @product.id, v.id].join('_')}
+            %span{:class => "color-circle #{v.option_value('frames-color').downcase.sub(' ', '-')}"}
+            %span.variant-description
+              = v.option_value('frames-color')

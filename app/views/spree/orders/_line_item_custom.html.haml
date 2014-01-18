@@ -1,0 +1,25 @@
+%tr{:class => "#{cycle('', 'alt')} line-item"}
+  %td.cart-item-image{"data-hook" => "cart_item_image"}
+    - if variant.images.length == 0
+      = link_to small_image(variant.product), variant.product
+    - else
+      = link_to image_tag(variant.images.first.attachment.url(:small)), variant.product
+      .product-glasses-number.checkout-glasses-number
+        %span.no NO.
+        %span.glasses-no= variant.product.name
+  %td.cart-item-description{"data-hook" => "cart_item_description"}
+    .param-name= t(:item)
+    .param-value= link_to variant.product.name, product_path(variant.product)
+  %td
+    .param-name= t(:color) + ':'
+    .param-value= variant.option_value('frames-color') unless variant.option_values.empty?
+  %td.cart-item-quantity{"data-hook" => "cart_item_quantity"}
+    .param-name= t(:quantity)+':'
+    = item_form.number_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5
+  %td.cart-item-total{"data-hook" => "cart_item_total"}
+    .param-name
+      = t(:amount) + ':'
+    .param-value
+      = line_item.display_amount unless line_item.quantity.nil?
+  %td.cart-item-delete{"data-hook" => "cart_item_delete"}
+    = link_to image_tag('store/icon-close.png'), '#', :class => 'delete', :id => "delete_#{dom_id(line_item)}"

@@ -1,0 +1,24 @@
+%section.description-section
+  .row
+    %h5 Description
+    .nine.columns.alpha
+      .description{"data-hook" => "description", :itemprop => "description"}
+        = product_description(@product) rescue t(:product_has_no_description)
+    .five.columns.offset-by-half
+      %ul.params
+        %li
+          %span.param-name Shape:
+          = @product.property('shape')
+        %li
+          %span.param-name Material:
+          = @product.property('material')
+        %li
+          %span.param-name MEASUREMENTS:
+          = measurements @product
+          =image_tag '/assets/store/whats-this.png',:class=>'action-link','data-trigger'=>"hover", 'data-placement'=>"right", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.measurements')
+  .row.videos
+    .nine.columns.alpha
+      .headturn-image-wrap{:style => "overflow: hidden;"}
+        = head_turn_image(@product)
+    .seven.columns.omega.offset-by-half
+      =video(@product)

@@ -1,0 +1,172 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  admin:
+    products:
+      featured: "Featured"
+      is_new: "New Product"
+      vto_image: "Image for Virtual Try-On"
+    home_page:
+      home_page: "Home Page"
+    add_to_ebay: "Add to eBay"
+  already_registered: "Already registered? Please log in below:"
+  address_book: Address Book
+  cancel_rowley_care: Would you like to
+  cancel_rowley_care_link: cancel Rowley Care
+  card_number: Credit card number
+  card_code_rowley: Security Code
+  checkout_methods: "Checkout methods:"
+  color: "Color"
+  company: "Company"
+  back_to_catalog: "back to frames"
+  contact_doctor_label: You choose option "Contact my Doctor to verify my prescription"
+  do_subscribe_to_our_mailing_list: Sign up for our newsletter and be the first to know about the new styles and exclusive offers
+  drag_your_mouse_over_image: Drag your mouse over the image to see all frame angles.
+  edit_shipping_address: edit shipping address
+  edit_billing_address: edit billing address
+  first_name_on_credit: "First Name on Credit"
+  guest_checkout_phrase_1: By clicking the "Continue" button below, you can check out without creating the customer account.
+  guest_checkout_phrase_2: Please know that when choosing this option, each time you make a purchase you have to enter all customer data again.
+  home_page:
+    become_a_rowley_care: "Become a Rowley Care <br/>member and save 50% on <br/> all site purchases."
+    rowley_philosophy: "Read about Cynthia Rowley's eyewear philosophy."
+    learn_more: "Learn more"
+    we_make_it_easy: "We make it easy for you to try your selection on at home. <br/> 4 pairs. 7 days. No charge."
+  last_name_on_credit: "Last Name on Credit"
+  lens_type_label: "Lens Type"
+  new_customer_invitation: "Register with us for future convenience:"
+  no_address: No %{type} address defined.
+  od_right: "OD (Right):"
+  os_left: "OS (Left):"
+  order_details: "Order details"
+  order_history: "Order history"
+  order_number: "Order #"
+  order_state:
+    shipping: "Shipping"
+    billing: "Billing"
+    order: "Order"
+  optional: "Optional"
+  prescription: "Prescription"
+  reading_glass_strength: "Reading Glass Strength"
+  save_changes: Save Changes
+  street_address_2_rowley: Address Line 2 (Optional)
+  state_rowley: State or region
+  shipment_states:
+    ready: in progress
+  shipping_comments1: Shipping is always free with FedEx Home Delivery.
+  shipping_comments2: Please contact Customer Service at 877.979.9200 or %{email} if you would like to inquire about a rush order (additional charges will apply).
+  shopping_cart: "Shopping Cart"
+  subscribe_to_get_news: "Sign up for our newsletter and be the first to know about new styles and exclusive offers."
+  telephone: Telephone
+  transition_lenses: "Transition Lenses"
+  thank_you_for_your_order: "Thank you for your order"
+  use_shipping_address: "Use as billing address"
+  you_chose_option: "You chose option:"
+  zip_rowley: Zip Code
+  telephone: Telephone
+  first_name_on_credit: First Name on Credit
+  last_name_on_credit: Last Name on Credit
+  register_1: Register
+  search: Enter your search here
+  sign_in: Sign In
+  subscription: Rowley Care
+  subscription_period: Rowley Care Period
+  there_were_problems_with_some_fields: Please complete the mandatory fields below.
+  total_box:
+    total_products: "Total Products:"
+    shipping: "Shipping Standard:"
+    subtotal: "Subtotal:"
+    total_tax: "Total Tax:"
+    total: "TOTAL:"
+  tracking_number: "Tracking #:"
+  try_them_on: Try Them On
+  no_subscription: No Subscription
+  what_is_this:
+    a_r_coating: "An anti-reflective coating is applied to the backside of the lens to prevent glare from other light sources. It improves visibility for the wearer."
+    add: 'This is an additional plus power in the lower portion of your lenses that is required for near vision – this is only indicated if the prescription is for a bifocal/progressive lens.'
+    axis: "The Axis is a number anywhere between 0 and 180 degrees. It reveals the orientation of the astigmatism so that you know where the difference in curvature is taking place."
+    cryzal: 'All Rowley & Mr. Powers Eyewear progressive lenses are digital free form lenses (the latest lens technology) with %{url} branded A/R coating'
+    cyl: 'CYL refers to the "cylinder" or astigmatism, and can be a negative or a positive number. It measures in diopters the degree of astigmatism that you have. The bigger this number, the more astigmatism you have.'
+    custom_tint: "Choose a custom lens color for your prescription sunglass. We offer the 5 most popular standard and fashion lens colors."
+    cvv: "<p>For Visa, MasterCard, and Discover cards, the card code is the last 3 digit number located on the back of your card on or above your signature line. For an American Express card, it is the 4 digits on the FRONT above the end of your card number.</p>
+            <p>To help reduce fraud in the card-not-present environment, credit card companies have introduced a card code program. Visa calls this code Card Verification Value (CVV); MasterCard calls it Card Validation Code (CVC); Discover calls it Card ID (CID).
+            The card code is a three- or four- digit security code that is printed on the back of cards. The number typically appears at the end of the signature panel.</p>"
+    demo_lenses: "Demonstration lenses give you the look of wearing glasses without an actual prescription."
+    hi_index: "<p>Our standard lenses are lightweight, have high abrasion resistance and possess high quality optical properties.</p><p>Hi-index lenses are thinner, lighter lenses especially recommended if you have a strong prescription for nearsightedness, farsightedness or astigmatism.</p>"
+    measurements: "This the measurement (in millimeters) of the width of lens – the width of bridge – the length of the temples."
+    name_prescription: "You must name your prescription in order to save it in our system for future use."
+    od_os: "OS and OD are two Latin abbreviations. OS stands for oculus sinister and means the left eye and OD stands for oculus dextrus and refers to the right eye."
+    polarized: "Polarized sun lenses are the only lenses that can stop the horizontal rays of sun light. These specialty lenses straighten out each sunray, correcting the light as it hits the lens. They also reduce glare and allow the wearer to see clearly, thus making these lenses most suitable on water or in snow locations."
+    rowley_care: "Think of Rowley Care as Fashion Insurance. Throughout the year, you can buy as many frames as you wish for 50% off the regular price. Whether you break your original pair or just want to try out a new style, you can order as many frames as you want at the discounted price. You can either pay $50 for our annual membership or opt for monthly $5 payments."
+    states: "Certain states require that a prescription be verified. If you live in AK, AL, AZ, CA, CT, FL, GA, KY, MA, NC, NJ, NV, NY, OH, RI, SC, TN, VT or WA we will need to contact your doctor to confirm your prescription."
+    sph: "SPH refers to the “spherical” portion of the prescription or degree of nearsightedness/farsightedness"
+    transitions_lenses: "Transitions lenses are lenses with a sun-activated tint. When used indoors, the lenses are clear, however, they will darken outdoors or in bright light for better protection."
+    two_pds: "<p>Pupillary distance (PD) is the distance between the centers of each pupil in millimeters.</p>
+      <p>This measurement is used in your prescription to ensure that you don’t have difficulty focusing. If you already have your PD measurement, please enter it during checkout.  If you do not have this measurement, Rowley Eyewear will utilize industry standard defaults and fill your prescription accordingly.</p>"
+    vision: "<p>Single Vision is a prescription that corrects only for distance or nearness.</p>
+      <p>Progressive lenses offer both distance correction and near correction.</p>
+      <p>Progressive lenses are essentially bifocals without the visible line.  They allow you to see distance, intermediate and near with ease.</p>"
+  enter_coupon_code: Enter your coupon code
+  sku_upc: sku upc
+  new_email: New email address
+  confirm_new_email: Confirm new email address
+  new_password: New password
+  confirm_new_password: Confirm new password
+  update_email: Update email address
+  update_password: Update password
+  item_and_lens_total_rule:
+    operators:
+      gt: greater than
+      gte: greater than or equal to
+  promotion_rule_types:
+    item_and_lens_total:
+      name: "Item & lens total"
+      description: "Order total (+ lens) meets these criteria"
+  enter_new_credit_card: New Credit Card
+  add_to_hto: Add to Try Them On
+  hto_cart: Try Them On
+  hto_settings: Home Try On settings
+  hto_settings_updated: Home Try On settings have been updated
+  hto_delivered_days: 'Delivered - days after shipping'
+  hto_warning_days: 'Remind - days after shipping'
+  hto_overdue_days: 'Overdue - days after shipping'
+  hto_auto_capture_days: 'Auto-capture - days after shipping'
+  hto_capture_manually_email: 'Invalid overdue HTO orders notification email'
+  hto_auto_capture: 'HTO autocapture'
+  hto_state:
+    title: HTO state
+    paid: Paid
+    overdue: Overdue
+    pending_return: Pending Return
+    returned: Returned
+    canceled: Canceled
+    ready: Ready
+    ready_to_ship: Ready to ship
+    shipped: Shipped
+    delivered: Delivered
+    unavailable: Unavailable
+  new_hto_order: New HTO Order
+  sales_total: Sales Total
+  sales_total_description: Sales Total
+  sale_price: Sale Price
+  hto_mailer:
+    delivered_email:
+      subject: 'Try Them On has Started!'
+    warning_email:
+      subject: "Don't Forget to Return Your Frames"
+    overdue_email:
+      subject: 'Return Your Sample Frames'
+    retuned_email:
+      subject: 'We Received Your Frames, Here is How to Order'
+    paid_email:
+      subject: 'Your Purchase of Sample Frames'
+    capture_manually_email: 
+      subject: The next overdue HTO orders need to be processed manually
+  hto_total: Try Them On
+  includes_standard_prescription: Includes standard prescription
+  video_id: Vimeo video ID
+  hide_canceled_orders: 'Hide Canceled Orders'
+  same_as_variant: Link to variant
+  sale_with_price: "SALE %{price}"

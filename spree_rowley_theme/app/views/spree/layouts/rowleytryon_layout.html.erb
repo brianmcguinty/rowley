@@ -1,0 +1,62 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
+  <head data-hook="inside_head">
+    <%= render :partial => 'spree/shared/head' %>
+  </head>
+  <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
+    
+    <div class="container">
+
+      <%= render :partial => 'spree/shared/header' %>
+    </div>
+    <div class="container">
+      <div id="wrapper" class="row" data-hook>
+
+        <%= breadcrumbs(@taxon) %>
+
+        
+
+        <div id="content" class="columns <%= !content_for?(:sidebar) ? "twentyfour" : "twentyfour" %>" data-hook>
+          <%= flash_messages %>
+          <%= yield %>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="bottom-line tryon-bottom-line">
+      <div class="container">
+        <div class="row">
+          <div class="columns twentyfour">
+            <h1>Why do it?</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns eight">
+            <p class="tryon-bottom-text">
+              Try on your eyewear picks in the comfort and convenience of your home. Select up to four frames and live with them for a week.  See what speaks to you and incorporate them into your lifestyle. Show them off to your friends and family and have them help you decide!
+            </p>
+          </div>
+          <div class="columns eight offset-by-one">
+            <p class="tryon-bottom-text">
+              Once you’ve made your selections, simply drop the package in the mail and order your very own pair (or pairs!). Don’t forget about Rowley Care - satisfy your every eyewear whim without breaking the bank.
+            </p>
+            <a href="/products" class="tryon-bottom-link">Shop now <span class="icon-play"></span></a>
+          </div>
+          <div class="columns five right">
+            <img src="/assets/store/tryon-bottom-img.png" class="tryon-bottom-img"> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => 'spree/shared/footer' %>
+    
+
+    <%= render :partial => 'spree/shared/google_analytics' %>
+
+  </body>
+</html>

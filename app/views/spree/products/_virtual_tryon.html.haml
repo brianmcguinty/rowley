@@ -1,0 +1,24 @@
+:javascript
+  function flAlert(obj)
+  {
+  alert(obj);
+  }
+  
+  function applyFrame(strUrl)
+  {
+  document.getElementById("vtolite").updateFrame(strUrl);
+  }
+%ul
+  %li#one
+    %a.btn-submit.light-grey.virtual-try.open{:href => "#"}
+      VIRTUAL TRY ON
+      %span.icon-plus +
+    .tryon-box.box
+      #altContent
+        %p
+          %a{:href => "http://www.adobe.com/go/getflashplayer"} Get Adobe Flash player
+      %ul{"data-hook" => "links_to_try_on_images"}
+        - @product.variants.each do |v|
+          - if !v.images.vto_image.first.nil?
+            %li
+              = link_to_function content_tag(:span, '', :class =>"color-circle-mini #{v.option_value('frames-color').downcase.sub(' ', '-')}"), "applyFrame('#{v.images.vto_image.first.attachment.url(:vto)}')"

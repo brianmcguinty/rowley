@@ -1,0 +1,131 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  tax_with_lens_prescription: Tax With Lens Prescription
+  lens_prescription_settings_updated: Lens prescription settings have been updated
+  subscription_settings_updated: Subscription settings have been updated
+  lens_prescription_settings: Lens prescription settings
+  subscription_settings: Subscription settings
+  download_prescription_as_rx: Download Prescription as rx
+  prescription_not_ready: "Prescription isn't ready to import"
+  order_state:
+    lens_prescription: Prescription
+  lens_prescription:
+    updated: Prescription has been updated
+    no_prescription: "No&nbsp;prescription"
+    dowload_rx_file: Download RX-file
+    prescription_warning: "You can only check out with one prescription per cart"
+    state:
+      title: Prescription
+      verify: Verify
+      pending: Pending
+      sent_to_lab: Sent to Lab
+    verify_manually: Mark as verified
+    send_to_lab: Send to Lab
+    details_required: No details
+    title: Lens Prescription
+    custom_tint: Custom Tint
+    glasses_type:
+      title: Choose Your Glasses Type
+      prescription_optical: Prescription optical
+      prescription_sunglasses: Prescription sunglasses
+      ready_made_readers: Ready-made readers
+      frames_sunglasses: Sunglasses/Frames (no prescription)
+    two_pds: Two PDs
+    vision_type:
+      title: Vision
+      single_vision: Single vision
+      progressive: Progressive
+    wear:
+      title: How do you wear your glasses?
+      higher_up_on_nose: Higher up on my nose (most common)
+      all_the_way_up_on_nose: All the way up on my nose (almost touching your forehead)
+      lower_down_on_nose: Lower down on my nose (middle of my nose)
+    transition_question: Would you like Transitions Lenses?
+    tint: 
+      title: "I would like:"
+      standard: As shown
+      gray: Gray
+      brown: Brown
+      blue: Blue
+      green: Green
+      rose: Rose
+    polarized:
+      title: Polarized
+      polarized_lens: Polarized lens
+      gray: Gray
+      brown: Brown
+    input_method:
+      title: Please choose how you would like to input your prescription
+      retrieve_my_prescription: Retrieve My Prescription
+      enter_new_prescription: Enter New Prescription
+      upload_my_prescription: Upload My Prescription
+      email_or_fax_prescription: Email Or Fax Prescription
+      call_my_doctor: Call My Doctor
+    retrieve_my_prescription:
+      title: Select one of your saved prescription
+    enter_new_prescription:
+      title: Prescription
+    sunglasses_with:
+      title: "I would like:"
+    lens_type:
+      title: Lens Type
+      standard: Standard
+      thin: 'Hi-index'
+    verification:
+      method: Verification Method
+      title: How would you like to verify your prescription?
+      state: State where glasses are being shipped
+      upload_copy: Upload a copy of my prescription
+      email_or_fax: Email or fax of my prescription
+      contact_doctor: Contact my Doctor to verify my prescription
+    doctor:
+      doctor_name: 'Doctor / Clinic Name:'
+      doctor_phone: 'Doctor / Clinic Phone Number:'
+      patient_name: 'Your Name:'
+      patient_birth_date: 'Your Birth Date'
+      patient_birth_date_notice: 'Your birthdate is legally required so that we can verify your prescription with your doctor.'
+    not_progressive: My prescription is not progressive
+    strength: Please select reading glass strength
+    frames_sunglasses:
+      demo: Optical frames with demonstration lenses
+      sunglasses: 
+        title: 'Sunglasses with:'
+        standard: As shown
+        custom: Custom tint
+    name_this_prescription: Name this prescription
+    purchase_subscription: Would you like to purchase Rowley Care?
+    subscription:
+      monthly_price: 'Monthly, $'
+      annual_price: 'Annually, $'
+      discount: 'Discount, %'
+  subscription_mailer:
+    confirmation_email:
+      subject: Rowley Care confirmation
+    expiration_email:
+      subject: Rowley Care expiration reminder
+      this_link: this link
+    cancel_email:
+      subject: Rowley Care has been canceled
+  lens_prescription_mailer:
+    details_required_list_email:
+      subject: Incomplete prescriptions for
+    verify_or_pending_list_email:
+      subject: Pending Prescription Verifications
+  prescription_details_required_email: Incomplete prescriptions notification email
+  lens_prescription_uploads_settings_updated: Settings of Uploaded Copy have been updated
+  lab_email_settings: Lens Lab integration settings
+  lp_lab_num: Lab number
+  lp_customer_num: Lab customer number
+  lp_lab_email: Email of Lab
+  lp_lab_email_from: '"Return Path:" in email to Lab'
+  lens_prescription_lab_email_settings_updated: Lab integration settings have been updated
+  lens_prescription_lab_email_sended: Email with prescription has been sended to Lab
+  quantity_abbr: Qty
+  flat_percent_plus_lens: 'Flat Percent (+ lens)'
+  one_free_frame: 'One Free Frame'
+  update_and_recalculate_adjustments: 'Update & recalculate adjustments'
+  subscribed_to_rc: 'Subscribed to Rowley Care'
+
+

@@ -1,0 +1,96 @@
+.row.steps-data
+  %h5.offset-left=t(:shopping_cart)
+  %table.index.table-checkout-order{"data-hook" => "order_details"}
+    %tbody#line-items{"data-hook" => ""}
+      - @order.line_items.each do |item|
+        %tr{"data-hook" => "order_details_line_item_row"}
+          %td.image-row{"data-hook" => "order_item_image"}
+            - if item.variant.images.length == 0
+              = link_to mini_image(item.variant.product), item.variant.product
+            - else
+              = link_to image_tag(item.variant.images.first.attachment.url(:mini)), item.variant.product
+            .product-glasses-number.checkout-glasses-number
+              %span.no NO.
+              %span.glasses-no= item.variant.product.name
+          %td{"data-hook" => "order_item_description"}
+            .param-name=t(:item) + ':'
+            .param-value
+              No.
+              = item.variant.product.name
+          %td{"data-hook" => "order_item_color"}
+            .param-name=t(:color) + ':'
+            .param-value
+              = item.variant.option_value('frames-color') unless item.variant.option_values.empty?
+          %td{"data-hook" => "order_item_qty"}
+            .param-name=t(:quantity)+':'
+            .param-value
+              = item.quantity
+          %td.total{"data-hook" => "order_item_total"}
+            .param-name=t(:amount) + ':'
+            .param-value
+              = Spree::Money.new(0,{:currency => order.currency})
+      - if @order.lens_meta_prescription.purchase_subscription.present?
+        %tr{"data-hook" => "order_details_line_item_row"}
+          %td.image-row{"data-hook" => "rowley_care_image"}
+            =image_tag '/assets/store/rowley-bag.jpg'
+          %td{"data-hook" => "order_item_description"}
+            .param-name=t(:item) + ':'
+            .param-value
+              = t(:rowley_care)
+          %td{"data-hook" => "order_item_color"}
+            .param-name=t(:color) + ':'
+            .param-value
+              ='--------'
+          %td{"data-hook" => "order_item_qty"}
+            .param-name=t(:quantity)+':'
+            .param-value
+              1
+          %td.total{"data-hook" => "order_item_total"}
+            .param-name=t(:amount) + ':'
+            .param-value
+              =Spree::Money.new(@order.lens_meta_prescription.rowley_care_subscription_amount, { :currency => @order.currency })
+
+
+.checkout-section.steps-data.prescription-details
+  %h5
+    =t(:prescription)
+  %div
+    %p.param-value=t("lens_prescription.glasses_type.#{@order.lens_meta_prescription.glasses_type}")
+    = render "spree/checkout/prescription_details/#{@order.lens_meta_prescription.glasses_type}", :prescription => @order.lens_meta_prescription.lens_prescription
+
+.row.steps-data.offset-left
+  - if order.has_step?("shipping")
+    .columns.four
+      %h5
+        = t(:shipping_address)
+        %span= link_to t(:edit), (hto_checkout_state_path(:shipping) unless @order.completed?), :class => 'action-link'
+      .address
+        = order.ship_address
+    .columns.alpha.four
+      %h5
+        = t(:billing_address)
+        %span= link_to t(:edit), (hto_checkout_state_path(:billing) unless @order.completed?), :class => 'action-link'
+      .address
+        = order.bill_address
+    - if @order.has_step?("shipping") && order.shipping_method.present?
+      .columns.alpha.four
+        %h5
+          = t(:shipping_method)
+          %span= link_to t(:edit), (hto_checkout_state_path(:shipping) unless @order.completed?), :class => 'action-link'
+        .delivery
+          = order.shipping_method.name
+  .columns.omega.five
+    %h5
+      = t(:payment_information)
+      %span= link_to t(:edit), (hto_checkout_state_path(:billing) unless @order.completed?), :class => 'action-link'
+    .payment-info
+      - if order.credit_cards.empty?
+        = content_tag(:span, order.payment.payment_method.name) if order.payment
+      - else
+        %span.cc-type
+          = t(:ending_in)
+          = order.credit_cards.first.last_digits
+        %br/
+        %span.full-name
+          = order.credit_cards.first.first_name
+          = order.credit_cards.first.last_name

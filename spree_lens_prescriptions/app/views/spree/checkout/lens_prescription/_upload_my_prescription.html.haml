@@ -1,0 +1,50 @@
+= f.fields_for :lens_prescription do |pf|
+  .checkout-section
+    - if pf.object.uploaded_copy.present?
+      .row= pf.object.uploaded_copy.original_filename
+    .row
+      = pf.file_field :uploaded_copy
+  .row.row-prescription
+    = label_tag "prescription_vision_type_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.vision_type.title')
+    = pf.select :vision_type, Spree::LensPrescription::VISION_TYPE.map {|t| [t("lens_prescription.vision_type.#{t}"), t]}, {}, :class => 'refresh_totals', :id => "prescription_vision_type_#{sunglasses ? 'sunglasses' : 'optical'}"
+    = image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"top", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.vision').html_safe
+  .row.row-prescription
+    = label_tag "prescription_lens_type_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.lens_type.title')
+    = pf.select :lens_type, Spree::LensPrescription::LENS_TYPE.map {|t| [t("lens_prescription.lens_type.#{t}"), t]}, {}, :class => 'refresh_totals', :id => "prescription_lens_type_#{sunglasses ? 'sunglasses' : 'optical'}"
+    = image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"top", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.hi_index').html_safe
+  - if sunglasses
+    .checkout-section
+      .param-name #{t('lens_prescription.sunglasses_with.title')}
+      .row
+        = pf.radio_button :standard_or_custom_tint_or_polarized, :standard, :class => 'refresh_totals'
+        = pf.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.standard"), :value => :standard
+      .row
+        = pf.radio_button :standard_or_custom_tint_or_polarized, :custom_tint, :class => 'refresh_totals'
+        = pf.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.custom_tint"), :value => :custom_tint
+        = pf.select :custom_tint, Spree::LensPrescription::TINT.map {|t| [t("lens_prescription.tint.#{t}"), t]}
+      .row
+        = pf.radio_button :standard_or_custom_tint_or_polarized, :polarized, :class => 'refresh_totals'
+        = pf.label :standard_or_custom_tint_or_polarized, t("lens_prescription.frames_sunglasses.sunglasses.polarized"), :value => :polarized
+        = pf.select :polarized_color, Spree::LensPrescription::POLARIZED.map {|t| [t("lens_prescription.polarized.#{t}"), t]}
+        = image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"top", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.polarized').html_safe
+  - else
+    .row.row-prescription
+      = pf.label :transition, t('lens_prescription.transition_question')
+      = pf.select :transition, [[t(:yes), true], [t(:no), false]], {:selected=>'false'}, :class => 'refresh_totals'
+      =image_tag '/assets/store/whats-this.png', :class=>'action-link', 'data-placement'=>"top", 'data-trigger'=>"hover", 'data-trigger'=>"hover", 'data-toggle'=>"popover", 'data-content'=>t('what_is_this.transitions_lenses').html_safe
+  -# .checkout-section
+  -#   .param-name= t('lens_prescription.wear.title')
+  -#   - (Spree::LensPrescription::WEAR + [:not_progressive]).each do |wear|
+  -#     .row
+  -#       = pf.radio_button :wear_or_not_progressive, wear
+  -#       = pf.label :wear_or_not_progressive, t("lens_prescription.wear.#{wear}"), :value => wear
+  - if signed_in?
+    .row.row-prescription
+      = label_tag "prescription_name_#{sunglasses ? 'sunglasses' : 'optical'}", t('lens_prescription.name_this_prescription')
+      = pf.text_field :name, :id => "prescription_name_#{sunglasses ? 'sunglasses' : 'optical'}"
+  - if signed_in? && current_user.active_subscription.blank?
+    .row
+      = render 'spree/checkout/lens_prescription/purchase_subscription', :f => f, :place => if sunglasses then :upload_sunglasses else :upload_optical end
+  .checkout-section
+    .form-buttons{'data-hook' => 'buttons'}
+      = submit_tag t(:continue), :class => 'continue button primary'

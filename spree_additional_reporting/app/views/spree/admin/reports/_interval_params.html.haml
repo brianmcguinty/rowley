@@ -1,0 +1,12 @@
+.row
+  = form_for @report, :url => url_for(:controller => :reports, :action => controller.action_name), :remote => true, :html => { :style => 'display: inline-block' } do |f|
+    = f.label :date_from, 'From'
+    = f.text_field :date_from, :class => 'datepicker datepicker-from rep_param_input', :id => 'date_from_input'
+    = f.label :date_to, 'To'
+    = f.text_field :date_to, :class => 'datepicker datepicker-to rep_param_input', :id => 'date_to_input'
+    = f.submit :generate
+  = form_for @report, :url => url_for(:controller => :reports, :action => controller.action_name, :format => :csv), :html => { :style => 'display: inline-block' } do |f|
+    = f.hidden_field :date_from, :id => 'date_from_input_csv'
+    = f.hidden_field :date_to, :id => 'date_to_input_csv'
+    = f.submit 'Generate CSV', :onclick => '$(".rep_param_input").each(function(){$("#"+$(this).attr("id")+"_csv").val($(this).val())})'
+

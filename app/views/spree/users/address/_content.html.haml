@@ -1,0 +1,12 @@
+.row.show-container
+  .columns.five.alpha{:style => if defined?(show_editor) && show_editor then 'display: none' end}
+    -if address.present?
+      %p= render 'spree/shared/address', :address => address
+    -else
+      %p= t(:no_address, :type => address_type)
+.row.account_section_edit_container{:style => unless defined?(show_editor) && show_editor then 'display: none' end}
+  = form_for address, :url => main_app.update_address_path, :remote => true do |f|
+    = hidden_field_tag 'address_type', address_type
+    = render 'spree/address/form2', :form => f, :address_type => address_type, :address => address
+    .row
+      = f.submit t(:save_changes)

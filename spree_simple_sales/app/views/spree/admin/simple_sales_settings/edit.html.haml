@@ -1,0 +1,11 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+= render :partial => 'spree/admin/shared/lens_prescription_settings_sub_menu'
+= form_tag admin_simple_sales_settings_path, :method => :put do
+  %fieldset.no-border-top
+    %fieldset.no-border-bottom
+      %legend{:align => "center"}= t(:general_settings)
+
+
+
+    .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+      = button t(:clear_sales_prices), 'icon-refresh' , confirm: t('clear_sales_prices_confirm')

@@ -1,0 +1,298 @@
+/*
+ *= require store/spree_core
+*/
+
+
+footer h5 {
+	color: #fae209;
+}
+.footer-text li a:hover {
+	color: #fae209;
+}
+
+header {
+	background-color: #2b292b;
+}
+#header.row {
+	margin-bottom: 0;
+}
+nav.row {
+	margin-bottom: 0;
+}
+
+.icon-find {
+	width: 18px;
+	height: 18px;
+	background-image: url("icon-find.png");
+	margin-left: -5px;
+	padding: 0;
+	font-size: 10px;
+	font-weight: normal;
+	line-height: 18px;
+}
+
+nav#top-nav-bar {
+	margin: 0;
+	padding: 15px 45px 0 0;
+}
+
+ul#main-nav-bar {
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+
+input#keywords {
+	border-color: #959495 #959495 #959495 #cac9ca;
+	background-color: #2b292b;
+	color: #fff;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+	color: #fff;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #fff;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #fff;
+}
+#welcomeback {
+	color: #fff;
+    padding-right: 45px;
+    padding-top: 5px;
+}
+header nav {
+	color: #fff;
+}
+nav#top-nav-bar ul li a:hover{
+	color: #fff;
+}
+
+nav#top-nav-bar ul li {
+	border-right-color: #fff; 
+}
+ul#main-nav-bar li a:hover, ul#main-nav-bar li a:focus, ul#main-nav-bar li a:active, ul#main-nav-bar li.current a {
+	color: #fae209;
+}
+ul.sub-nav {
+	background-color: #2b292b;
+	padding: 22px 10px 0px 10px;
+	z-index: 2000;
+}
+
+.bottom-right{
+	border-top-color: #2b292b;
+	border-left-color: #2b292b;
+}
+
+ul#main-nav-bar li.dropdown {
+	padding-left: 6px;
+}
+
+ul#main-nav-bar ul.sub-nav li:first-child {
+	border-bottom: 1px solid #49484a;
+}
+
+ul#main-nav-bar ul.sub-nav li a {
+	color: #aeb0b4;
+}
+
+ul#main-nav-bar	ul.sub-nav li a:hover{
+ 	color: #fff;
+}
+
+
+/* #header
+================================================== */
+	#logo {
+		margin-bottom: 31px;
+	}
+
+
+/* #home glasses
+================================================== */
+	
+	.glasses-no {
+		font-family: "graphique";
+		font-size: 46px;
+		line-height: 40px;
+	}
+
+
+/* # Detail Page
+======================================================== */
+	.product-glasses-number .glasses-no {
+		font-size: 52px;
+		margin-top: 10px;
+	}
+
+/* #Carousel Mr Powers
+=========================================== */
+
+	.slidesjs-navigation {
+		width: 46px;
+		height: 37px;
+		top: 50%;
+		margin-top: -30px;
+	}
+
+	.slidesjs-previous {
+		background-image: url("arrow-left.png");
+		left: -1px;
+		
+	}
+	.slidesjs-next {
+		background-image: url("arrow-right.png");
+		right: -1px;
+		
+	}
+
+	ul.slidesjs-pagination {
+		bottom: 40px;
+		right: 45px;
+		margin-bottom: 0;
+	}
+
+	.slidesjs-pagination li a {
+		display: block;
+		width: 11px;
+		height: 11px;
+		font-size: 0;
+		line-height: 0;
+		background-color: transparent;
+		border-radius: 10px;
+		border: 1px solid #dddcde;
+	}
+
+	.slidesjs-pagination li {
+		float: left;
+		margin-bottom: 0;
+		padding: 4px;
+		border-right: 2px solid #a5a2a7;
+	}
+	.slidesjs-pagination li:last-child {
+		border-right: 0;
+	}
+
+	
+    .slidesjs-pagination li a.active, .slidesjs-pagination li a:hover.active, .slidesjs-pagination li a:hover {
+		background-color: #fae209;
+	}
+
+	.story-logo {
+		position: absolute;
+		width: 193px;
+		height: 120px;
+		right: 125px;
+		left: auto;
+		top: 100px;
+		display: block;
+		background-image: url("story-logo.png");
+	}
+
+/* #Care
+=============================================== */
+	.care-quote, .how-it-works h1 {
+		color: #3d3d40;
+	}
+	.bottom-line {
+		background-color: #fae209;
+	}
+
+	.bottom-line:before {
+		border-left: 15px solid transparent;
+	    border-right: 15px solid transparent;
+	    border-bottom: 15px solid #fae209;
+
+	}
+	
+	.bottom-line h1, .bottom-line p {
+		color: #3d3d40;
+	}
+
+/* #Shopping cart
+======================================================== */
+	.shopping-cart .product-glasses-number .glasses-no {
+		font-size: 26px;
+		margin-top: 0;
+		line-height: 30px;
+	}
+
+/* #Home Page New 
+========================================================= */
+	
+	.homelinks-care {
+		background-image: url("powers-homecare.jpg");
+	}
+	.homelinks-care-active {
+		background-image: url("powers-homecare-active.jpg");
+	}
+
+	.homelinks-story {
+		background-image: url("powers-homestory.jpg");
+	}
+	.homelinks-story-active {
+		background-image: url("powers-homestory-active.jpg");
+	}
+
+	.homelinks-try {
+		background-image: url("powers-hometry.jpg");
+	}
+	.homelinks-try-active {
+		background-image: url("powers-hometry-active.jpg");
+	}
+
+	.feature-heading {
+		display: block;
+		width: 217px;
+		height: 100px;
+		background-image: url("powers-feature-heading.png");
+		margin: 30px 30px 0 10px;
+	}
+	.fbig {
+		display: none;
+	}
+	.fsmall {
+		display: none;
+	}
+	
+	.homelink-hover.homelinks-care-active .homelink-text,
+	.homelink-hover.homelinks-care-active .learnmore,
+	.homelink-hover.homelinks-care-active .learnmore:hover {
+		color: #2e2e2a;
+	}
+
+	.homelink-hover.homelinks-care-active .icon-play-white {
+		width: 17px;
+		height: 16px;
+		vertical-align: text-top;
+		background-image: url("black-play-care.png");
+	}
+
+/*# Try on them page
+********************************************************* */
+	.tryon-bgimg {
+		display: inline-block;
+		background-image: url("tryon-sets.png");
+		background-repeat: no-repeat;
+	}
+
+	.bottom-line {
+		background-color: #fae209;
+	}
+
+	.bottom-line h1, .bottom-line p,
+	.bottom-line a {
+		color: #3d3d40;
+	}
+
+	.bottom-line a:hover {
+		color: #3d3d40;
+	}
+
+	

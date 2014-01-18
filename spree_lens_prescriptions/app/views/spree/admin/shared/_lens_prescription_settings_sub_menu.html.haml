@@ -1,0 +1,5 @@
+- content_for :sub_menu do
+  %ul#sub_nav.inline-menu{"data-hook" => "admin_lensprescription_sub_tabs"}
+    = tab :lens_prescription_settings, :match_path => '/lens_prescription_settings'
+    = tab :lens_prescription_uploads_settings, :match_path => '/lens_prescription_uploads_settings'
+    = tab :lens_prescription_lab_email_settings, :match_path => '/lens_prescription_lab_email_settings'

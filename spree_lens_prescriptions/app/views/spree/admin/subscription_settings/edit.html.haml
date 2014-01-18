@@ -1,0 +1,17 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+- content_for :page_title do
+  = t(:subscription_settings)
+= form_tag admin_subscription_settings_path, :method => :put do
+  %fieldset.no-border-top
+    %fieldset.no-border-bottom
+      .field
+        = label_tag 'preferences[lp_subscription_monthly_price]', t('lens_prescription.subscription.monthly_price')
+        = preference_field_tag 'preferences[lp_subscription_monthly_price]', Spree::Config[:lp_subscription_monthly_price], :type => :decimal
+      .field
+        = label_tag 'preferences[lp_subscription_annual_price]', t('lens_prescription.subscription.annual_price')
+        = preference_field_tag 'preferences[lp_subscription_annual_price]', Spree::Config[:lp_subscription_annual_price], :type => :decimal
+      .field
+        = label_tag 'preferences[lp_subscription_discount_percent]', t('lens_prescription.subscription.discount_percent')
+        = preference_field_tag 'preferences[lp_subscription_discount_percent]', Spree::Config[:lp_subscription_discount_percent], :type => :decimal
+    .form-buttons.filter-actions.actions{"data-hook" => "buttons"}
+      = button t(:update), 'icon-refresh'

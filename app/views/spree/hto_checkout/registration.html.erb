@@ -1,0 +1,30 @@
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
+<div class="row row-checkout"><h1><%= t(:checkout) %></h1></div>
+<div><p class="checkout-method"><%= t(:checkout_methods) %></p></div>
+<div id="registration" data-hook class="">
+  <% if Spree::Config[:allow_guest_checkout] %>
+    <div id="guest_checkout" data-hook class="columns six">
+      <%= render :partial => 'spree/shared/error_messages', :locals => {:target => @order} %>
+      <h2><%= t(:guest_user_account) %></h2>
+      <div id="guest_explanation">
+        <p><%= t(:guest_checkout_phrase_1) %></p>
+        <p><%= t(:guest_checkout_phrase_2) %></p>
+        <p>Please note, in order to purchase <a data-hook="rowley-care-link" href="/rowley-care">Rowley Care</a>, you will need to log-in as an existing customer or create a new account.<p>
+      </div>
+      <%= form_for @order, :url => hto_update_checkout_registration_path, :method => :put, :html => {:id => 'checkout_form_registration'} do |f| %>
+        <p>
+          <%= f.label :email, t(:email) %><br/>
+          <%= f.email_field :email, :class => 'title' %>
+        </p>
+        <p><%= f.submit t(:continue), :class => 'button primary' %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div id="new_account" class="columns nine offset-by-one">
+    <%= render :partial => 'spree/shared/sign_up', :locals => {:register_on_checkout => true} %>
+  </div>
+  <div id="account" class="columns seven offset-by-one">
+    <!-- TODO: add partial with registration form -->
+  </div>
+
+</div>

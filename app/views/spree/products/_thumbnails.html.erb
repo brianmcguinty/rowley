@@ -1,0 +1,16 @@
+<%# no need for thumbnails unless there is more than one image %>
+<% if (@product.images + @product.variant_images).uniq.size > 1 %>
+  <ul id="product-thumbnails" class="thumbnails inline" data-hook>
+    <% if @product.has_variants? %>
+      <% @variants.select(&:available?).each do |v| %>
+        <% v.images.not_vto_image.each do |i| %>
+          <% next if @product.images.include?(i) %>
+          <li class='vtmb-<%= v.id %> vtmb' id='tmb-<%= i.id %>'>
+            <%= link_to(image_tag(i.attachment.url(:mini)), i.attachment.url(:product)) %>
+            <%= hidden_field_tag "img-#{i.id}", i.attachment.url(:large) %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

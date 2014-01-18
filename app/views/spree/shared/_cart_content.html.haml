@@ -1,0 +1,16 @@
+- if !order.present? || order.item_count == 0
+  cart empty
+- else
+  %ul
+    - order.line_items.each do |item|
+      - if item.variant.present?
+        %li
+          = render 'spree/shared/cart_item', :order => order, :variant => item.variant, :line_item => item
+  .cart-total{:datahook => "cart-total"}
+    .float-left.param-name
+      = t('item_total')
+      \:
+    .float-right= order.display_item_total
+    .clearfix
+  %p.center
+    = link_to t(:checkout), checkout_path , :class => 'button checkout primary', :id => 'checkout-link', :name => 'checkout'

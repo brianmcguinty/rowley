@@ -1,0 +1,6 @@
+%th= t(:sku)
+%th{:colspan => "2"}= sort_link @search, :name, t(:name), {:default_order => "desc"}, {:title => 'admin_products_listing_name_title'}
+%th= sort_link @search, :featured,  t(:featured), {:default_order => "desc"},{:title=> 'featured'}
+%th= sort_link @search, :is_new,  t(:is_new), {:default_order => "desc"},{:title=> 'is_new'}
+%th= sort_link @search, :master_default_price_amount, t(:master_price), {}, {:title => 'admin_products_listing_price_title'}
+%th.actions{"data-hook" => "admin_products_index_header_actions"}

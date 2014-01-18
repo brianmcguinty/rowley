@@ -1,0 +1,8 @@
+%div
+  = render :partial =>'spree/users/order/base_info', :locals => {:order => order}
+%div
+  .float-left
+    = render :partial =>'spree/users/order/items', :locals => {:order => order}
+  .float-right
+    = render :partial => 'spree/shared/total_box', :locals => {:order => order}
+  .clearfix

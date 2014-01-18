@@ -1,0 +1,22 @@
+%nav.columns.sixteen
+  %ul#main-nav-bar.inline{"data-hook" => ""}
+    %li.dropdown
+      %a{:href => '/products'} Men
+      %ul.sub-nav
+        %li
+          %a{:href => '/t/optical'} Optical
+        %li
+          %a{:href => '/t/sunglasses'} Sunglasses
+        .bottom-right
+    %li.dropdown
+      = link_to 'Rowley Eyewear', if signed_in? then cross_login_path(:site => :rowley) else 'http://www.mrpowerseyewear.com/' end
+      %ul.sub-nav
+        %li
+          = link_to 'Optical', if signed_in? then cross_login_path(:site => :rowley, :url => '/t/optical') else 'http://www.rowleyeyewear.com/t/optical' end
+        %li
+          = link_to 'Sunglasses', if signed_in? then cross_login_path(:site => :rowley, :url => '/t/sunglasses') else 'http://www.rowleyeyewear.com/t/sunglasses' end
+        .bottom-right
+    %li#link-to_story{"data-hook" => "link-to-story"}=link_to 'The story', '/mrpowers-story'
+    %li#link-to_care{"data-hook" => "link-to-care"}=link_to 'Rowley Care', '/mrpowers-rowley-care'
+    %li#link-to_showroom{"data-hook" => "link-to-showroom"}=link_to 'Showrooms', '/showrooms'
+    %li#link-to_blog{"data-hook" => "link-to-blog"}=link_to 'The Blog', 'http://rowleyeyewear.tumblr.com/', :target => 'blank'

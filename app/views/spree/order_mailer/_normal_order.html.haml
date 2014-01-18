@@ -1,0 +1,203 @@
+!!!
+%head
+  %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
+  %title Rowley
+  :css
+    body, ul {margin: 0; padding: 0; color: #302e2f; font-family: Helvetica, Arial, sans-serif; font-size: 13px; line-height: 15px;}
+    a {text-decoration: none;}
+    ul {list-style-type: none;}
+    p {margin: 0 0 10px;}
+    ul li {display: inline-block;}
+    ul li a {color: #302e2f; text-transform: uppercase; font-family: 'Trebuchet MS', Helvetica, sans-serif;}
+    h1, h2, h3 {text-transform: uppercase; font-family: 'Trebuchet MS', Helvetica, sans-serif; margin: 0; font-weight: normal; line-height: 100%;}
+    h1 {margin: 3px 0 10px; font-size: 24px;}
+    h2 {font-size: 16px; margin-bottom: 18px;}
+    h3 {margin-bottom: 12px;}
+    #header ul {padding-bottom: 20px; border-bottom: 1px solid #c8c7c7; margin: 50px 0 0;}
+    #header ul li a {padding: 0 25px; font-size: 14px; text-align: center;}
+    #footer ul li a {font-size: 12px; padding: 0 20px 0 0;}
+    #content td {padding: 30px 0; border-bottom: 1px solid #c8c7c7; vertical-align: top;}
+    #params td {padding: 0 20px 0 0; border-bottom: 0;}
+    #addresses td {padding: 0; border-bottom: 0;}
+    #totals td {padding: 0; border-bottom: 0;}
+
+    %body
+  %table{:bgcolor => "343336", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+    %tr
+      %td{:align => "center"}
+        %table{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "900"}
+          %tr
+            %td{:align => "center"}
+              %table#header{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr
+                  %td{:align => "center", :style => "padding-top:48px;"}
+                    = image_tag 'http://www.rowleyeyewear.com/assets/store/letters/orders/main-logo.jpg'
+                %tr
+                  %td
+                    %ul
+                      %li= link_to 'Women', 'http://www.rowleyeyewear.com/products'
+                      %li= link_to 'Men', 'http://www.mrpowerseyewear.com/products'
+                      %li= link_to 'The story', 'http://www.rowleyeyewear.com/story'
+                      %li= link_to 'Rowley Care', 'http://www.rowleyeyewear.com/rowley-care'
+                      %li= link_to 'Showrooms', 'http://www.rowleyeyewear.com/showrooms'
+              / header table end
+              %table#content{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse; font-size:12px", :width => "640",  }
+                %tr{:align => "left"}
+                  %td{:colspan => "2", :style => "border-bottom:0;"}
+                    %h1 YOUR ORDER CONFIRMATION
+                %tr{:align => "left"}
+                  %td{:width => "375"}
+                    %p{:style => "padding-right:100px; font-size: 15px; line-height: 18px;"}
+                      %span{:style => "font-weight: bold;"} Hello #{@order.ship_address.full_name}!
+                      %br/
+                      %br/
+                      Thank you for your order. We hope you love your new frames!
+                  %td{:width => "265"}
+                    %p{:style => "font-size: 15px; line-height: 18px;"}
+                      %span{:style => "font-weight: bold;"} Here is Your Order Number:
+                      %br/
+                      %br/
+                      %span{:style => "font-size:26px;"}= @order.number
+                - lmp = @order.lens_meta_prescription
+                - lp = lmp.lens_prescription
+                - @order.line_items.each do |item|
+                  %tr{:align => "left"}
+                    %td
+                      - if item.variant.images.present?
+                        - if (img_url = item.variant.images.first.attachment.url(:small)).present?
+                          = image_tag('http://www.rowleyeyewear.com' + item.variant.images.first.attachment.url(:small))
+                    %td
+                      %h3 Frames
+                      %p{:style => "margin-bottom:20px;"}
+                        %span{:style => "text-transform: uppercase;"}> NO
+                        = item.variant.name
+                        #{item.variant.option_value('frames-color')}
+                        %br/
+                        Sku: #{item.variant.sku}
+                      %h3 Lenses:
+                      %p{:style => "margin-bottom:20px;"}
+                        = t(lmp.glasses_type)
+                        %br/
+                        - if lmp.prescription_based?
+                          - if lp.detailed?
+                            %br/
+                            RIGHT: (SPH: #{lp.right_sph}, CYL: #{lp.right_cyl}, AXIS: #{lp.right_axis_display}#{if lp.progressive? then ", ADD: #{lp.right_add}" end}#{if lp.two_pds? then ", PD: #{lp.right_pd}" end})
+                            %br/
+                            LEFT: (SPH: #{lp.left_sph}, CYL: #{lp.left_cyl}, AXIS: #{lp.left_axis_display}#{if lp.progressive? then ", ADD: #{lp.left_add}" end}#{if lp.two_pds? then ", PD: #{lp.left_pd}" end})
+                            - unless lp.two_pds?
+                              %br/
+                              Pupillary Distance (PD) (#{lp.pd})
+                          - else
+                            %br/
+                            If you’d like to email us your prescription, please send it to customerservice@rowleyeyewear.com.  Please include your name and contact information so that we can match it to your order.
+                            %br/
+                            If you’d like to fax us your prescription, please send it to 212.683.0437 and be sure to include your name and contact information so that we can match it to your order.
+                      %table#params{:style =>'font-size:12px'}
+                        %tr
+                          %td
+                            %h3 Price
+                          %td
+                            %h3 QTY
+                          %td
+                            %h3 Total
+                        %tr
+                          %td= item.display_price
+                          %td{:align => "center"}= item.quantity
+                          %td= item.display_total
+                %tr{:align => "left"}
+                  %td  
+                  %td
+                    %table#totals{:style => "font-weight: bold; line-height:19px; font-size:12px;"}
+                      %tr
+                        %td{:width => "190"} Lenses
+                        %td= @order.display_lenses_total
+                      -# %tr
+                      -#   %td Subtotal
+                      -#   %td= @order.display_subtotal
+                      - @order.adjustments.eligible.each do |adjustment|
+                        - next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0)
+                        - next if (adjustment.originator_type == 'Spree::LensMetaPrescription')
+                        %tr
+                          %td= adjustment.label
+                          %td= adjustment.display_amount
+                      %tr
+                        %td Grand Total
+                        %td= @order.display_total
+                      - if @order.hto?
+                        %tr
+                          %td Try Them On
+                          %td= @order.display_hto_total
+                %tr{:align => "left"}
+                  %td{:colspan => "2"}
+                    %table#addresses{:style =>'font-size:12px'}
+                      %tr
+                        %td{:style => "padding-right: 50px;"}
+                          %p{:style => "font-weight: bold;"} Bill To:
+                          %p
+                            #{@order.bill_address.full_name}
+                            %br/
+                            #{@order.bill_address.address1}
+                            -if @order.bill_address.address2.present?
+                              %br/
+                              #{@order.bill_address.address2}
+                            %br/
+                            #{@order.bill_address.city}, #{@order.bill_address.state.abbr}, #{@order.bill_address.zipcode}
+                            %br/
+                            #{@order.bill_address.country.name}
+                            %br/
+                            T: #{@order.bill_address.phone}
+                        %td{:style => "padding-right: 45px;"}
+                          %p{:style => "font-weight: bold;"} Ship To:
+                          %p
+                            #{@order.ship_address.full_name}
+                            %br/
+                            #{@order.ship_address.address1}
+                            -if @order.ship_address.address2.present?
+                              %br/
+                              #{@order.ship_address.address2}
+                            %br/
+                            #{@order.ship_address.city}, #{@order.ship_address.state.abbr}, #{@order.ship_address.zipcode}
+                            %br/
+                            #{@order.ship_address.country.name}
+                            %br/
+                            T: #{@order.ship_address.phone}
+                        %td
+                          %p{:style => "font-weight: bold;"} Your Payment Info:
+                          %p
+                            Card Type: #{@order.payment.source.cc_type}
+                            %br/
+                            Credit Card Number: #{@order.payment.source.display_number}
+                %tr{:align => "left"}
+                  %td{:style => "padding-right:55px;"}
+                    %h2 RETURN POLICY
+                    %p{:style => "margin-bottom:35px;"}
+                      We will accept returns without question within 30 days.  Please contact Customer Service at 877.979.9200 or customerservice@rowleyeyewear.com and we will be happy to assist you with next steps.
+                    %h2 ANY QUESTIONS?
+                    %p
+                      We’ve got an excellent Customer Care FAQ section...
+                      = link_to 'Check it out here', 'http://www.rowleyeyewear.com/help_faq', :style => "text-decoration:underline;font-weight: bold; color:#302e2f;" 
+                      \.
+                  %td
+                    %h2 CUSTOMER CARE
+                    %p
+                      877.979.9200
+                      %br/
+                      customerservice@rowleyeyewear.com
+                      %br/
+                      Hours: Mon – Fri, 8am – 5pm EST
+              / content table end
+              %table#footer{:bgcolor => "ffffff", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: collapse;", :width => "640"}
+                %tr{:align => "left"}
+                  %td{:style => "padding-bottom: 100px;"}
+                    %ul{:style => "padding:25px 0;"}
+                      %li
+                        = link_to 'RETURNS', 'http://www.rowleyeyewear.com/help_faq'
+                      %li
+                        = link_to 'TERMS OF SERVICE', 'http://www.rowleyeyewear.com/terms-of-use'
+                      %li
+                        = link_to 'FAQ', 'http://www.rowleyeyewear.com/help_faq'
+                      %li
+                        = link_to 'PRIVACY POLICY', 'http://www.rowleyeyewear.com/privacy-policy'
+                    %p{:style => "color:#86888a; font-size:12px;"}
+                      This Order Confirmation email was sent to #{@order.email}. Please add contact@rowleyeyewear.com to your address book to ensure our emails reach your inbox. ©2013 rowleyeyewear.com
+              / footer img end
